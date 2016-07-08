@@ -7,36 +7,82 @@ output: html_document
 
 ```{r}
 #install.packages("dplyr")
-#install.packages("ggplot2")
+install.packages("ggplot2")
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
-library(ggally_facethist)
 theme_set(theme_bw())
 ```
 
 Dados de gastos dos deputados de um período recente.
 
 ```{r, echo=FALSE}
-gastos = read.csv("~/ufcg/AD1/problema-1/ano-atual.csv")
-str(gastos)
+gastos = read.csv("~/AD1/problema-1/ano-atual.csv")
+#str(gastos)
 ```
 
 Total de gastos (usando o valor liquido) por Tipo de Despesa.
 
 ```{r}
-tipo.despesa = unique(gastos$txtDescricao)
 
 total.tipo.despesa = gastos %>% 
   group_by(txtDescricao) %>% 
   summarise(total = sum(vlrLiquido))
 
-ggplot(total.tipo.despesa, mapping = aes(x = txtDescricao, 
-                             y = total)) 
-
-ggplot(total.tipo.despesa, aes(x=txtDescricao, y=total)) 
-
-
-
+grafico.tipo.despesas = ggplot(total.tipo.despesa, aes(x = reorder(txtDescricao, total), 
+                             y = total)) + geom_bar(stat = "identity") + coord_flip()
+         
+grafico.tipo.despesas
 
 ```
+
+A média de gastos do país por tipo de Despesa
+
+```{r fig.width=6, fig.height=12}
+
+media.tipo.despesa = gastos %>% 
+  group_by(txtDescricao) %>% 
+  summarise(média = mean(vlrLiquido))
+
+```
+
+
+
+Total de gastos (usando o valor liquido) por tipo de Despesa e estado.
+
+```{r fig.width=6, fig.height=12}
+total.tipo.despesa.estado = gastos %>% 
+  group_by(sgUF,txtDescricao) %>% 
+  summarise(total = sum(vlrLiquido))
+
+grafico.tipo.despesas.estado = gggplot(total.tipo.despesa.estado, aes(x = reorder(txtDescricao, total), y = total,  fill=sgUF)) +
+  geom_bar(stat = "identity") + 
+  coord_flip()
+
+grafico.tipo.despesas.estado
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
