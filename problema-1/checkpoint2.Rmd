@@ -1,0 +1,42 @@
+---
+title: "Dados de gastos de parlamentares"
+author: "Rafaelle Amorim"
+date: "8 de julho de 2016"
+output: html_document
+---
+
+```{r}
+#install.packages("dplyr")
+#install.packages("ggplot2")
+library(dplyr, warn.conflicts = FALSE)
+library(ggplot2)
+library(ggally_facethist)
+theme_set(theme_bw())
+```
+
+Dados de gastos dos deputados de um período recente.
+
+```{r, echo=FALSE}
+gastos = read.csv("~/ufcg/AD1/problema-1/ano-atual.csv")
+str(gastos)
+```
+
+Total de gastos (usando o valor liquido) por Tipo de Despesa.
+
+```{r}
+tipo.despesa = unique(gastos$txtDescricao)
+
+total.tipo.despesa = gastos %>% 
+  group_by(txtDescricao) %>% 
+  summarise(total = sum(vlrLiquido))
+
+ggplot(total.tipo.despesa, mapping = aes(x = txtDescricao, 
+                             y = total)) 
+
+ggplot(total.tipo.despesa, aes(x=txtDescricao, y=total)) 
+
+
+
+
+```
+
