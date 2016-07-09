@@ -6,17 +6,17 @@ output: html_document
 ---
 
 ```{r}
-#install.packages("dplyr")
+install.packages("dplyr")
 install.packages("ggplot2")
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
 theme_set(theme_bw())
 ```
 
-Dados de gastos dos deputados de um período recente.
+Dados de gastos dos deputados de um per�?odo recente.
 
 ```{r, echo=FALSE}
-gastos = read.csv("~/AD1/problema-1/ano-atual.csv")
+gastos = read.csv("~/ufcg/AD1/problema-1/ano-atual.csv")
 #str(gastos)
 ```
 
@@ -26,7 +26,7 @@ Total de gastos (usando o valor liquido) por Tipo de Despesa.
 
 total.tipo.despesa = gastos %>% 
   group_by(txtDescricao) %>% 
-  summarise(total = sum(vlrLiquido))
+  summarise(total = sum(vlrLiquido, na.rm = FALSE), media = mean(vlrLiquido, na.rm = FALSE))
 
 grafico.tipo.despesas = ggplot(total.tipo.despesa, aes(x = reorder(txtDescricao, total), 
                              y = total)) + geom_bar(stat = "identity") + coord_flip()
@@ -35,13 +35,13 @@ grafico.tipo.despesas
 
 ```
 
-A média de gastos do país por tipo de Despesa
+A média de gastos do pa�?s por tipo de Despesa
 
 ```{r fig.width=6, fig.height=12}
 
 media.tipo.despesa = gastos %>% 
   group_by(txtDescricao) %>% 
-  summarise(média = mean(vlrLiquido))
+  summarise(media = mean(vlrLiquido))
 
 ```
 

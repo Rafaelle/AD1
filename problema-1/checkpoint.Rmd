@@ -1,0 +1,103 @@
+---
+title: "Dados de gastos de parlamentares"
+author: "Rafaelle Amorim"
+date: "8 de julho de 2016"
+output: html_document
+---
+
+```{r}
+install.packages("dplyr")
+install.packages("ggplot2")
+library(dplyr, warn.conflicts = FALSE)
+library(ggplot2)
+theme_set(theme_bw())
+```
+
+
+Dados de gastos dos deputados de um periodo recente e valor das cotas por estado.
+
+```{r}
+gastos = read.csv("~/ufcg/AD1/problema-1/ano-atual.csv",  encoding="UTF-8")
+cotas = read.csv("~/ufcg/AD1/problema-1/valor-cota-por-estado.csv",  encoding="UTF-8")
+#str(gastos)
+```
+
+Separamos o maior Tipo de Gasto de cada deputado, logo depois agrupamos os dados em Tipo de Gasto e somamos. 
+Dessa maneira, iremos observar os maiores gastos, por categoria, dosdeputados que mais gastaram nessa categoria.
+
+```{r fig.width=6, fig.height=12}
+tipo.maior.despesa.deputado = gastos %>% 
+  group_by(txtDescricao, ideCadastro) %>% 
+  summarise(total.despesa = sum(vlrLiquido)) %>%
+  ungroup(tipo.maior.despesa.deputado) %>%
+  group_by(ideCadastro ) %>% 
+  filter(total.despesa == max(total.despesa))
+
+total.tipo.despesa = tipo.maior.despesa.deputado %>%
+  group_by(txtDescricao) %>%
+  summarise(total = sum(total.despesa), quantidade.deputado = n())
+
+grafico.valor.tipo.despesa = ggplot(total.tipo.despesa, aes(x = reorder(txtDescricao, total),y = total)) + geom_bar(stat = "identity") + coord_flip()
+         
+```
+
+```{r}
+# gera um grafico levando em consideração apenas o numero de deputados que gasta em cada categoria
+grafico.quantidade.tipo.despesa = ggplot(total.tipo.despesa, aes(x = reorder(txtDescricao, quantidade.deputado),y = quantidade.deputado) + geom_bar(stat = "identity") + coord_flip()
+
+grafico.quantidade.tipo.despesa
+
+````
+
+
+```{r}
+total.tipo.despesa.geral = gastos %>% 
+  group_by(txtDescricao) %>% 
+  summarise(total = sum(vlrLiquido, na.rm = FALSE))
+
+
+ ggplot(data=dat, aes(x=Types, y=Number, fill=sample)) + 
+  geom_bar(position = 'dodge') + geom_text(aes(label=Number))
+
+
+
+grafico.valor.tipo.despesa
+
+````
+
+
+
+
+
+
+
+Nessa parte pegaremos o percentual de quanto cada deputado gastou de sua cota com o valor do Tipo de Gasto que ele mais gastou, temos a seguinte tabela:
+
+
+```{r fig.width=6, fig.height=12}
+# vamos dividir o gasto pela cota e multiplicar por 100, para gerara porcentagem de quanto cada deputado gasta de sua cota
+````
+
+
+```{r fig.width=6, fig.height=12}
+# pegar a média gasta pelos deputados (de mesmo tipo de gasto)
+````
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
