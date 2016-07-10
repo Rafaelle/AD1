@@ -22,6 +22,22 @@ gastos = read.csv("~/ufcg/AD1/problema-1/ano-atual.csv",  encoding="UTF-8")
 cotas = read.csv("~/ufcg/AD1/problema-1/valor-cota-por-estado.csv",  encoding="UTF-8")
 ```
 
+De maneira geral os gastos por "Tipo de Gasto" se comportam da seguinte maneira:
+
+```{r}
+total.tipo.despesa.geral = gastos %>% 
+  group_by(txtDescricao) %>% 
+  summarise(total.geral = sum(vlrLiquido))
+
+grafico.tipo.despesas.geral = ggplot(total.tipo.despesa.geral, aes(x = reorder(txtDescricao, total.geral/1e6),y = total.geral/1e6)) +
+  geom_bar(stat = "identity") +
+  xlab("Tipo de Gasto") + 
+  ylab("Total gasto (milhões)") +
+  coord_flip()
+         
+grafico.tipo.despesas.geral
+
+```
 
 Para responder a pergunta proposta "Em que tipo de despesas nossos parlamentares gastam mais recursos de sua cota?", separamos os gastos de cada deputado por categoria de gasto, com isso, podemos selecionar apenas o "Tipo de Gasto" com maior despesa para cada um dos parlamentares.  
 
@@ -33,6 +49,7 @@ tipo.maior.despesa.deputado = gastos %>%
   ungroup(tipo.maior.despesa.deputado) %>%
   group_by(txNomeParlamentar ) %>% 
   filter(total.despesa == max(total.despesa))
+
 ```
 
 Agora agruparemos, usando a tabela anteriormente gerada, por "Tipo de Gasto" para obter qual categoria os deputados mais gastam.
@@ -41,7 +58,7 @@ Agora agruparemos, usando a tabela anteriormente gerada, por "Tipo de Gasto" par
 
 total.tipo.despesa = tipo.maior.despesa.deputado %>%
   group_by(txtDescricao) %>%
-  summarise(total = sum(total.despesa), quantidade.deputado = n())
+  summarise(total = sum(total.despesa))
 
 grafico.valor.tipo.despesa = ggplot(total.tipo.despesa, aes(x = reorder(txtDescricao, total/1e6),y = total/1e6)) +
   geom_bar(stat = "identity") +
@@ -59,17 +76,45 @@ Como podemos observar no gráfico, os três "Tipos de Gasto" com maiores custos da
   - Consultorias, Pesquisa e Trabalhos Técnicos;
   - Emissão de Bilhete Aéreo.
   
-Agora vamos tentar observar o quão dipersos esses valores estão:
+Agora vamos tentar observar a diferença entre os gastos gerais e os maiores gastos de cada deputado
 
 ```{r fig.width=6, fig.height=12}
-grafico.dispersao.tipo.despesa = ggplot(total.tipo.despesa,aes(x = reorder(txtDescricao, total/1e6),y = total/1e6))  +  
-  boxplot(total.tipo.despesa) +
+# essa parte não ta legal
+join.geral.deputados = left_join(x = total.tipo.despesa.geral, y = total.tipo.despesa)
+
+grafico.tipo.despesas.geral = ggplot(join.geral.deputados, aes(x = reorder(txtDescricao, total.geral/1e6),y = total.geral/1e6)) +
+  geom_bar(stat = "identity") +
+  xlab("Tipo de Gasto") + 
+  ylab("Total do valor Liquido gasto (milhões)") +
   coord_flip()
 
 grafico.dispersao.tipo.despesa
 ```
 
+Pergunta 2B : Quais tipos de despesas têm despesas que mais variam, que têm valores mais desiguais?
 
+```{r fig.width=6, fig.height=12}
+ggplot(gastos, aes(txtDescricao, vlrLiquido)) + 
+  geom_boxplot() + 
+  xlab("Tipo de Gasto") + 
+  ylab("Valor Liquido") + 
+  coord_flip() +
+  geom_point(position = position_jitter(width = .2), alpha = .07)
+
+
+
+```
+
+
+```{r fig.width=6, fig.height=12}
+desvioTipoGastos <- gastos %>% 
+  group_by(txtDescricao) %>%
+  summarize(desvioPadrao = sd(vlrLiquido))
+
+ggplot(desvioTipoGastos, aes(x = reorder(txtDescricao, desvioPadrao), y = desvioPadrao)) + 
+  geom_bar(stat = "identity")  + coord_flip() + xlab("Tipo de Gasto") + ylab("Desvio Padrão") 
+
+```
 
 
 
