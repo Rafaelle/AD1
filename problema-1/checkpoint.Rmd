@@ -1,3 +1,4 @@
+
 ---
 title: "Dados de gastos de parlamentares"
 author: "Rafaelle Amorim"
@@ -19,82 +20,54 @@ Dados de gastos dos deputados de um periodo recente e valor das cotas por estado
 ```{r}
 gastos = read.csv("~/ufcg/AD1/problema-1/ano-atual.csv",  encoding="UTF-8")
 cotas = read.csv("~/ufcg/AD1/problema-1/valor-cota-por-estado.csv",  encoding="UTF-8")
-#str(gastos)
 ```
 
-Separamos o maior Tipo de Gasto de cada deputado, logo depois agrupamos os dados em Tipo de Gasto e somamos. 
-Dessa maneira, iremos observar os maiores gastos, por categoria, dosdeputados que mais gastaram nessa categoria.
+
+Para responder a pergunta proposta "Em que tipo de despesas nossos parlamentares gastam mais recursos de sua cota?", separamos os gastos de cada deputado por categoria de gasto, com isso, podemos selecionar apenas o "Tipo de Gasto" com maior despesa para cada um dos parlamentares.  
+
 
 ```{r fig.width=6, fig.height=12}
 tipo.maior.despesa.deputado = gastos %>% 
-  group_by(txtDescricao, ideCadastro) %>% 
+  group_by(txtDescricao, txNomeParlamentar) %>% 
   summarise(total.despesa = sum(vlrLiquido)) %>%
   ungroup(tipo.maior.despesa.deputado) %>%
-  group_by(ideCadastro ) %>% 
+  group_by(txNomeParlamentar ) %>% 
   filter(total.despesa == max(total.despesa))
+```
+
+Agora agruparemos, usando a tabela anteriormente gerada, por "Tipo de Gasto" para obter qual categoria os deputados mais gastam.
+
+```{r fig.width=6, fig.height=12}
 
 total.tipo.despesa = tipo.maior.despesa.deputado %>%
   group_by(txtDescricao) %>%
   summarise(total = sum(total.despesa), quantidade.deputado = n())
 
-grafico.valor.tipo.despesa = ggplot(total.tipo.despesa, aes(x = reorder(txtDescricao, total),y = total)) + geom_bar(stat = "identity") + coord_flip()
+grafico.valor.tipo.despesa = ggplot(total.tipo.despesa, aes(x = reorder(txtDescricao, total/1e6),y = total/1e6)) +
+  geom_bar(stat = "identity") +
+  xlab("Tipo de Gasto") + 
+  ylab("Total gasto (milhões)") +
+  coord_flip()
+#adicionar mais intervalos
+
+grafico.valor.tipo.despesa
          
 ```
 
-```{r}
-# gera um grafico levando em consideração apenas o numero de deputados que gasta em cada categoria
-grafico.quantidade.tipo.despesa = ggplot(total.tipo.despesa, aes(x = reorder(txtDescricao, quantidade.deputado),y = quantidade.deputado) + geom_bar(stat = "identity") + coord_flip()
-
-grafico.quantidade.tipo.despesa
-
-````
-
-
-```{r}
-total.tipo.despesa.geral = gastos %>% 
-  group_by(txtDescricao) %>% 
-  summarise(total = sum(vlrLiquido, na.rm = FALSE))
-
-
- ggplot(data=dat, aes(x=Types, y=Number, fill=sample)) + 
-  geom_bar(position = 'dodge') + geom_text(aes(label=Number))
-
-
-
-grafico.valor.tipo.despesa
-
-````
-
-
-
-
-
-
-
-Nessa parte pegaremos o percentual de quanto cada deputado gastou de sua cota com o valor do Tipo de Gasto que ele mais gastou, temos a seguinte tabela:
-
+Como podemos observar no gráfico, os três "Tipos de Gasto" com maiores custos da cota dos deputados são:
+  - Divulgação de Atividades Parlamentar;
+  - Consultorias, Pesquisa e Trabalhos Técnicos;
+  - Emissão de Bilhete Aéreo.
+  
+Agora vamos tentar observar o quão dipersos esses valores estão:
 
 ```{r fig.width=6, fig.height=12}
-# vamos dividir o gasto pela cota e multiplicar por 100, para gerara porcentagem de quanto cada deputado gasta de sua cota
-````
+grafico.dispersao.tipo.despesa = ggplot(total.tipo.despesa,aes(x = reorder(txtDescricao, total/1e6),y = total/1e6))  +  
+  boxplot(total.tipo.despesa) +
+  coord_flip()
 
-
-```{r fig.width=6, fig.height=12}
-# pegar a média gasta pelos deputados (de mesmo tipo de gasto)
-````
-
-
-
-
-
-
-
-
-
-
-
-
-
+grafico.dispersao.tipo.despesa
+```
 
 
 
