@@ -59,6 +59,7 @@ grafico.valor.tipo.despesa = ggplot(total.tipo.despesa, aes(x = reorder(txtDescr
   geom_bar(stat = "identity") +
   xlab("Tipo de Gasto") + 
   ylab("Total gasto (milh?es)") +
+  ggtitle("Qauntidade de Tipo de Gasto") +
   coord_flip()
 
 grafico.valor.tipo.despesa
@@ -80,17 +81,22 @@ ggplot(gastos, aes(txtDescricao, vlrLiquido)) +
   geom_boxplot() + 
   xlab("Tipo de Gasto") + 
   ylab("Valor Liquido") + 
+  ggtitle("Distribuição de Gasto por categoria") +
   coord_flip()+
   geom_point(position = position_jitter(width = .2), alpha = .07)
 
 ```
 
-Calculando o desvio padrão dos gastos, temos o seguinte gráfico:
+Calculando o desvio padrão dos gastos, para verificar quão distante os valores estão da média, temos o seguinte gráfico:
 
 ```{r}
 
 ggplot(total.tipo.despesa.geral, aes(x = reorder(txtDescricao, desvioPadrao), y = desvioPadrao)) + 
-  geom_bar(stat = "identity")  + coord_flip() + xlab("Tipo de Gasto") + ylab("Desvio Padrão")
+  geom_bar(stat = "identity")  + 
+  xlab("Tipo de Gasto") + 
+  ylab("Desvio Padrão") +
+  ggtitle("Desvio padrão dos Tipo de Gastos") +
+  coord_flip()
 
 ```
 
@@ -107,42 +113,6 @@ despesa.especifica = gastos %>%
 ``` {r}
 summary(gastos$vlrLiquido)
 ```
-
-Análisando por estado, temos a seguinte 
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```{r echo=FALSE}
-
-
-
-#grafico.tipo.despesas.geral = ggplot(total.tipo.despesa.geral, aes(x = reorder(txtDescricao, total.geral/1e6),y = total.geral/1e6)) +
-#  geom_bar(stat = "identity") +
- # xlab("Tipo de Gasto") + 
-#  ylab("Total gasto (milhões)") +
-#  coord_flip()
-         
-#grafico.tipo.despesas.geral
-
-```
-
-
-
-
 
 
 
