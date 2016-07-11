@@ -4,42 +4,40 @@ title: "Dados de gastos de parlamentares"
 output: html_document
 ---
 
-```{r}
+```{r global_options, include=TRUE}
+knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6)
+```
+
+```{r echo=FALSE}
 #install.packages("dplyr")
 #install.packages("ggplot2")
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
 theme_set(theme_bw())
+
 ```
 
-Dados de gastos dos deputados de um periodo recente e valor das cotas por estado.
+Dados de gastos dos deputados de um periodo recente e valor das cotas por estado. Os dados são compostos por 572 parlamentares.
 
 ```{r}
 gastos = read.csv("~/ufcg/AD1/problema-1/ano-atual.csv",  encoding="UTF-8")
 cotas = read.csv("~/ufcg/AD1/problema-1/valor-cota-por-estado.csv",  encoding="UTF-8")
 ```
 
-De maneira geral os gastos por "Tipo de Gasto" se comportam da seguinte maneira:
-
-```{r}
+```{r echo=FALSE}
 total.tipo.despesa.geral = gastos %>% 
   group_by(txtDescricao) %>% 
   summarise(total.geral = sum(vlrLiquido), desvioPadrao = sd(vlrLiquido))
-
-grafico.tipo.despesas.geral = ggplot(total.tipo.despesa.geral, aes(x = reorder(txtDescricao, total.geral/1e6),y = total.geral/1e6)) +
-  geom_bar(stat = "identity") +
-  xlab("Tipo de Gasto") + 
-  ylab("Total gasto (milhões)") +
-  coord_flip()
-         
-grafico.tipo.despesas.geral
-
 ```
 
-Para responder a pergunta proposta "Em que tipo de despesas nossos parlamentares gastam mais recursos de sua cota?", separamos os gastos de cada deputado por categoria de gasto, com isso, podemos selecionar apenas o "Tipo de Gasto" com maior despesa para cada um dos parlamentares.  
+Os gastos dos parlamentares são divididos em 18 tipos de categoria.
 
+Pergunta 2A : Em que tipo de despesas nossos parlamentares gastam mais recursos de sua cota?
 
-```{r fig.width=6, fig.height=12}
+Para responder a pergunta proposta, separamos os gastos de cada deputado por categoria de gasto, com isso, podemos selecionar apenas o "Tipo de Gasto" com maior despesa para cada um dos parlamentares.  
+
+```{r}
+
 tipo.maior.despesa.deputado = gastos %>% 
   group_by(txtDescricao, txNomeParlamentar) %>% 
   summarise(total.despesa = sum(vlrLiquido)) %>%
@@ -51,7 +49,7 @@ tipo.maior.despesa.deputado = gastos %>%
 
 Agora agruparemos, usando a tabela anteriormente gerada, por "Tipo de Gasto" para obter qual categoria os deputados mais gastam.
 
-```{r fig.width=6, fig.height=12}
+```{r}
 
 total.tipo.despesa = tipo.maior.despesa.deputado %>%
   group_by(txtDescricao) %>%
@@ -62,35 +60,22 @@ grafico.valor.tipo.despesa = ggplot(total.tipo.despesa, aes(x = reorder(txtDescr
   xlab("Tipo de Gasto") + 
   ylab("Total gasto (milh?es)") +
   coord_flip()
-#adicionar mais intervalos
 
 grafico.valor.tipo.despesa
          
 ```
 
-Como podemos observar no gr?fico, os tr?s "Tipos de Gasto" com maiores custos da cota dos deputados s?o:
+Como podemos observar no gráfico, os três "Tipos de Gasto" com maiores custos da cota dos deputados s?o:
   - Divulgação de Atividades Parlamentar;
-  - Consultorias, Pesquisa e Trabalhos T?cnicos;
+  - Consultorias, Pesquisa e Trabalhos Técnicos;
   - Emissão de Bilhete Aéreo.
-  
-Agora vamos tentar observar a diferen?a entre os gastos gerais e os maiores gastos de cada deputado
 
-```{r fig.width=6, fig.height=12}
-# essa parte não ta legal
-join.geral.deputados = left_join(x = total.tipo.despesa.geral, y = total.tipo.despesa)
-
-grafico.tipo.despesas.geral = ggplot(join.geral.deputados, aes(x = reorder(txtDescricao, total.geral/1e6),y = total.geral/1e6)) +
-  geom_bar(stat = "identity") +
-  xlab("Tipo de Gasto") + 
-  ylab("Total do valor Liquido gasto (milh?es)") +
-  coord_flip()
-
-grafico.tipo.despesas.geral
-```
 
 Pergunta 2B : Quais tipos de despesas têm despesas que mais variam, que têm valores mais desiguais?
 
-```{r fig.width=6, fig.height=12}
+Iremos gerar um gráfico para observar a distribuição dos gastos por categoria. 
+
+```{r}
 ggplot(gastos, aes(txtDescricao, vlrLiquido)) + 
   geom_boxplot() + 
   xlab("Tipo de Gasto") + 
@@ -98,18 +83,66 @@ ggplot(gastos, aes(txtDescricao, vlrLiquido)) +
   coord_flip()+
   geom_point(position = position_jitter(width = .2), alpha = .07)
 
-  geom_point(alpha=0.3, color="tomato", position = )
-
 ```
 
-Desvio padrão
+Calculando o desvio padrão dos gastos, temos o seguinte gráfico:
 
-```{r fig.width=6, fig.height=12}
+```{r}
 
 ggplot(total.tipo.despesa.geral, aes(x = reorder(txtDescricao, desvioPadrao), y = desvioPadrao)) + 
   geom_bar(stat = "identity")  + coord_flip() + xlab("Tipo de Gasto") + ylab("Desvio Padrão")
 
 ```
+
+Como podemos verificar utilizando os dois gráficos, "Divulgação de Atividades Parlamentar" e "Consultorias, Pesquisa e Trabalhos Técnicos" são as duas categorias com maior variabilidade, já as categorias "Fornecimento de Alimentação do Parlamentar" e "Serviço de Táxi, Pedágio e Estacionamento" possuiem a menor variação.
+
+
+Por possuir o maior gasto e a maior variabilidadeInicialmente iremos selecionar apenas a categoria "Divulgação da Atividade Parlamentar" para explorar um pouco mais os dados.
+
+```{r echo=FALSE}
+despesa.especifica = gastos %>% 
+  filter(txtDescricao == "DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.")
+```
+
+``` {r}
+summary(gastos$vlrLiquido)
+```
+
+Análisando por estado, temos a seguinte 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r echo=FALSE}
+
+
+
+#grafico.tipo.despesas.geral = ggplot(total.tipo.despesa.geral, aes(x = reorder(txtDescricao, total.geral/1e6),y = total.geral/1e6)) +
+#  geom_bar(stat = "identity") +
+ # xlab("Tipo de Gasto") + 
+#  ylab("Total gasto (milhões)") +
+#  coord_flip()
+         
+#grafico.tipo.despesas.geral
+
+```
+
+
+
+
 
 
 

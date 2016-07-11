@@ -13,7 +13,7 @@ library(ggplot2)
 theme_set(theme_bw())
 ```
 
-Dados de gastos dos deputados de um per????odo recente.
+Dados de gastos dos deputados de um período recente.
 
 ```{r, echo=FALSE}
 gastos = read.csv("~/ufcg/AD1/problema-1/ano-atual.csv")
@@ -72,7 +72,7 @@ grafico.quantidade.tipo.despesa = ggplot(total.tipo.despesa, aes(x = reorder(txt
 
 grafico.quantidade.tipo.despesa
 
-````
+```
 
 
 ```{r}
@@ -88,9 +88,25 @@ total.tipo.despesa.geral = gastos %>%
 
 grafico.valor.tipo.despesa
 
-````
+```
 
 
+  --------------------------------------------------------------------------------------------------------------------
+Agora vamos tentar observar a diferença entre os gastos gerais e os maiores gastos de cada deputado
+
+```{r}
+# essa parte não ta legal
+join.geral.deputados = left_join(x = total.tipo.despesa.geral, y = total.tipo.despesa)
+
+grafico.tipo.despesas.geral = ggplot(join.geral.deputados, aes(x = reorder(txtDescricao, total.geral/1e6),y = total.geral/1e6)) +
+  geom_bar(stat = "identity") +
+  xlab("Tipo de Gasto") + 
+  ylab("Total do valor Liquido gasto (milhões)") +
+  coord_flip()
+
+grafico.tipo.despesas.geral
+
+```
 
 
 
