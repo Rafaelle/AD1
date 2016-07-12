@@ -125,7 +125,7 @@ Agora agruparemos por estado o valor das despesas com Divulgação de Atividade Pa
 divulgacao.estado = despesa.especifica %>%
   group_by(sgUF)
 
-ggplot(divulgacao.estado, aes(sgUF, vlrLiquido)) + 
+ggplot(divulgacao.estado, aes(x = reorder(sgUF, vlrLiquido), vlrLiquido)) + 
   geom_boxplot() + 
   xlab("Estados") + 
   ylab("Valor Liquido") + 
@@ -140,25 +140,19 @@ total.divulgacao.estado = divulgacao.estado %>%
 ggplot(total.divulgacao.estado, aes(x = reorder(sgUF, total.divulgacao), y = total.divulgacao)) + 
   geom_bar(stat = "identity")  + 
   xlab("Tipo de Gasto") + 
-  ylab("Desvio Padrão") +
+  ylab("Valor liquido") +
   ggtitle("Desvio padrão dos Tipo de Gastos") + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
-  geom_bar(aes(x = reorder(sgUF, total.divulgacao), y=total.divulgacao, fill=media.estado), width=.25,alpha = 0.5, fill="#CC0000")
-
-
-mx <- mean(x)
-hist(x)
-abline(v = mx, col = "blue", lwd = 2)
 
 
 ```
 
-
-
-
-
-
-
-
+Como podemos observar os três primeiros estados com maiores gastos na categoria são:
+  - São Paulo
+  - Bahia
+  - Minas Gerais
+  
+  
+Existem diferenças bastante significativas, que influenciam em valores como média e mediana. Para uma melhor análise, seria necessário que o analista conhecesse mais profundamente o contexto e o significado das variaveis dos dados, para uma melhor investigação, conhecendo o motivo para os resultados verificados.
 
 
