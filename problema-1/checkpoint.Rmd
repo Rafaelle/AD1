@@ -1,6 +1,7 @@
 
 ---
 title: "Dados de gastos de parlamentares"
+author: "Análise de Dados 1 - Rafaelle Xavier"
 output: html_document
 ---
 
@@ -8,21 +9,19 @@ output: html_document
 knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6)
 ```
 
+----
+
 ```{r echo=FALSE}
-#install.packages("dplyr")
-#install.packages("ggplot2")
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
 theme_set(theme_bw())
 
 ```
 
-Dados de gastos dos deputados de um periodo recente e valor das cotas por estado. Os dados são compostos por 572 parlamentares. Para o estudo iremos sempre utilizar o valor l�quido, que em nossos dados, representa a diferen�a entre o valor do documento e o valor da Glosa.
-
+Dados de gastos dos deputados de um periodo recente. Os dados são compostos por 572 parlamentares. Para o estudo iremos sempre utilizar o valor líquido, que em nossos dados, representa a diferença entre o valor do documento e o valor da Glosa.
 
 ```{r}
 gastos = read.csv("~/ufcg/AD1/problema-1/ano-atual.csv",  encoding="UTF-8")
-cotas = read.csv("~/ufcg/AD1/problema-1/valor-cota-por-estado.csv",  encoding="UTF-8")
 ```
 
 ```{r echo=FALSE}
@@ -31,9 +30,10 @@ total.tipo.despesa.geral = gastos %>%
   summarise(total.geral = sum(vlrLiquido), desvioPadrao = sd(vlrLiquido))
 ```
 
-Os gastos dos parlamentares são divididos em 18 tipos de categoria.
+Os gastos dos parlamentares são divididos em 18 categorias.
 
-Pergunta 2A : Em que tipo de despesas nossos parlamentares gastam mais recursos de sua cota?
+##Pergunta 2A 
+**Em que tipo de despesas nossos parlamentares gastam mais recursos de sua cota?**
 
 Para responder a pergunta proposta, separamos os gastos de cada deputado por categoria de gasto, com isso, podemos selecionar apenas o "Tipo de Gasto" com maior despesa para cada um dos parlamentares.  
 
@@ -59,21 +59,26 @@ total.tipo.despesa = tipo.maior.despesa.deputado %>%
 grafico.valor.tipo.despesa = ggplot(total.tipo.despesa, aes(x = reorder(txtDescricao, total/1e6),y = total/1e6)) +
   geom_bar(stat = "identity") +
   xlab("Tipo de Gasto") + 
-  ylab("Total gasto (milh?es)") +
-  ggtitle("Qauntidade de Tipo de Gasto") +
+  ylab("Total gasto (milhões)") +
+  ggtitle("Quantidade de Tipo de Gasto") +
   coord_flip()
 
 grafico.valor.tipo.despesa
          
 ```
 
-Como podemos observar no gráfico, os três "Tipos de Gasto" com maiores custos da cota dos deputados s?o:
-  - Divulgação de Atividades Parlamentar;
-  - Consultorias, Pesquisa e Trabalhos Técnicos;
-  - Emissão de Bilhete Aéreo.
+Como podemos observar no gráfico, os três "Tipos de Gasto" com maiores custos da cota dos deputados são:
 
+* Divulgação de Atividades Parlamentar;
 
-Pergunta 2B : Quais tipos de despesas têm despesas que mais variam, que têm valores mais desiguais?
+* Consultorias, Pesquisa e Trabalhos Técnicos;
+ 
+* Emissão de Bilhete Aéreo.
+
+----
+
+####Pergunta 2B
+**Quais tipos de despesas têm despesas que mais variam, que têm valores mais desiguais?**
 
 Iremos gerar um gráfico para observar a distribuição dos gastos por categoria. 
 
@@ -81,7 +86,7 @@ Iremos gerar um gráfico para observar a distribuição dos gastos por categoria
 ggplot(gastos, aes(txtDescricao, vlrLiquido)) + 
   geom_boxplot() + 
   xlab("Tipo de Gasto") + 
-  ylab("Valor Liquido") + 
+  ylab("Valor Líquido") + 
   ggtitle("Distribuição de Gasto por categoria") +
   coord_flip()+
   geom_point(position = position_jitter(width = .2), alpha = .07)
@@ -103,23 +108,20 @@ ggplot(total.tipo.despesa.geral, aes(x = reorder(txtDescricao, desvioPadrao), y 
 
 Como podemos verificar utilizando os dois gráficos, "Divulgação de Atividades Parlamentar" e "Consultorias, Pesquisa e Trabalhos Técnicos" são as duas categorias com maior variabilidade, já as categorias "Fornecimento de Alimentação do Parlamentar" e "Serviço de Táxi, Pedágio e Estacionamento" possuiem a menor variação.
 
-
 Por possuir o maior gasto e a maior variabilidadeInicialmente iremos selecionar apenas a categoria "Divulgação da Atividade Parlamentar" para explorar um pouco mais os dados.
 
 ```{r echo=FALSE}
 despesa.especifica = gastos %>% 
-  filter(txtDescricao == "DIVULGA��O DA ATIVIDADE PARLAMENTAR.")
+  filter(txtDescricao == "DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.")
 ```
 
 ``` {r}
 summary(gastos$vlrLiquido)
 ```
 
-Podemos observar uma grande diferen�a entre os valores de m�dia e mediana, al�m disso, a diferen�a do valor m�ximo para a m�dia � bastante elevada.
+Podemos observar uma grande diferença entre os valores de média e mediana, além disso, a diferença do valor máximo para a média é bastante elevada.
 
-
-
-Agora agruparemos por estado o valor das despesas com Divulga��o de Atividade Parlamentar.
+Agora agruparemos por estado o valor das despesas com Divulgação de Atividade Parlamentar.
 
 ```{r}
 divulgacao.estado = despesa.especifica %>%
@@ -129,7 +131,7 @@ ggplot(divulgacao.estado, aes(x = reorder(sgUF, vlrLiquido), vlrLiquido)) +
   geom_boxplot() + 
   xlab("Estados") + 
   ylab("Valor Liquido") + 
-  ggtitle("Distribui��o de Divulga��o de Atividade Parlamentar por estado") +
+  ggtitle("Distribuição de Divulgação de Atividade Parlamentar por estado") +
   geom_point(position = position_jitter(width = .2), alpha = .07)
 
 
@@ -141,18 +143,25 @@ ggplot(total.divulgacao.estado, aes(x = reorder(sgUF, total.divulgacao), y = tot
   geom_bar(stat = "identity")  + 
   xlab("Tipo de Gasto") + 
   ylab("Valor liquido") +
-  ggtitle("Desvio padr�o dos Tipo de Gastos") + 
+  ggtitle("Desvio padrão dos Tipo de Gastos") + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 
 ```
 
-Como podemos observar os tr�s primeiros estados com maiores gastos na categoria s�o:
-  - S�o Paulo
-  - Bahia
-  - Minas Gerais
+Como podemos observar os três primeiros estados com maiores gastos na categoria são:
+
+* São Paulo
+
+* Bahia
+
+* Minas Gerais
   
-  
-Existem diferen�as bastante significativas, que influenciam em valores como m�dia e mediana. Para uma melhor an�lise, seria necess�rio que o analista conhecesse mais profundamente o contexto e o significado das variaveis dos dados, para uma melhor investiga��o, conhecendo o motivo para os resultados verificados.
+Existem diferenças bastante significativas, que influenciam em valores como média e mediana. Para uma melhor análise, seria necessário que o analista conhecesse mais profundamente o contexto e o significado das variaveis dos dados, para uma melhor investigação, conhecendo o motivo para os resultados verificados.
+
+----
+
+####Referências
+
 
 
