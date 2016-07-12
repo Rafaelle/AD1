@@ -17,7 +17,8 @@ theme_set(theme_bw())
 
 ```
 
-Dados de gastos dos deputados de um periodo recente e valor das cotas por estado. Os dados sÃ£o compostos por 572 parlamentares.
+Dados de gastos dos deputados de um periodo recente e valor das cotas por estado. Os dados sÃ£o compostos por 572 parlamentares. Para o estudo iremos sempre utilizar o valor líquido, que em nossos dados, representa a diferença entre o valor do documento e o valor da Glosa.
+
 
 ```{r}
 gastos = read.csv("~/ufcg/AD1/problema-1/ano-atual.csv",  encoding="UTF-8")
@@ -107,12 +108,56 @@ Por possuir o maior gasto e a maior variabilidadeInicialmente iremos selecionar 
 
 ```{r echo=FALSE}
 despesa.especifica = gastos %>% 
-  filter(txtDescricao == "DIVULGAÃ‡ÃƒO DA ATIVIDADE PARLAMENTAR.")
+  filter(txtDescricao == "DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.")
 ```
 
 ``` {r}
 summary(gastos$vlrLiquido)
 ```
+
+Podemos observar uma grande diferença entre os valores de média e mediana, além disso, a diferença do valor máximo para a média é bastante elevada.
+
+
+
+Agora agruparemos por estado o valor das despesas com Divulgação de Atividade Parlamentar.
+
+```{r}
+divulgacao.estado = despesa.especifica %>%
+  group_by(sgUF)
+
+ggplot(divulgacao.estado, aes(sgUF, vlrLiquido)) + 
+  geom_boxplot() + 
+  xlab("Estados") + 
+  ylab("Valor Liquido") + 
+  ggtitle("Distribuição de Divulgação de Atividade Parlamentar por estado") +
+  geom_point(position = position_jitter(width = .2), alpha = .07)
+
+
+total.divulgacao.estado = divulgacao.estado %>%
+  group_by(sgUF) %>%
+  summarise(total.divulgacao = sum(vlrLiquido), media.estado = mean(vlrLiquido))
+
+ggplot(total.divulgacao.estado, aes(x = reorder(sgUF, total.divulgacao), y = total.divulgacao)) + 
+  geom_bar(stat = "identity")  + 
+  xlab("Tipo de Gasto") + 
+  ylab("Desvio Padrão") +
+  ggtitle("Desvio padrão dos Tipo de Gastos") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  geom_bar(aes(x = reorder(sgUF, total.divulgacao), y=total.divulgacao, fill=media.estado), width=.25,alpha = 0.5, fill="#CC0000")
+
+
+mx <- mean(x)
+hist(x)
+abline(v = mx, col = "blue", lwd = 2)
+
+
+```
+
+
+
+
+
+
 
 
 
