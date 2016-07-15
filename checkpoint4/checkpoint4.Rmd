@@ -1,0 +1,26 @@
+---
+title: "Analise dos gastos dos parlamentares"
+author: "Rafaelle Amorim"
+date: "15 de julho de 2016"
+output: html_document
+---
+
+```{r global_options, include=TRUE}
+knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6)
+```
+
+---
+
+```{r echo=FALSE}
+library(dplyr, warn.conflicts = FALSE)
+library(ggplot2)
+theme_set(theme_bw())
+
+```
+
+Para o checkpoint 4 utilizaremos os dados coletados do site de tranparência da câmara dos deputados. Esses dados são referentes aos gastos dos deputados em 2016 e são compostos por 572 parlamentares. 
+
+```{r}
+gastos = read.csv("../dados/ano-atual.csv",  encoding="UTF-8")
+cotas = read.csv("../dados/valor-cota-por-estado.csv",  encoding="UTF-8")
+```
