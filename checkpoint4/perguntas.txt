@@ -1,0 +1,13 @@
+
+    Como são os gastos e a distribuição por estado/partido utilizando a medida cota (total gasto/cota do deputado) ?
+
+    Analisando as categorias de "Passagens aéreas" e "Emissão Bilhete Aéreo"  como é distribuído a quantidade de pessoas que viajam com o nome dos Deputados? Qual a média de passageiros por deputado? Para onde é a maioria das viagens?
+
+    Quais são os maiores fornecedores, avaliando por partido/ estado?
+
+    Qual o período (em um intervalo dos dias do ano) em que se concentram os maiores gastos? Como são esses gastos?
+
+    Quais são os partidos que gastam mais? E os que economizam?
+ 
+   Quais são os deputados com maiores gasto?
+

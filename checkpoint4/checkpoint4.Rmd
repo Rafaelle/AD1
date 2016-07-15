@@ -24,3 +24,62 @@ Para o checkpoint 4 utilizaremos os dados coletados do site de tranparência da 
 gastos = read.csv("../dados/ano-atual.csv",  encoding="UTF-8")
 cotas = read.csv("../dados/valor-cota-por-estado.csv",  encoding="UTF-8")
 ```
+
+Inicialmente iremos analisar a categoria de "Emissão Bilhete Aéreo", que diferente da categoria "Passagens Aéreas", possui apenas 
+dados de 2016, para tentar responder a pergunta "Como é distribuído a quantidade de pessoas que viajam com o nome dos Deputados?"
+
+Para melhor compreensão dos dados, usaremos apenas os gastos com "valor liquido" positivo, pois os valores negativos significam que o referido bilhete é um bilhete de compensação, pois compensa um outro bilhete emitido e não utilizado pelo deputado.
+
+```{r}
+
+#dados apenas de 2016
+emissao.bilhete.aereo = gastos %>%
+  group_by(txtDescricao) %>%
+  filter(txtDescricao == "Emissão Bilhete Aéreo" & vlrLiquido >= 0) 
+  
+summary(emissao.bilhete.aereo$vlrLiquido)
+
+```
+
+``` {r}
+
+bilhete.aereo.por.deputado = emissao.bilhete.aereo %>%
+  group_by(txNomeParlamentar) %>%
+  summarise(total.passageiros = length(unique(txtPassageiro)))
+
+summary(bilhete.aereo.por.deputado$total.passageiros)
+
+
+#teste = emissao.bilhete.aereo %>%
+# filter(txNomeParlamentar == "CHRISTIANE DE SOUZA YARED") %>%
+#  distinct(txtPassageiro)
+
+#grafico.bilhete.por.deputado = gggplot(bilhete.aereo.por.deputado, aes(x = reorder(txtDescricao, total), y = total,  fill=sgUF)) +
+#  geom_bar(stat = "identity") + 
+#  coord_flip()
+
+
+
+
+```
+
+Agora iremos pegar os 10 deputados com maior número de pessoas viajando em seu nome 
+-------- plotar com x = nomeParlamentar e y= numPessoas  -----------
+
+pergunta 2 -  Quais são os estados que gastam mais? E os que economizam?
+
+```{r}
+
+names(cotas) = c("estado", "cota")
+
+left_join(gastos, cotas, by = c("sgUF" = "estado"))
+
+gasto.deputado.cota= gastos %>%
+  group_by(txtDescricao) %>%
+  filter(txtDescricao == "Emissão Bilhete Aéreo" & vlrLiquido >= 0) 
+  
+summary(emissao.bilhete.aereo$vlrLiquido)
+
+
+
+```
