@@ -1,5 +1,5 @@
 ---
-title: "Analise dos gastos dos parlamentares"
+title: "Análise dos gastos dos parlamentares"
 author: "Rafaelle Amorim"
 date: "15 de julho de 2016"
 output: html_document
@@ -32,16 +32,13 @@ dados de 2016, para tentar responder a pergunta "Como é distribuído a quantida
 Para melhor compreensão dos dados, usaremos apenas os gastos com "valor liquido" positivo, pois os valores negativos significam que o referido bilhete é um bilhete de compensação, pois compensa um outro bilhete emitido e não utilizado pelo deputado.
 
 ```{r}
-
 emissao.bilhete.aereo = gastos %>%
   group_by(txtDescricao) %>%
   filter(txtDescricao == "Emissão Bilhete Aéreo" & vlrLiquido >= 0) 
   
-summary(emissao.bilhete.aereo$vlrLiquido)
-
 bilhete.aereo.por.deputado = emissao.bilhete.aereo %>%
   group_by(txNomeParlamentar) %>%
-  summarise(total.passageiros = length(unique(txtPassageiro)), total.vlrLiquido = sum(vlrLiquido))  %>%
+  summarise(total.passageiros = length(unique(txtPassageiro)), total.vlrLiquido = sum(vlrLiquido), gasto.medio.bilhete = mean(total.vlrLiquido/length(unique(txtNumero))))  %>%
   arrange(-total.passageiros)
 
 
@@ -49,57 +46,50 @@ bilhete.aereo.por.deputado = emissao.bilhete.aereo %>%
 
 ```
 
-Tivemos um total de 517 observações,então, para melhor visualização iremos categorizar os deputados em total de passageiros (que voam usando a sua cota)
-
-``` {r}
-
-categorias.passageiros =  bilhete.aereo.por.deputado %>%
-  group_by(total.passageiros) %>%
-  summarise( quantidade.deputados = length(unique(txNomeParlamentar))) %>%
-  arrange(-quantidade.deputados)
-  
-
-ggplot(categorias.passageiros , aes( as.factor(quantidade.deputados),total.passageiros)) +
-  geom_point() +
-  geom_hline(yintercept = mean(categorias.passageiros$total.passageiros), color="red") +
-    geom_hline(yintercept = median(categorias.passageiros$total.passageiros), color="blue")
-
-```
-
-Podemos perceber que a média e a mediana são bem parecidas e que se concentram em torno de 14 passageiros por deputado.
-
-Categorizando os deputados, podemos perceber também, que existe uma grande concentração de parlamentares com apenas um passageiro, ou seja, apenas ele viaja.
-
 --------
 
-Agora iremos avaliar o total do gasto liquido de cada deputado em relação a quantidade de passageiros:
+Tivemos um total de 517 observações, iremos avaliar o total do gasto liquido de cada deputado em relação a quantidade de passageiros:
+
+(EXPLICAR MELHOR)
+
 
 ```{r}
-ggplot(bilhete.aereo.por.deputado, aes(as.factor(total.passageiros), total.vlrLiquido/1e4))+
-  geom_point(position = position_jitter(width = .2), alpha = .4)
+
+ggplot(bilhete.aereo.por.deputado, aes( as.factor(total.passageiros), gasto.medio.bilhete ))+
+  geom_point(position = position_jitter(width = .5), alpha = .4) +
+  geom_text(aes(label=ifelse(bilhete.aereo.por.deputado$total.passageiros > 18, as.character(txNomeParlamentar), '')), hjust=.02, vjust=0, angle = 90, size =3, color = "#c35656") +
+  ylab("Total médio gasto por bilhete") + 
+  xlab("Quantidade de passageiros por deputado") +
+  ggtitle("Quantidade de passageiros x valor médio gasto ") + 
+  geom_smooth(stat="smooth") +
+
+#AJUSTAR
 
 ```
 
+Podemos perceber que existe uma grande concentração de parlamentares com apenas um passageiro, assim como a grande maioria da média de gasto por bilhete está abaixo de R$1000
 
-
-
-
-
-
-
-
+(CORRELAÇÂO DE DISTÂNCIA E VALOR GASTO)
 -------------
 
-pergunta 2 -  Quais são os estados que gastam mais? E os que economizam?
 
-Primeiramente, iremos agrupar os deputados por estado, obtendo assim, o valor total gasto por cada estado, a média de gasto, e a cota de cada deputado por estado 
-  
+
+
+
+pergunta 2 -  Como se comportam os gastos parlamentares?
+
+Primeiramente, iremos agrupar os deputados por estado, percebemos que existe o valor NA (not available) nos estados, investigando melhor, descobrimos que são gastos partidarios, portanto, sem estado definido.
+
+
+
+
 ```{r}
-gasto.por.estado = gastos %>%
-  group_by(sgUF) %>%
-  summarise(total.gasto = sum(vlrLiquido), media.gasto = mean(vlrLiquido), numDeputados = length(unique(txNomeParlamentar)), valor.por.cota = sum(vlrLiquido/valor))
+gastos = left_join(gastos, cotas, by = c("sgUF" = "estado"))
 
-gasto.por.estado = left_join(gasto.por.estado, cotas, by = c("sgUF" = "estado"))
+
+gasto.por.estado = gastos %>%
+  group_by(txNomeParlamentar) %>%
+  summarise(total.gasto = sum(vlrLiquido), media.gasto = mean(vlrLiquido), numDeputados = length(unique(txNomeParlamentar)), valor.por.cota = sum(total.gasto/valor)/8)
 
 ```
 
@@ -112,39 +102,28 @@ gasto.partidario = gastos %>%
   filter(is.na(sgUF)) %>%
   group_by(txNomeParlamentar, txtDescricao)  %>%
   summarise(total.gasto = sum(vlrLiquido))
+  
 
 ggplot(gasto.partidario, aes(txtDescricao, total.gasto ,fill = txNomeParlamentar)) + 
   geom_bar(stat = "identity" , position = "dodge") + coord_flip()
 
 
+total.gasto.partidario = gasto.partidario %>%
+    group_by(txtDescricao)  %>%
+  summarise(total = sum(total.gasto))
+
+ggplot(total.gasto.partidario, aes(reorder(txtDescricao, total), total)) + 
+  geom_bar(stat = "identity") + 
+  coord_flip()
+
+summary(gasto.partidario$total.gasto)
+
+sd(gasto.partidario$total.gasto)
 ```
 
+Como podemos perceber, a maior parte dos gastos é com "Fornecimento de Alimentação do Parlamentar", a média de gasto é de R$8082,00 com desvio padrão (quão distantes os valores estão da média) de R$ 11465,93, um valor bastante alto, o que indica que os valores não estão muito concentrados em uma faixa de valor.
 
 ---------
-
-Para tentar melhorar a precisão iremos dividir o total do valor liquido de cada parlamentar por sua cota, assim, teremos um valor que representa o valor/cota. 
-
-```{r}
-map("world", "Brazil") 
-
-```
-
-```{r}
-
-
-
-
-ggplot()
-
-```
-
-
-
-
-
-
-
-
 
 
 
