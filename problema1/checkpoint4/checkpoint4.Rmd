@@ -14,7 +14,6 @@ knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=12, fig
 ```{r echo=FALSE}
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
-library(maps)
 theme_set(theme_bw())
 
 ```
@@ -22,8 +21,8 @@ theme_set(theme_bw())
 Para o checkpoint 4 utilizaremos os dados coletados do site de tranparência da câmara dos deputados. Esses dados são referentes aos gastos dos deputados em 2016 e são compostos por 572 parlamentares. 
 
 ```{r}
-gastos = read.csv("../dados/ano-atual.csv",  encoding="UTF-8")
-cotas = read.csv("../dados/valor-cota-por-estado.csv",  encoding="UTF-8")
+gastos = read.csv("dados/ano-atual.csv",  encoding="UTF-8")
+cotas = read.csv("dados/valor-cota-por-estado.csv",  encoding="UTF-8")
 ```
 
 Inicialmente iremos analisar a categoria de "Emissão Bilhete Aéreo", que diferente da categoria "Passagens Aéreas", possui apenas 
