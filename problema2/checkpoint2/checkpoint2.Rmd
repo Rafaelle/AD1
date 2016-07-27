@@ -1,0 +1,46 @@
+---
+title: "Análise dos gastos dos parlamentares"
+date: "27 de julho de 2016"
+output: html_document
+---
+
+```{r global_options, include=TRUE}
+knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6)
+```
+
+---
+
+```{r echo=FALSE}
+library(dplyr, warn.conflicts = FALSE)
+library(ggplot2)
+theme_set(theme_bw())
+
+
+gastos = read.csv("~/ufcg/AD1/dados/ano-atual.csv",  encoding="UTF-8")
+cotas = read.csv("dados/valor-cota-por-estado.csv",  encoding="UTF-8")
+
+emissao.bilhete.aereo = gastos %>%
+  group_by(txtDescricao) %>%
+  filter(txtDescricao == "Emissão Bilhete Aéreo" & vlrLiquido >= 0) 
+  
+bilhete.aereo.por.deputado = emissao.bilhete.aereo %>%
+  group_by(txNomeParlamentar, sgPartido) %>%
+  summarise(total.passageiros = length(unique(txtPassageiro)), 
+            total.vlrLiquido = sum(vlrLiquido), 
+            gasto.medio.bilhete = mean(total.vlrLiquido/length(unique(txtNumero))), 
+            quantidade.bilhetes = length(unique(txtNumero)))  %>%
+  arrange(-total.passageiros)
+
+ggplot(bilhete.aereo.por.deputado, aes( as.factor(total.passageiros), gasto.medio.bilhete , colour = sgPartido))+
+  geom_point(position = position_jitter(width = .5), alpha = .4, size = bilhete.aereo.por.deputado$quantidade.bilhetes/20) +
+  
+  geom_text(aes(label=ifelse(bilhete.aereo.por.deputado$total.passageiros > 18, as.character(txNomeParlamentar), '')), hjust=.02, vjust=0, angle = 90, size =3, color = "#c35656") +
+  
+  geom_text(aes(label=ifelse(bilhete.aereo.por.deputado$gasto.medio.bilhete > 1200, as.character(txNomeParlamentar), '')), hjust=0, vjust=0, size =3, color = "#c35656") +
+ 
+  ylab("Total médio gasto por bilhete") + 
+  xlab("Quantidade de passageiros por deputado") +
+  ggtitle("Quantidade de passageiros x valor médio gasto ")
+
+
+```
