@@ -15,16 +15,15 @@ shinyUI(fluidPage(
   # Application title
   headerPanel("Emissão de Bilhete Aéreo"),
   
-  sidebarPanel(
-    checkboxGroupInput("checkbox", 
-                       label = "Estados:", 
-                       choices = levels(as.factor(gastos$sgUF))),
-    
-    mainPanel(
-      plotOutput(outputId = "plotEstado")
+  sidebarLayout(
+    sidebarPanel(
+      checkboxGroupInput("checkbox", 
+                         label = "Estados:", 
+                         choices = levels(as.factor(gastos$sgUF))),
+      mainPanel(
+        dataTableOutput("view")
+      )
     )
-    
-    
     
   )
   

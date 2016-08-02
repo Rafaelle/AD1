@@ -13,7 +13,7 @@ library(readr)
 library(ggplot2)
 theme_set(theme_bw())
 
-gastos = read_csv("~/AD1/dados/ano-atual.csv")
+gastos = read_csv("~/ufcg/AD1/dados/ano-atual.csv")
 
 emissao.bilhete.aereo = gastos %>%
   group_by(txtDescricao) %>%
@@ -39,7 +39,7 @@ shinyServer(function(input, output) {
   })
    
   
-  output$view <- renderTable({
+  output$view = renderDataTable({
     bilhete.aereo.por.deputado[bilhete.aereo.por.deputado$sgUF == input$checkbox, ]
   })
   

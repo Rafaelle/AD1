@@ -31,7 +31,7 @@ bilhete.aereo.por.deputado = emissao.bilhete.aereo %>%
             quantidade.bilhetes = length(unique(txtNumero)))  %>%
   arrange(-total.passageiros)
 
-ggplot(bilhete.aereo.por.deputado, aes( as.factor(total.passageiros), gasto.medio.bilhete , colour = sgPartido))+
+ggplot(bilhete.aereo.por.deputado, aes( as.factor(total.passageiros), gasto.medio.bilhete , fill = as.factor(sgPartido)))+
   geom_point(position = position_jitter(width = .5), alpha = .4, size = bilhete.aereo.por.deputado$quantidade.bilhetes/20) +
   
   geom_text(aes(label=ifelse(bilhete.aereo.por.deputado$total.passageiros > 18, as.character(txNomeParlamentar), '')), hjust=.02, vjust=0, angle = 90, size =3, color = "#c35656") +

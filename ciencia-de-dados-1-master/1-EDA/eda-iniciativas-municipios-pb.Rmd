@@ -21,7 +21,7 @@ theme_set(theme_bw())
 
 Repasses do Governo Federal para iniciativas em Municípios na PB. (São os dados usados em <http://github.com/nazareno/diferentonas-server>).
 
-```{r}install.packages("lubridate")
+```{r}
 iniciativas = read.csv("../dados/convenios-municipios-pb.csv")
 str(iniciativas)
 ```
