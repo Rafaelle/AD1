@@ -8,6 +8,7 @@
 #
 
 library(shiny)
+library(plotly)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
@@ -23,9 +24,9 @@ shinyUI(fluidPage(
                          inline = TRUE),
       mainPanel(
         #dataTableOutput("view"),
-        plotOutput("plotEstado", hover = "plot_hover"), 
-        verbatimTextOutput("info")
-      )
+        #plotOutput("plotEstado"), 
+        plotlyOutput("plotlyEstado")      
+        )
     )
     
   

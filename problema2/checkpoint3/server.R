@@ -11,6 +11,7 @@ library(shiny)
 library(dplyr, warn.conflicts = F)
 library(readr)
 library(ggplot2)
+library(plotly)
 theme_set(theme_bw())
 
 gastos = read_csv("~/ufcg/AD1/dados/ano-atual.csv")
@@ -35,19 +36,38 @@ shinyServer(function(input, output) {
   #})
   
   
-  output$plotEstado = renderPlot({
+#  output$plotEstado = renderPlot({
+#    deputados.filtrados = bilhete.aereo.por.deputado %>% 
+#      filter(sgUF %in% input$checkbox)
+
+#    ggplot( deputados.filtrados,
+#            aes(quantidade.bilhetes, gasto.medio.bilhete)) + 
+#      geom_point(position = position_jitter(width = .5), 
+#                 alpha = .4, 
+#                 size = deputados.filtrados$total.passageiros) +
+#      ylab("Médio gasto por bilhete (R$)") + 
+#      xlab("Quantidade de bilhetes emitidos") 
+#  })
+  
+  
+  output$plotlyEstado <- renderPlotly({
+    
     deputados.filtrados = bilhete.aereo.por.deputado %>% 
       filter(sgUF %in% input$checkbox)
     
-
-    ggplot( deputados.filtrados,
-            aes(quantidade.bilhetes, gasto.medio.bilhete)) + 
+    gg = ggplotly( deputados.filtrados,
+                 aes(quantidade.bilhetes, gasto.medio.bilhete)) + 
       geom_point(position = position_jitter(width = .5), 
                  alpha = .4, 
                  size = deputados.filtrados$total.passageiros) +
       ylab("Médio gasto por bilhete (R$)") + 
       xlab("Quantidade de bilhetes emitidos") 
+    
+    
+    p <- ggplotly(gg)
+    p
   })
+  
   
 
 
