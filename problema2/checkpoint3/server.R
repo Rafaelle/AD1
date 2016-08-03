@@ -32,10 +32,14 @@ shinyServer(function(input, output) {
   
   
   output$plotEstado = renderPlot({
-    bilhete.aereo.por.deputado %>% 
-      filter(sgUF == input$checkbox) %>% 
-      ggplot(aes(quantidade.bilhetes, gasto.medio.bilhete, fill = sgUF)) + 
-      geom_point(position = position_jitter(width = .5), alpha = .4, size = bilhete.aereo.por.deputado$total.passageiros)
+    deputados.filtrados = bilhete.aereo.por.deputado %>% 
+      filter(sgUF %in% input$checkbox)
+    
+    ggplot( deputados.filtrados,
+            aes(quantidade.bilhetes, gasto.medio.bilhete)) + 
+      geom_point(position = position_jitter(width = .5), 
+                 alpha = .4, 
+                 size = deputados.filtrados$total.passageiros/2)
   })
    
   
