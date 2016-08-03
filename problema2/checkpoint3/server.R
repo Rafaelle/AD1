@@ -30,21 +30,26 @@ bilhete.aereo.por.deputado = emissao.bilhete.aereo %>%
 
 shinyServer(function(input, output) {
   
+  #output$view = renderDataTable({
+  #  bilhete.aereo.por.deputado[bilhete.aereo.por.deputado$sgUF == input$checkbox, ]
+  #})
+  
   
   output$plotEstado = renderPlot({
     deputados.filtrados = bilhete.aereo.por.deputado %>% 
       filter(sgUF %in% input$checkbox)
     
+
     ggplot( deputados.filtrados,
             aes(quantidade.bilhetes, gasto.medio.bilhete)) + 
       geom_point(position = position_jitter(width = .5), 
                  alpha = .4, 
-                 size = deputados.filtrados$total.passageiros/2)
+                 size = deputados.filtrados$total.passageiros) +
+      ylab("Médio gasto por bilhete (R$)") + 
+      xlab("Quantidade de bilhetes emitidos") 
   })
-   
   
-  output$view = renderDataTable({
-    bilhete.aereo.por.deputado[bilhete.aereo.por.deputado$sgUF == input$checkbox, ]
-  })
+
+
   
 })

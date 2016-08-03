@@ -22,7 +22,9 @@ shinyUI(fluidPage(
                          choices = levels(as.factor(gastos$sgUF)),
                          inline = TRUE),
       mainPanel(
-        dataTableOutput("view")
+        #dataTableOutput("view"),
+        plotOutput("plotEstado", hover = "plot_hover"), 
+        verbatimTextOutput("info")
       )
     )
     
