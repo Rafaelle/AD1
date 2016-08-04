@@ -55,17 +55,25 @@ shinyServer(function(input, output) {
     deputados.filtrados = bilhete.aereo.por.deputado %>% 
       filter(sgUF %in% input$checkbox)
     
-    gg = ggplotly( deputados.filtrados,
-                 aes(quantidade.bilhetes, gasto.medio.bilhete)) + 
-      geom_point(position = position_jitter(width = .5), 
-                 alpha = .4, 
-                 size = deputados.filtrados$total.passageiros) +
-      ylab("Médio gasto por bilhete (R$)") + 
-      xlab("Quantidade de bilhetes emitidos") 
+    plot_ly(deputados.filtrados, 
+            x= quantidade.bilhetes, 
+            y=gasto.medio.bilhete, 
+            mode = "markers", 
+            color = sgUF , 
+            marker=list( size=total.passageiros , opacity=0.9),
+            text = paste("valor médio: ", gasto.medio.bilhete))
+    
+    #gg = ggplot( deputados.filtrados,
+    #             aes(quantidade.bilhetes, gasto.medio.bilhete)) + 
+    #  geom_point(position = position_jitter(width = .5), 
+    #             alpha = .4, 
+    #             size = deputados.filtrados$total.passageiros) +
+    #  ylab("Médio gasto por bilhete (R$)") + 
+    #  xlab("Quantidade de bilhetes emitidos") 
     
     
-    p <- ggplotly(gg)
-    p
+    #p <- ggplotly(gg)
+    #p
   })
   
   
