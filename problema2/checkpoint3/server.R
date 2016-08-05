@@ -56,13 +56,17 @@ shinyServer(function(input, output) {
       filter(sgUF %in% input$checkbox)
     
     plot_ly(deputados.filtrados, 
-            x= quantidade.bilhetes, 
-            y=gasto.medio.bilhete, 
+            x = quantidade.bilhetes, 
+            y = gasto.medio.bilhete, 
             mode = "markers", 
-            color = sgUF , 
+            group = sgUF , 
             marker=list( size=total.passageiros , opacity=0.9),
-            text = paste("valor médio: ", gasto.medio.bilhete))
+            text = paste("Parlamentar: ", txNomeParlamentar,
+                         "<br> Valor médio: ", gasto.medio.bilhete, 
+                         "<br> Bilhetes:", quantidade.bilhetes,
+                         "<br> Total de passageiros:",total.passageiros ) )
     
+
     #gg = ggplot( deputados.filtrados,
     #             aes(quantidade.bilhetes, gasto.medio.bilhete)) + 
     #  geom_point(position = position_jitter(width = .5), 
