@@ -14,7 +14,8 @@ library(ggplot2)
 library(plotly)
 theme_set(theme_bw())
 
-gastos = read_csv("~/ufcg/AD1/dados/ano-atual.csv")
+source("import-data.R")
+import_data()
 
 emissao.bilhete.aereo = gastos %>%
   group_by(txtDescricao) %>%
@@ -60,13 +61,15 @@ shinyServer(function(input, output) {
             y = gasto.medio.bilhete, 
             mode = "markers", 
             group = sgUF , 
-            marker=list( size=total.passageiros , opacity=0.9),
+            marker=list( size=total.passageiros*4 , opacity=0.9),
             text = paste("Parlamentar: ", txNomeParlamentar,
-                         "<br> Valor médio: ", gasto.medio.bilhete, 
+                         "<br> Valor médio: R$", gasto.medio.bilhete, 
                          "<br> Bilhetes:", quantidade.bilhetes,
-                         "<br> Total de passageiros:",total.passageiros ) )
+                         "<br> Total de passageiros:",total.passageiros )) %>%
+      layout(xaxis= list(title = "Quantidade total de bilhetes"),yaxis = list(title = "Gasto médio por bilhete (R$)"), 
+             title="Quantidade de total de passageiros x Gasto médio por bilhete" )
+      
     
-
     #gg = ggplot( deputados.filtrados,
     #             aes(quantidade.bilhetes, gasto.medio.bilhete)) + 
     #  geom_point(position = position_jitter(width = .5), 
