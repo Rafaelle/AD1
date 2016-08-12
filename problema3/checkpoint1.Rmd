@@ -1,0 +1,86 @@
+---
+title: "checkpoint1"
+author: "Rafaelle Amorim"
+date: "9 de agosto de 2016"
+output: html_document
+---
+
+```{r, message=FALSE}
+require(ggplot2, quietly = TRUE)
+require(GGally, quietly = TRUE)
+require(reshape2, quietly = TRUE)
+require(dplyr, quietly = TRUE)
+library(ggfortify)
+library(cluster)
+library(ggdendro)
+theme_set(theme_bw())
+source("github-lib.R")
+```
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+dw <- load_github_wide()
+summary(dw)
+
+```
+
+```{r}
+dists = dist(dw, method = "euclidean")
+hc = hclust(dists, method = "ward.D")
+
+plot(hc, cex = .6)
+plot(hc, hang = -1)
+rect.hclust(hc, k=7)
+
+dw2$cluster = factor(cutree(hc, k=7))
+
+dw2.scaled$repository_language = dw2$repository_language
+dw2.scaled$cluster = factor(cutree(hc, k=7))
+
+dw2.long = melt(dw2.scaled, id.vars = c("repository_language", "cluster"))
+
+ggplot(dw2.long, aes(x = variable, y = value, colour = variable)) + 
+  geom_boxplot() + 
+  geom_point(alpha = 0.2, position = position_jitter(width = .2)) + 
+  facet_wrap(~ cluster) 
+
+plot(silhouette(cutree(hc, k = 4), dists))
+
+```
+
+
+
+```{r}
+toclust = select(dw2.scaled, 1:4)
+row.names(toclust) = dw2.scaled$repository_language
+dists = dist(toclust)
+
+km <- kmeans(toclust, centers = 6, nstart = 10)
+
+autoplot(km, data = dw2.scaled, size = 3)
+autoplot(km, data = dw2.scaled, label = TRUE)
+plot(silhouette(km$cluster, dists))
+
+dw2.scaled$kmcluster = km$cluster
+dw2.long = melt(dw2.scaled, id.vars = c("repository_language", "cluster", "kmcluster"))
+
+ggplot(dw2.long, aes(x = variable, y = value, colour = variable)) + 
+  geom_boxplot() + 
+  geom_point(alpha = 0.2, position = position_jitter(width = .2)) + 
+  facet_wrap(~ kmcluster) 
+
+table(dw2.scaled$kmcluster)
+
+plot(silhouette(dw2.scaled$kmcluster, dists))
+
+dw2.scaled[dw2.scaled$kmcluster == '1',]$repository_language
+
+dw2.scaled[dw2.scaled$kmcluster == '6',]$repository_language
+```
+
+
