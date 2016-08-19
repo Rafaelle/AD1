@@ -17,8 +17,6 @@ theme_set(theme_bw())
 source("github-lib.R")
 ```
 
-
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -37,14 +35,12 @@ plot(hc, cex = .6)
 plot(hc, hang = -1)
 rect.hclust(hc, k=7)
 
-dw2$cluster = factor(cutree(hc, k=7))
+dw$cluster = factor(cutree(hc, k=7))
 
-dw2.scaled$repository_language = dw2$repository_language
+dw2.scaled = dw
 dw2.scaled$cluster = factor(cutree(hc, k=7))
 
-dw2.long = melt(dw2.scaled, id.vars = c("repository_language", "cluster"))
-
-ggplot(dw2.long, aes(x = variable, y = value, colour = variable)) + 
+ggplot(dw2.scaled, aes(x = , y = value, colour = variable)) + 
   geom_boxplot() + 
   geom_point(alpha = 0.2, position = position_jitter(width = .2)) + 
   facet_wrap(~ cluster) 

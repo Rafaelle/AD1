@@ -1,0 +1,59 @@
+---
+title: "checkpoint2"
+author: "Rafaelle Amorim"
+date: "19 de agosto de 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE, warning=FALSE}
+require(ggplot2, quietly = TRUE)
+library(ggfortify, quietly = TRUE)
+# http://rpubs.com/sinhrks/basics
+require(GGally, quietly = TRUE)
+require(reshape2, quietly = TRUE)
+require(dplyr, quietly = TRUE)
+library(knitr, quietly = TRUE)
+library(cluster)
+library(ggdendro)
+theme_set(theme_bw())
+source("github-lib.R")
+```
+
+```{r}
+emendas_parlamentar <- load_github_wide()
+summary(emendas_parlamentar)
+```
+
+```{r}
+row.names(emendas_parlamentar) =  emendas_parlamentar$NOME_PARLAMENTAR 
+# scale()
+pr.out = prcomp(select(emendas_parlamentar,NOME_PARLAMENTAR), scale = TRUE) 
+
+
+
+kable(pr.out$rotation)
+biplot(pr.out, scale = 0)
+
+autoplot(pr.out, label = TRUE, label.size = 3, shape = FALSE)
+
+autoplot(pr.out, label = TRUE, label.size = 3, shape = FALSE, 
+         loadings = TRUE, loadings.colour = 'blue',
+         loadings.label = TRUE, loadings.label.size = 3)
+
+# Porcentagem da variância explicada: 
+plot_pve <- function(prout){
+  pr.var <- pr.out$sdev^2
+  pve <- pr.var / sum(pr.var)
+  df = data.frame(x = 1:NROW(pve), y = cumsum(pve))
+  ggplot(df, aes(x = x, y = y)) + 
+    geom_point(size = 3) + 
+    geom_line() + 
+    labs(x='Principal Component', y = 'Cumuative Proportion of Variance Explained')
+}
+
+plot_pve(pr.out)
+```
