@@ -20,21 +20,86 @@ library(knitr, quietly = TRUE)
 library(cluster)
 library(ggdendro)
 theme_set(theme_bw())
-source("github-lib.R")
 ```
 
 ```{r}
-emendas_parlamentar <- load_github_wide()
-summary(emendas_parlamentar)
+
+detalhes_emendas <- read.csv("../dados/emendas_detalhes_parlamentar.csv")
+emendas_parlamentar <- read.csv("../dados/emendas_area_parlamentar.csv")
+
+
+emendas_parlamentar <- emendas_parlamentar %>%
+    filter(!is.na(NOME_PARLAMENTAR)) 
+
+detalhes_emendas <- detalhes_emendas %>%
+    filter(!is.na(NOME_PARLAMENTAR), !is.na(DESC_ORGAO_SUP), !is.na(funcao.imputada)) %>%
+  arrange(-ANO_PROP, -MES_PROP, DIA_PROP)
+
+#agrupando por mes, ano e funçao imputada, para transformar funçoes em colunas
+#assim ao final teremos os gastos em cada funçao por ano e mes
+  emendas_ano <- detalhes_emendas %>%
+    group_by(funcao.imputada, ANO_PROP, MES_PROP) %>%
+    summarise(VALOR_REPASSE_PROPOSTA_EMENDA = sum(VALOR_REPASSE_PROPOSTA_EMENDA)) %>%
+    cast(ANO_PROP+MES_PROP~funcao.imputada+VALOR_REPASSE_PROPOSTA_EMENDA) %>%
+    arrange(ANO_PROP,MES_PROP)  
+  
+# trocando valores Na por 0 
+  emendas_ano <- do.call(data.frame,lapply(emendas_ano, function(x) replace(x, is.na(x),0)))
+
+
+  # emendas_ano_estado <- detalhes_emendas %>%
+  #   group_by(UF_PROPONENTE,funcao.imputada, ANO_PROP, MES_PROP) %>%
+  #   summarise(VALOR_REPASSE_PROPOSTA_EMENDA = sum(VALOR_REPASSE_PROPOSTA_EMENDA)) %>%
+  #   group_by(funcao.imputada) %>%
+  #   arrange(ANO_PROP,MES_PROP, UF_PROPONENTE) 
+  #   
+  
+summary(emendas_ano)
+
 ```
 
 ```{r}
-row.names(emendas_parlamentar) =  emendas_parlamentar$NOME_PARLAMENTAR 
+# Escala de log 
+emendas_ano_log <- log(emendas_ano[,3:18])
+emendas_ano_log$MES_PROP <- emendas_ano$MES_PROP
+
+
+emendas_parlamentar_log$Defesa.Nacional[ is.infinite(emendas_parlamentar_log$Defesa.Nacional) ] <- 0
+
+emendas_normalizadas <- do.call(data.frame,lapply(emendas_ano_log, function(x) replace(x, is.infinite(x),0)))
+
+#ggpairs(select(emendas_normalizadas, -NOME_PARLAMENTAR))
+```
+
+----
+
+
+```{r}
+row.names(emendas_normalizadas) =  emendas_normalizadas$MES_PROP 
 # Roda bem até aqui
 
-# scale()
-pr.out = prcomp(select(emendas_parlamentar), scale = TRUE) 
+pr.out = prcomp(select(emendas_normalizadas, -ANO_PROP, -MES_PROP), scale = TRUE) 
+pr.out = prcomp(emendas_normalizadas, scale = TRUE) 
 
+autoplot(pr.out, label.size = 3,loadings = TRUE, label= TRUE,
+         loadings.label = TRUE, loadings.label.size = 3,  data = emendas_ano,colour = "MES_PROP") 
+
+
+plot_pve <- function(prout){
+  pr.var <- pr.out$sdev^2
+  pve <- pr.var / sum(pr.var)
+  df = data.frame(x = 1:NROW(pve), y = cumsum(pve))
+  ggplot(df, aes(x = x, y = y)) + 
+    geom_point(size = 3) + 
+    geom_line() + 
+    labs(x='Principal Component', y = 'Cumuative Proportion of Variance Explained')
+}
+
+plot_pve(pr.out)
+
+
+# autoplot(pr.out, label.size = 3,loadings = TRUE, 
+#          loadings.label = TRUE, loadings.label.size = 3,  data = emendas_ano,colour = "ANO_PROP") 
 
 
 kable(pr.out$rotation)
