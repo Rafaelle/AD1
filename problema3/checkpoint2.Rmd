@@ -30,8 +30,10 @@ summary(emendas_parlamentar)
 
 ```{r}
 row.names(emendas_parlamentar) =  emendas_parlamentar$NOME_PARLAMENTAR 
+# Roda bem até aqui
+
 # scale()
-pr.out = prcomp(select(emendas_parlamentar,NOME_PARLAMENTAR), scale = TRUE) 
+pr.out = prcomp(select(emendas_parlamentar), scale = TRUE) 
 
 
 
