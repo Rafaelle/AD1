@@ -1,7 +1,5 @@
 ---
 title: "checkpoint2"
-author: "Rafaelle Amorim"
-date: "19 de agosto de 2016"
 output: html_document
 ---
 
@@ -53,7 +51,6 @@ detalhes_emendas <- detalhes_emendas %>%
   #   group_by(funcao.imputada) %>%
   #   arrange(ANO_PROP,MES_PROP, UF_PROPONENTE) 
   #   
-  
 summary(emendas_ano)
 
 ```
@@ -62,6 +59,7 @@ summary(emendas_ano)
 # Escala de log 
 emendas_ano_log <- log(emendas_ano[,3:18])
 emendas_ano_log$MES_PROP <- emendas_ano$MES_PROP
+emendas_ano_log$ANO_PROP <- emendas_ano$ANO_PROP
 
 
 emendas_parlamentar_log$Defesa.Nacional[ is.infinite(emendas_parlamentar_log$Defesa.Nacional) ] <- 0
