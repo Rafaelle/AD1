@@ -1,15 +1,15 @@
 ---
 title: "checkpoint2"
-author: "Rafaelle Amorim"
-date: "19 de agosto de 2016"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r global_options, include=TRUE}
+knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6)
 ```
 
-```{r, message=FALSE, warning=FALSE}
+---
+
+```{r echo=FALSE}
 require(ggplot2, quietly = TRUE)
 library(ggfortify, quietly = TRUE)
 # http://rpubs.com/sinhrks/basics
@@ -19,61 +19,62 @@ require(dplyr, quietly = TRUE)
 library(knitr, quietly = TRUE)
 library(cluster)
 library(ggdendro)
+library(reshape)
 theme_set(theme_bw())
 ```
 
+
+Para o checkpoint 2 do problema 3, utilizaremos os dados sobre verbas alocadas por deputados para municípios, estados e fundações através de emendas parlamentares. 
+
 ```{r}
+detalhes_emendas <- read.csv("emendas_detalhes_parlamentar.csv")
+```
 
-detalhes_emendas <- read.csv("../dados/emendas_detalhes_parlamentar.csv")
-#emendas_parlamentar <- read.csv("../dados/emendas_area_parlamentar.csv")
+Para uma melhor sumarizaçao dos dados, iremos agrupar as emendas por mes e ano, e utilizaremos a coluna 'VALOR_REPASSE_EMENDA' para sumarizar o total repassado do governo federal para a emenda proposta que foi aprovada. 
 
-
-emendas_parlamentar <- emendas_parlamentar %>%
-    filter(!is.na(NOME_PARLAMENTAR)) 
-
+```{r}
 detalhes_emendas <- detalhes_emendas %>%
     filter(!is.na(NOME_PARLAMENTAR), !is.na(DESC_ORGAO_SUP), !is.na(funcao.imputada)) %>%
   arrange(-ANO_PROP, -MES_PROP, DIA_PROP)
 
-#agrupando por mes, ano e funçao imputada, para transformar funçoes em colunas
-#assim ao final teremos os gastos em cada funçao por ano e mes
+#agrupando por mes, ano e funçao imputada
   emendas_ano <- detalhes_emendas %>%
     group_by(funcao.imputada, ANO_PROP, MES_PROP) %>%
-    summarise(VALOR_REPASSE_PROPOSTA_EMENDA = sum(VALOR_REPASSE_PROPOSTA_EMENDA)) %>%
-    cast(ANO_PROP+MES_PROP~funcao.imputada+VALOR_REPASSE_PROPOSTA_EMENDA) %>%
+    summarise(total.valor.repasse.emenda = sum(VALOR_REPASSE_EMENDA))
+
+# transformando funçoes imputadas em colunas
+#assim ao final teremos os gastos em cada funçao por ano e mes
+  emendas_ano_cast <- emendas_ano %>%
+    cast(ANO_PROP+MES_PROP~funcao.imputada) %>%
     arrange(ANO_PROP,MES_PROP)  
   
 # trocando valores Na por 0 
-  emendas_ano <- do.call(data.frame,lapply(emendas_ano, function(x) replace(x, is.na(x),0)))
+  emendas_ano_cast <- do.call(data.frame,lapply(emendas_ano_cast, function(x) replace(x, is.na(x),0)))
 
-summary(emendas_ano)
+summary(emendas_ano_cast)
 
 ```
+
+As variáveis são bastante assimétricas, iremos transformar para log para ajudar na visualizaçao.
 
 ```{r}
 # Escala de log 
-emendas_ano_log <- log(emendas_ano[,3:18])
-emendas_ano_log$MES_PROP <- emendas_ano$MES_PROP
+emendas_ano_log <- log(emendas_ano_cast[,3:18])
+emendas_ano_log$MES_PROP <- emendas_ano_cast$MES_PROP
+emendas_ano_log$ANO_PROP <- emendas_ano_cast$ANO_PROP
+
+
 
 emendas_normalizadas <- do.call(data.frame,lapply(emendas_ano_log, function(x) replace(x, is.infinite(x),0)))
 
-#ggpairs(select(emendas_normalizadas, -NOME_PARLAMENTAR))
 ```
 
-----
 
 
 ```{r}
-#row.names(emendas_normalizadas) =  emendas_normalizadas$MES_PROP 
-# Roda bem até aqui
-
-#pr.out = prcomp(select(emendas_normalizadas, -ANO_PROP, -MES_PROP), scale = TRUE) 
 pr.out = prcomp(emendas_normalizadas, scale = TRUE) 
 
-autoplot(pr.out, label.size = 3,loadings = TRUE, label= TRUE,
-         loadings.label = TRUE, loadings.label.size = 3,  data = emendas_ano,colour = "MES_PROP") 
-
-
+# Porcentagem da variância explicada: 
 plot_pve <- function(prout){
   pr.var <- pr.out$sdev^2
   pve <- pr.var / sum(pr.var)
@@ -85,7 +86,20 @@ plot_pve <- function(prout){
 }
 
 plot_pve(pr.out)
+```
 
+
+```{r}
+
+autoplot(pr.out, data = emendas_normalizadas, colour = 'MES_PROP',
+         loadings = TRUE, loadings.colour = 'blue',
+         loadings.label = TRUE, loadings.label.size = 3,
+         label= TRUE, label='ANO_PROP')
+
+
+
+
+autoplot(prcomp(df), data = iris, colour = 'Species', loadings = TRUE)
 
 # autoplot(pr.out, label.size = 3,loadings = TRUE, 
 #          loadings.label = TRUE, loadings.label.size = 3,  data = emendas_ano,colour = "ANO_PROP") 
@@ -112,3 +126,6 @@ plot_pve <- function(prout){
 
 plot_pve(pr.out)
 ```
+----
+
+
