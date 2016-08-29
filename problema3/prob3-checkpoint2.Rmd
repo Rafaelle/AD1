@@ -97,8 +97,6 @@ autoplot(pr.out, data = emendas_normalizadas, colour = 'MES_PROP',
          label= TRUE, label='ANO_PROP')
 
 
-
-
 autoplot(prcomp(df), data = iris, colour = 'Species', loadings = TRUE)
 
 # autoplot(pr.out, label.size = 3,loadings = TRUE, 

@@ -51,7 +51,6 @@ detalhes_emendas <- detalhes_emendas %>%
   #   group_by(funcao.imputada) %>%
   #   arrange(ANO_PROP,MES_PROP, UF_PROPONENTE) 
   #   
-  
 summary(emendas_ano)
 
 ```
