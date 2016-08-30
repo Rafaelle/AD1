@@ -23,21 +23,20 @@ library(reshape)
 theme_set(theme_bw())
 ```
 
-
 Para o checkpoint 2 do problema 3, utilizaremos os dados sobre verbas alocadas por deputados para municípios, estados e fundações através de emendas parlamentares. 
 
 ```{r}
 detalhes_emendas <- read.csv("emendas_detalhes_parlamentar.csv")
 ```
 
-----
-PCA 
+---
+# PCA 
 
 Para uma melhor sumarizaçao dos dados, iremos agrupar as emendas por mes e ano, e utilizaremos a coluna 'VALOR_REPASSE_EMENDA' para sumarizar o total repassado do governo federal para a emenda proposta que foi aprovada. 
 
 ```{r}
 detalhes_emendas <- detalhes_emendas %>%
-    filter(!is.na(NOME_PARLAMENTAR), !is.na(DESC_ORGAO_SUP), !is.na(funcao.imputada)) %>%
+  filter(!is.na(NOME_PARLAMENTAR), !is.na(DESC_ORGAO_SUP), !is.na(funcao.imputada)) %>%
   arrange(-ANO_PROP, -MES_PROP, DIA_PROP)
 
 #agrupando por mes, ano e funçao imputada
@@ -55,7 +54,6 @@ detalhes_emendas <- detalhes_emendas %>%
 emendas_ano_cast <- do.call(data.frame,lapply(emendas_ano_cast, function(x) replace(x, is.na(x),0)))
 
 #summary(emendas_ano_cast)
-
 ```
 
 As variáveis são bastante assimétricas, iremos transformar para log para ajudar na visualizaçao.
@@ -64,35 +62,26 @@ As variáveis são bastante assimétricas, iremos transformar para log para ajud
 # Escala de log 
 emendas_ano_log <- log(emendas_ano_cast[,3:18])
 
+#Transformando os valores de 'mês' em factor
+emendas_ano_log$MES_PROP <- as.factor(emendas_ano_cast$MES_PROP)
+emendas_ano_log$ANO_PROP <- as.factor(emendas_ano_cast$ANO_PROP)
+
 #trocando os valores de -infinito por 0
 emendas_ano_log <- do.call(data.frame,lapply(emendas_ano_log, function(x) replace(x, is.infinite(x),0)))
 
+row.names(emendas_ano_log) = paste(emendas_ano_log$MES_PROP, emendas_ano_log$ANO_PROP, sep="/");
 ```
 
 Vamos rodar o PCA.
+
 Para uma melhor visualização iremos transformar mês e ano em nome de coluna.  
 
 ```{r}
+row.names(emendas_ano_log) = paste(emendas_ano_log$MES_PROP, emendas_ano_log$ANO_PROP, sep="/");
 
-row.names(emendas_ano_cast) = paste(emendas_ano_cast$MES_PROP, emendas_ano_cast$ANO_PROP, sep="/");
-
-pr.out = prcomp(emendas_ano_log, scale = TRUE) 
-
-#Transformando os valores de 'mês' em factor
-emendas_ano_cast$MES_PROP <- as.factor(emendas_ano_cast$MES_PROP)
-
-#autoplot do pca
-autoplot(pr.out, data = emendas_ano_cast, colour = 'MES_PROP',
-         loadings = TRUE, loadings.colour = 'blue',
-         loadings.label = TRUE, loadings.label.size = 3,
-         label= TRUE, shape=FALSE, label.size=3)
-
+pr.out = prcomp(select(emendas_ano_log, -MES_PROP, -ANO_PROP), scale = TRUE) 
 ```
 
-Aplicando os vetores de direcionamento com sua respectiva variável, funções imputadas (tipo de emenda), podemos verificar a existência de 3 grupos principais de mês/ano e um outlier (1/2014). 
-Os meses iniciais, geralmente, se comportam de maneira negativa as emendas, 
-
------
 Para mostrar a porcentagem da variância explicada por meio dos componentes gerados, utilizaremos a função plot_pve (disponibilizada pelo professor):
 
 ```{r}
@@ -113,11 +102,57 @@ plot_pve(pr.out)
 
 Como podemos perceber, quando reduzimos para duas dimensões, conseguimos explicar cerca de 75% da variância do dado original.
 
-----
 ```{r}
+#autoplot do pca
+autoplot(pr.out, data = emendas_ano_log, colour = 'MES_PROP',
+         loadings = TRUE, loadings.colour = 'blue',
+         loadings.label = TRUE, loadings.label.size = 3,
+         label= TRUE, shape=FALSE, label.size=3)
 
+```
+
+Aplicando os vetores de direcionamento com sua respectiva variável, funções imputadas (tipo de emenda), os vetores estão relacionados se as linhas estiverem perto ou até mesmo sobrepostas. 
+
+Primeiramente, podemos observar a existência quatro grupos principais de emendas:
+ 
+* Primeiro grupo: Saúde
+
+* Segundo grupo: Assistência Social, Organização Agrária, Comércio e Serviços, Cultura, Agricultura, Desporto e Lazer, Defesa Nacional
+
+* Terceiro grupo: Saneamento, Segurança Pública, Direito e Cidadania, Urbanismo
+
+* Quarto grupo: Ciência e Tecnologia, Trabalho, Gestão Ambiental, Indústria
+
+Como tivemos os dados normalizados, utilizaremos 'menor' ou 'maior' como diferença entre os gastos e não o valor absoluto dos gastos. 
+
+Com isso, verificamos também que os meses iniciais, geralmente, possuem menor gastos, principalmente no Segundo Grupo de emendas. Também observamos que os meses finais de 2014 e 2015 tiveram um gasto maior em saúde.
+
+Podemos notar uma pequena concentração de meses, (começando de junho) do final de 2013 e início de 2014, no Terceiro Grupo.
+
+
+# t-SNE
+
+Agora vamos reduzir as dimensões utilizando outra técnica chamada t-SNE:
+```{r}
 require(Rtsne)
-tsne.dim = Rtsne(select(emendas_ano_cast, -MES_PROP), 
+tsne.dim = Rtsne(select(emendas_ano_cast, -MES_PROP, -ANO_PROP), 
+                 perplexity = 5, 
                  verbose = TRUE, 
                  check_duplicates = FALSE)
 ```
+
+
+```{r}
+
+
+df = as.data.frame(tsne.dim$Y)
+df$MES_PROP = as.factor(emendas_ano_cast$MES_PROP)
+df$ANO_PROP = as.factor(emendas_ano_cast$ANO_PROP)
+
+ggplot(df, aes(x = V1, y = V2, label = ANO_PROP, color=MES_PROP)) + 
+  geom_point(alpha = 0.5, size = 3) + 
+  geom_text(alpha = .7, size = 4, hjust = -.2)
+```
+
+
+Gerando o gráfico podemos notar que os grupos são muito parecidos.

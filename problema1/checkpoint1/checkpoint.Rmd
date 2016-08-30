@@ -21,7 +21,7 @@ theme_set(theme_bw())
 Dados de gastos dos deputados de um periodo recente. Os dados são compostos por 572 parlamentares. Para o estudo iremos sempre utilizar o valor líquido, que em nossos dados, representa a diferença entre o valor do documento e o valor da Glosa.
 
 ```{r}
-gastos = read.csv("../dados/ano-atual.csv",  encoding="UTF-8")
+gastos = read.csv("ano-atual.csv",  encoding="UTF-8")
 ```
 
 ```{r echo=FALSE}
