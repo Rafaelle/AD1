@@ -1,15 +1,15 @@
 ---
 title: "checkpoint2"
-author: "Rafaelle Amorim"
-date: "19 de agosto de 2016"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r global_options, include=TRUE, echo=FALSE}
+knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6)
 ```
 
-```{r, message=FALSE, warning=FALSE}
+---
+
+```{r echo=FALSE}
 require(ggplot2, quietly = TRUE)
 library(ggfortify, quietly = TRUE)
 # http://rpubs.com/sinhrks/basics
@@ -19,33 +19,76 @@ require(dplyr, quietly = TRUE)
 library(knitr, quietly = TRUE)
 library(cluster)
 library(ggdendro)
+library(reshape)
 theme_set(theme_bw())
-source("github-lib.R")
 ```
 
+
+Para o checkpoint 2 do problema 3, utilizaremos os dados sobre verbas alocadas por deputados para municípios, estados e fundações através de emendas parlamentares. 
+
 ```{r}
-emendas_parlamentar <- load_github_wide()
-summary(emendas_parlamentar)
+detalhes_emendas <- read.csv("emendas_detalhes_parlamentar.csv")
 ```
 
+----
+PCA 
+
+Para uma melhor sumarizaçao dos dados, iremos agrupar as emendas por mes e ano, e utilizaremos a coluna 'VALOR_REPASSE_EMENDA' para sumarizar o total repassado do governo federal para a emenda proposta que foi aprovada. 
+
 ```{r}
-row.names(emendas_parlamentar) =  emendas_parlamentar$NOME_PARLAMENTAR 
-# Roda bem até aqui
+detalhes_emendas <- detalhes_emendas %>%
+    filter(!is.na(NOME_PARLAMENTAR), !is.na(DESC_ORGAO_SUP), !is.na(funcao.imputada)) %>%
+  arrange(-ANO_PROP, -MES_PROP, DIA_PROP)
 
-# scale()
-pr.out = prcomp(select(emendas_parlamentar), scale = TRUE) 
+#agrupando por mes, ano e funçao imputada
+  emendas_ano <- detalhes_emendas %>%
+    group_by(funcao.imputada,ANO_PROP, MES_PROP) %>%
+    summarise(total.valor.repasse.emenda = sum(VALOR_REPASSE_EMENDA))
 
+# transformando funçoes imputadas em colunas
+#assim ao final teremos por ano em cada mês os gastos de cada uma das funções imputadas
+  emendas_ano_cast <- emendas_ano %>%
+    cast(ANO_PROP+MES_PROP~funcao.imputada) %>%
+    arrange(ANO_PROP,MES_PROP)  
+  
+# trocando valores NA por 0 
+emendas_ano_cast <- do.call(data.frame,lapply(emendas_ano_cast, function(x) replace(x, is.na(x),0)))
 
+#summary(emendas_ano_cast)
 
-kable(pr.out$rotation)
-biplot(pr.out, scale = 0)
+```
 
-autoplot(pr.out, label = TRUE, label.size = 3, shape = FALSE)
+As variáveis são bastante assimétricas, iremos transformar para log para ajudar na visualizaçao.
 
-autoplot(pr.out, label = TRUE, label.size = 3, shape = FALSE, 
-         loadings = TRUE, loadings.colour = 'blue',
-         loadings.label = TRUE, loadings.label.size = 3)
+```{r}
+# Escala de log 
+emendas_ano_log <- log(emendas_ano_cast[,3:18])
 
+#Transformando os valores de 'mês' em factor
+emendas_ano_log$MES_PROP <- as.factor(emendas_ano_cast$MES_PROP)
+emendas_ano_log$ANO_PROP <- as.factor(emendas_ano_cast$ANO_PROP)
+
+#trocando os valores de -infinito por 0
+emendas_ano_log <- do.call(data.frame,lapply(emendas_ano_log, function(x) replace(x, is.infinite(x),0)))
+
+row.names(emendas_ano_log) = paste(emendas_ano_log$MES_PROP, emendas_ano_log$ANO_PROP, sep="/");
+```
+
+Vamos rodar o PCA.
+Para uma melhor visualização iremos transformar mês e ano em nome de coluna.  
+
+```{r}
+
+row.names(emendas_ano_log) = paste(emendas_ano_log$MES_PROP, emendas_ano_log$ANO_PROP, sep="/");
+
+pr.out = prcomp(select(emendas_ano_log, -MES_PROP, -ANO_PROP), scale = TRUE) 
+
+```
+
+Para mostrar a porcentagem da variância explicada por meio dos componentes gerados, utilizaremos a função plot_pve (disponibilizada pelo professor):
+
+```{r}
+#funçao disponibilizada pelo professor
 # Porcentagem da variância explicada: 
 plot_pve <- function(prout){
   pr.var <- pr.out$sdev^2
@@ -58,4 +101,51 @@ plot_pve <- function(prout){
 }
 
 plot_pve(pr.out)
+```
+
+Como podemos perceber, quando reduzimos para duas dimensões, conseguimos explicar cerca de 75% da variância do dado original.
+
+```{r}
+#autoplot do pca
+autoplot(pr.out, data = emendas_ano_log, colour = 'MES_PROP',
+         loadings = TRUE, loadings.colour = 'blue',
+         loadings.label = TRUE, loadings.label.size = 3,
+         label= TRUE, shape=FALSE, label.size=3)
+
+```
+
+Aplicando os vetores de direcionamento com sua respectiva variável, funções imputadas (tipo de emenda), os vetores estão relacionados se as linhas estiverem perto ou até mesmo sobrepostas. 
+
+Primeiramente, podemos observar a existência quatro grupos principais de emendas:
+Primeiro grupo: Saúde
+Segundo grupo: Assistência Social, Organização Agrária, Comércio e Serviços, Cultura, Agricultura, Desporto e Lazer, Defesa Nacional
+Terceiro grupo: Saneamento, Segurança Pública, Direito e Cidadania, Urbanismo
+Quarto grupo: Ciência e Tecnologia, Trabalho, Gestão Ambiental, Indústria
+
+Como tivemos os dados normalizados, utilizaremos 'menor' ou 'maior' como diferença entre os gastos e não o valor absoluto dos gastos. 
+
+Com isso, verificamos também que os meses iniciais, geralmente, possuem menor gastos, principalmente no Segundo Grupo de emendas. Também observamos que os meses finais de 2014 e 2015 tiveram um gasto maior em saúde.
+Podemos notar uma pequena concentração de meses, (começando de junho) do final de 2013 e início de 2014, no Terceiro Grupo, no ano de 2014 houveram eleições para presidente, deputados federais, senadores, governadores e deputados estaduais; leva-se a sugerir que pelo fato de serem políticas com visibilidade maior para os eleitores.
+
+----
+t-SNE
+
+Agora vamos reduzir as dimensões utilizando outra técnica chamada t-SNE:
+```{r}
+require(Rtsne)
+tsne.dim = Rtsne(select(emendas_ano_cast, -MES_PROP, -ANO_PROP), 
+                 perplexity = 5, 
+                 verbose = TRUE, 
+                 check_duplicates = FALSE)
+
+
+df = as.data.frame(tsne.dim$Y)
+df$MES_PROP = emendas_ano_cast$MES_PROP
+df$ANO_PROP = emendas_ano_cast$ANO_PROP
+
+ggplot(df, aes(x = V1, y = V2, label = ANO_PROP, color=MES_PROP)) + 
+  geom_point(alpha = 0.5, size = 3) + 
+  geom_text(alpha = .7, size = 4, hjust = -.2)
+
+
 ```
