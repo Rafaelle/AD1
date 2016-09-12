@@ -1,0 +1,68 @@
+---
+title: "Problema 4 - checkpoint 1"
+output: html_document
+---
+
+```{r global_options, include=TRUE}
+knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6)
+```
+
+1 - Escolha uma trilogia (ou uma n-logia com n > 3) e avalie para qual dos episódios da trilogia há melhor avaliação e para qual há mais variação nas notas atribuídas ao filme. 
+
+
+```{r echo=FALSE}
+library(dplyr, warn.conflicts = FALSE)
+library(ggplot2)
+theme_set(theme_bw())
+
+filmes = read.csv("dados/movies.csv",  encoding="UTF-8")
+#links =  read.csv("dados/links.csv",  encoding="UTF-8")
+ratings = read.csv("dados/ratings.csv",  encoding="UTF-8")
+#tags = read.csv("dados/tags.csv",  encoding="UTF-8")
+
+filmes.senhor.dos.aneis = filmes %>%
+  filter(grepl('Lord of the Rings', title))
+
+# ratings.senhor.dos.aneis = ratings %>%
+#   filter(movieId %in% filmes.senhor.dos.aneis$movieId) %>%
+#   group_by(movieId) %>%
+#   summarise(quantidade = n())
+  
+ratings.senhor.dos.aneis = ratings %>%
+  filter(movieId %in% filmes.senhor.dos.aneis$movieId)%>%
+  group_by(movieId)
+
+ratings.senhor.dos.aneis$rating = as.numeric(ratings.senhor.dos.aneis$rating )
+
+--------------------------------
+#install.packages("resample")
+library(resample)
+
+experiment = sample_n(ratings.senhor.dos.aneis, 500, replace = TRUE)
+
+b = experiment %>%
+  group_by(movieId) %>%
+  bootstrap(mean(rating), R = 500)
+
+
+# tá fazendo a média geral 
+b = bootstrap(experiment, mean(rating), R = 500)
+mean.rating = CI.bca(b, probs = c(.025, .975))
+mean.rating
+
+
+b = bootstrap(experiment, median(rating))
+median.rating = CI.percentile(b, probs = c(.025, .975))
+median.rating 
+
+
+df = data.frame(rbind(mean.rating, 
+                      median.rating))
+df$medida = row.names(df)
+
+df %>% 
+  ggplot(aes(x = medida, ymin = X2.5., ymax = X97.5.)) + 
+  geom_errorbar(width = .2)
+
+
+```
