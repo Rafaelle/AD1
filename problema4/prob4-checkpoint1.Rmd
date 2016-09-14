@@ -12,6 +12,8 @@ knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=12, fig
 ```{r echo=FALSE}
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
+#install.packages("resample")
+library(resample)
 theme_set(theme_bw())
 
 filmes = read.csv("dados/movies.csv",  encoding="UTF-8")
@@ -57,25 +59,47 @@ E verificaremos a distribuição da amostra
 senhor.dos.aneis.ratings = senhor.dos.aneis.ratings %>%
   filter(movieId != 2116)
 
-```
-
-Agora vamos observar a distribuição das avaliações dos usuários:
-
-```{r}
-ggplot(senhor.dos.aneis.ratings, aes(rating)) +
+ggplot(senhor.dos.aneis.ratings, aes(rating)) + 
   geom_bar() + 
   facet_wrap(~movieId, scales = c("free_y"))
 ```
 
+A distribuição das avaliações dos usuários são parecidas, concentrando em sua maior parte à direita. E para uma maior representação, decidimos utilizar o intervalo de confiança feito com a mediana dos valores.
+
+
+
 ```{r}
+#Lord of the Rings: The Fellowship of the Ring, The (2001)
+experiment1 = sample_n(filter(senhor.dos.aneis.ratings, movieId == 4993), 1000, replace = TRUE)
 
-  ggplot(senhor.dos.aneis.ratings, aes(rating)) + 
-     geom_histogram(binwidth = 1) + 
-     facet_grid(. ~ movieId)
+bootstrap.mediana.senhor.dos.aneis1 = bootstrap(experiment1, median(rating))
+mediana.senhor.dos.aneis1 = CI.percentile(bootstrap.mediana.senhor.dos.aneis1, probs = c(.025, .975))
 
-ggplot2.barplot(data=diamonds, xName="clarity",
-          faceting=TRUE, facetingVarNames="cut", 
-          facetingDirection="horizontal") 
+
+# Lord of the Rings: The Two Towers, The (2002)
+experiment2 = sample_n(filter(senhor.dos.aneis.ratings, movieId == 5952), 1000, replace = TRUE)
+
+bootstrap.mediana.senhor.dos.aneis2 = bootstrap(experiment2, median(rating))
+mediana.senhor.dos.aneis2 = CI.percentile(bootstrap.mediana.senhor.dos.aneis2, probs = c(.025, .975))
+
+
+# Lord of the Rings: The Return of the King, The (2003)
+
+experiment3 = sample_n(filter(senhor.dos.aneis.ratings, movieId == 7153), 1000, replace = TRUE)
+
+bootstrap.mediana.senhor.dos.aneis3 = bootstrap(experiment3, median(rating))
+mediana.senhor.dos.aneis3 = CI.percentile(bootstrap.mediana.senhor.dos.aneis3, probs = c(.025, .975))
+
+
+medianas.senhor.dos.aneis <- data.frame(
+  rbind(
+    c("SENHOR.DOS.ANEIS1", mediana.senhor.dos.aneis1),
+    c("SENHOR.DOS.ANEIS2", mediana.senhor.dos.aneis2),
+    c("SENHOR.DOS.ANEIS3", mediana.senhor.dos.aneis3)
+  )
+)
+
+names(medianas.senhor.dos.aneis) = c("titulo", "limite.inferior", "limite.superior")
 
 
 ```
