@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=12, fig
 ```{r echo=FALSE}
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
+library(tidyr)
 #install.packages("resample")
 library(resample)
 theme_set(theme_bw())
@@ -34,8 +35,6 @@ senhor.dos.aneis.ratings = ratings %>%
    filter(movieId %in% filmes.senhor.dos.aneis$movieId) 
 
 head(filmes.senhor.dos.aneis)
-
-
 
 ```
 
@@ -70,27 +69,27 @@ A distribuição das avaliações dos usuários é  parecida, concentrando em su
 
 ```{r}
 #Lord of the Rings: The Fellowship of the Ring, The (2001)
-experiment1 = sample_n(filter(senhor.dos.aneis.ratings, movieId == 4993), 1000, replace = TRUE)
+experimento1 = sample_n(filter(senhor.dos.aneis.ratings, movieId == 4993), 1000, replace = TRUE)
 
-bootstrap.media.senhor.dos.aneis1 = bootstrap(experiment1, mean(rating))
+bootstrap.media.senhor.dos.aneis1 = bootstrap(experimento1, mean(rating))
 media.senhor.dos.aneis1 = CI.bca(bootstrap.media.senhor.dos.aneis1, probs = c(.025, .975))
 
 
 # Lord of the Rings: The Two Towers, The (2002)
-experiment2 = sample_n(filter(senhor.dos.aneis.ratings, movieId == 5952), 1000, replace = TRUE)
+experimento2 = sample_n(filter(senhor.dos.aneis.ratings, movieId == 5952), 1000, replace = TRUE)
 
-bootstrap.media.senhor.dos.aneis2 = bootstrap(experiment2, mean(rating))
+bootstrap.media.senhor.dos.aneis2 = bootstrap(experimento2, mean(rating))
 media.senhor.dos.aneis2 = CI.bca(bootstrap.media.senhor.dos.aneis2, probs = c(.025, .975))
 
 
 # Lord of the Rings: The Return of the King, The (2003)
-experiment3 = sample_n(filter(senhor.dos.aneis.ratings, movieId == 7153), 1000, replace = TRUE)
+experimento3 = sample_n(filter(senhor.dos.aneis.ratings, movieId == 7153), 1000, replace = TRUE)
 
-bootstrap.media.senhor.dos.aneis3 = bootstrap(experiment3, mean(rating))
+bootstrap.media.senhor.dos.aneis3 = bootstrap(experimento3, mean(rating))
 media.senhor.dos.aneis3 = CI.percentile(bootstrap.media.senhor.dos.aneis3, probs = c(.025, .975))
 
 
-medias.senhor.dos.aneis <- data.frame(
+medias.senhor.dos.aneis = data.frame(
   rbind(
     c("SENHOR.DOS.ANEIS1", media.senhor.dos.aneis1),
     c("SENHOR.DOS.ANEIS2", media.senhor.dos.aneis2),
@@ -116,19 +115,19 @@ Para a segunda parte da pergunta (quanto a variação das notas), iremos determi
 ```{r}
 #Lord of the Rings: The Fellowship of the Ring, The (2001)
 
-bootstrap.sd.senhor.dos.aneis1 = bootstrap(experiment1, sd(rating))
+bootstrap.sd.senhor.dos.aneis1 = bootstrap(experimento1, sd(rating))
 sd.senhor.dos.aneis1 = CI.bca(bootstrap.sd.senhor.dos.aneis1, probs = c(.025, .975))
 
 
 # Lord of the Rings: The Two Towers, The (2002)
 
-bootstrap.sd.senhor.dos.aneis2 = bootstrap(experiment2, sd(rating))
+bootstrap.sd.senhor.dos.aneis2 = bootstrap(experimento2, sd(rating))
 sd.senhor.dos.aneis2 = CI.bca(bootstrap.sd.senhor.dos.aneis2, probs = c(.025, .975))
 
 
 # Lord of the Rings: The Return of the King, The (2003)
 
-bootstrap.sd.senhor.dos.aneis3 = bootstrap(experiment3, sd(rating))
+bootstrap.sd.senhor.dos.aneis3 = bootstrap(experimento3, sd(rating))
 sd.senhor.dos.aneis3 = CI.percentile(bootstrap.sd.senhor.dos.aneis3, probs = c(.025, .975))
 
 
@@ -150,16 +149,36 @@ sd.senhor.dos.aneis %>%
 
 ```
 
+Também não é possível inferir sobre qual filme possui maior variabilidade.
+  
 
-Também não é possível inferir sobre qual o filme possui maior varabilidade.
+2- Normalmente os filmes têm vários gêneros. Existe uma relação entre em quantos gêneros os filmes se encaixam e a avaliação que os filmes recebem? Mais especificamente: se consideramos a os filmes com 1, 2, 3 ... gêneros, existe alguma quantidade de gêneros num mesmo filme que em geral recebe avaliações melhores? Caso exista, estime a diferença entre essa combinação e filmes com apenas um gênero. (Repare que você terá que escolher que medida você comparará: média, mediana, etc.)
+
   
-  https://github.com/nazareno/ciencia-de-dados-1/blob/master/4-Inferencia/Inferencia-2.Rmd
-  https://github.com/odwl66/ad1/blob/master/problema4/problema4-checkpoint1.Rmd
-  https://github.com/arthurlustosa/ad1/blob/master/Problema4/problema4-cp1.Rmd
-  https://github.com/monkshorin/ad120161/blob/master/problema4/index.Rmd
-  https://github.com/michellymenezes/AD1/blob/master/Prob4/prob4Cp1.Rmd
-  https://github.com/jvmafra/AD1/blob/master/problema4-cp1/inferencia.Rmd
+```{r}
+generos = read.csv("dados/movie-genre.csv",  encoding="UTF-8")
+
+```
+
+Por ser uma quantidade maior de dados e a provável assimetria dos dados de avaliações, iremos utilizar a mediana como forma de comparação. 
+
+```{r}
+mediana.generos = data.frame(movieId=numeric(0), n=numeric(0), mediana=numeric(0))
+
+#generos = spread(generos, key = genre, value = genre)
+
+quantidade.genero.filme = generos %>%
+  group_by(title) %>%
+  summarise(quantidade.generos = n()) %>%
+  arrange(quantidade.generos)
+
+quantidade.genero.filme = merge(quantidade.genero.filme, filmes, by=c("title","title")) 
+
+
+
+
+
   
-  
-  
+```
+
 

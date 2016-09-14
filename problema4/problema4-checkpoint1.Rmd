@@ -79,3 +79,11 @@ df %>%
 
 
 ```
+
+
+  https://github.com/nazareno/ciencia-de-dados-1/blob/master/4-Inferencia/Inferencia-2.Rmd
+  https://github.com/odwl66/ad1/blob/master/problema4/problema4-checkpoint1.Rmd
+  https://github.com/arthurlustosa/ad1/blob/master/Problema4/problema4-cp1.Rmd
+  https://github.com/monkshorin/ad120161/blob/master/problema4/index.Rmd
+  https://github.com/michellymenezes/AD1/blob/master/Prob4/prob4Cp1.Rmd
+  https://github.com/jvmafra/AD1/blob/master/problema4-cp1/inferencia.Rmd
