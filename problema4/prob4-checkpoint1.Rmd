@@ -169,16 +169,20 @@ mediana.generos = data.frame(movieId=numeric(0), n=numeric(0), mediana=numeric(0
 
 quantidade.genero.filme = generos %>%
   group_by(title) %>%
-  summarise(quantidade.generos = n()) %>%
-  arrange(quantidade.generos)
+  summarise(quantidade.generos = n())
 
 quantidade.genero.filme = merge(quantidade.genero.filme, filmes, by=c("title","title")) 
 
+quantidade.genero.filme = quantidade.genero.filme %>%
+  select(movieId, title, quantidade.generos) %>%
+  arrange(quantidade.generos)
+
+# FALTA:
+# AGRUPAR POR QUANTIDADE DE GENEROS
+# FAZER A DISTRIBUIÇÃO AMOSTRAL BASEADA NA MEDIANA (PROVAVEL ASSIMETRIA DAS AVALIAÇÕES)
+# VERIFICAR RESULTADO
 
 
-
-
-  
 ```
 
 
