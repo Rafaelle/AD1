@@ -52,8 +52,8 @@ head(senhor.dos.aneis.ratings.quant)
 
 ```
 
-Como podemos verificar, o filme de 1978 possui 19 avaliações, e considerando que não faz parte da trilogia (2001 a 2003), vamos retira-lo da análise.
-E verificaremos a distribuição da amostra
+Como podemos verificar, o filme de 1978 possui 19 avaliações, e considerando que não faz parte da trilogia (2001 a 2003), vamos retirá-lo da análise.
+E verificaremos a distribuição da amostra.
 
 ```{r}
 senhor.dos.aneis.ratings = senhor.dos.aneis.ratings %>%
@@ -61,50 +61,105 @@ senhor.dos.aneis.ratings = senhor.dos.aneis.ratings %>%
 
 ggplot(senhor.dos.aneis.ratings, aes(rating)) + 
   geom_bar() + 
-  facet_wrap(~movieId, scales = c("free_y"))
+  facet_wrap(~movieId, scales = c("free_y")) +
+  ggtitle("Distribuição das avaliações da amostra do filme 'Senhor dos Anéis'")
 ```
 
-A distribuição das avaliações dos usuários são parecidas, concentrando em sua maior parte à direita. E para uma maior representação, decidimos utilizar o intervalo de confiança feito com a mediana dos valores.
-
+A distribuição das avaliações dos usuários é  parecida, concentrando em sua maior parte à direita. E para uma maior representação, decidimos utilizar o intervalo de confiança feito com a média dos valores.
 
 
 ```{r}
 #Lord of the Rings: The Fellowship of the Ring, The (2001)
 experiment1 = sample_n(filter(senhor.dos.aneis.ratings, movieId == 4993), 1000, replace = TRUE)
 
-bootstrap.mediana.senhor.dos.aneis1 = bootstrap(experiment1, median(rating))
-mediana.senhor.dos.aneis1 = CI.percentile(bootstrap.mediana.senhor.dos.aneis1, probs = c(.025, .975))
+bootstrap.media.senhor.dos.aneis1 = bootstrap(experiment1, mean(rating))
+media.senhor.dos.aneis1 = CI.bca(bootstrap.media.senhor.dos.aneis1, probs = c(.025, .975))
 
 
 # Lord of the Rings: The Two Towers, The (2002)
 experiment2 = sample_n(filter(senhor.dos.aneis.ratings, movieId == 5952), 1000, replace = TRUE)
 
-bootstrap.mediana.senhor.dos.aneis2 = bootstrap(experiment2, median(rating))
-mediana.senhor.dos.aneis2 = CI.percentile(bootstrap.mediana.senhor.dos.aneis2, probs = c(.025, .975))
+bootstrap.media.senhor.dos.aneis2 = bootstrap(experiment2, mean(rating))
+media.senhor.dos.aneis2 = CI.bca(bootstrap.media.senhor.dos.aneis2, probs = c(.025, .975))
+
+
+# Lord of the Rings: The Return of the King, The (2003)
+experiment3 = sample_n(filter(senhor.dos.aneis.ratings, movieId == 7153), 1000, replace = TRUE)
+
+bootstrap.media.senhor.dos.aneis3 = bootstrap(experiment3, mean(rating))
+media.senhor.dos.aneis3 = CI.percentile(bootstrap.media.senhor.dos.aneis3, probs = c(.025, .975))
+
+
+medias.senhor.dos.aneis <- data.frame(
+  rbind(
+    c("SENHOR.DOS.ANEIS1", media.senhor.dos.aneis1),
+    c("SENHOR.DOS.ANEIS2", media.senhor.dos.aneis2),
+    c("SENHOR.DOS.ANEIS3", media.senhor.dos.aneis3)
+  )
+)
+
+names(medias.senhor.dos.aneis) = c("titulo", "limite.inferior", "limite.superior")
+
+medias.senhor.dos.aneis %>% 
+  ggplot(aes(x = titulo, ymin = limite.inferior, ymax = limite.superior)) + 
+  geom_errorbar(width = .2) +
+    ggtitle("Intervalo de confiança da estimativa das médias das notas dos filmes de 'Senhor dos Anéis'")
+
+```
+Como conclusão à pergunta inicial 'Qual dos episódios da trilogia há melhor avaliação':
+  Não podemos inferir com certeza qual o melhor filme da trilogia, visto que o intervalo de confiança da média das avaliações das amostras se sobrepõe. 
+  
+  
+Para a segunda parte da pergunta (quanto a variação das notas), iremos determinar o intervalo de confiança para a variação nas notas atribuídas ao filme. 
+  
+  
+```{r}
+#Lord of the Rings: The Fellowship of the Ring, The (2001)
+
+bootstrap.sd.senhor.dos.aneis1 = bootstrap(experiment1, sd(rating))
+sd.senhor.dos.aneis1 = CI.bca(bootstrap.sd.senhor.dos.aneis1, probs = c(.025, .975))
+
+
+# Lord of the Rings: The Two Towers, The (2002)
+
+bootstrap.sd.senhor.dos.aneis2 = bootstrap(experiment2, sd(rating))
+sd.senhor.dos.aneis2 = CI.bca(bootstrap.sd.senhor.dos.aneis2, probs = c(.025, .975))
 
 
 # Lord of the Rings: The Return of the King, The (2003)
 
-experiment3 = sample_n(filter(senhor.dos.aneis.ratings, movieId == 7153), 1000, replace = TRUE)
-
-bootstrap.mediana.senhor.dos.aneis3 = bootstrap(experiment3, median(rating))
-mediana.senhor.dos.aneis3 = CI.percentile(bootstrap.mediana.senhor.dos.aneis3, probs = c(.025, .975))
+bootstrap.sd.senhor.dos.aneis3 = bootstrap(experiment3, sd(rating))
+sd.senhor.dos.aneis3 = CI.percentile(bootstrap.sd.senhor.dos.aneis3, probs = c(.025, .975))
 
 
-medianas.senhor.dos.aneis <- data.frame(
+sd.senhor.dos.aneis <- data.frame(
   rbind(
-    c("SENHOR.DOS.ANEIS1", mediana.senhor.dos.aneis1),
-    c("SENHOR.DOS.ANEIS2", mediana.senhor.dos.aneis2),
-    c("SENHOR.DOS.ANEIS3", mediana.senhor.dos.aneis3)
+    c("SENHOR.DOS.ANEIS1", sd.senhor.dos.aneis1),
+    c("SENHOR.DOS.ANEIS2", sd.senhor.dos.aneis2),
+    c("SENHOR.DOS.ANEIS3", sd.senhor.dos.aneis3)
   )
 )
 
-names(medianas.senhor.dos.aneis) = c("titulo", "limite.inferior", "limite.superior")
+names(sd.senhor.dos.aneis) = c("titulo", "limite.inferior", "limite.superior")
+
+sd.senhor.dos.aneis %>% 
+  ggplot(aes(x = titulo, ymin = limite.inferior, ymax = limite.superior)) + 
+  geom_errorbar(width = .2) +
+    ggtitle("Intervalo de confiança da estimativa do desvio padrão das notas dos filmes de 'Senhor dos Anéis'")
 
 
 ```
 
 
-
-
+Também não é possível inferir sobre qual o filme possui maior varabilidade.
+  
+  https://github.com/nazareno/ciencia-de-dados-1/blob/master/4-Inferencia/Inferencia-2.Rmd
+  https://github.com/odwl66/ad1/blob/master/problema4/problema4-checkpoint1.Rmd
+  https://github.com/arthurlustosa/ad1/blob/master/Problema4/problema4-cp1.Rmd
+  https://github.com/monkshorin/ad120161/blob/master/problema4/index.Rmd
+  https://github.com/michellymenezes/AD1/blob/master/Prob4/prob4Cp1.Rmd
+  https://github.com/jvmafra/AD1/blob/master/problema4-cp1/inferencia.Rmd
+  
+  
+  
 
