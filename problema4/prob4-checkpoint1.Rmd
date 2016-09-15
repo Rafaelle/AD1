@@ -7,8 +7,6 @@ output: html_document
 knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6)
 ```
 
- 
-
 ```{r echo=FALSE}
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
@@ -16,13 +14,19 @@ library(tidyr)
 #install.packages("resample")
 library(resample)
 theme_set(theme_bw())
+```
+
+Para essa parte do problema usaremos dados sobre avaliações de filmes: http://grouplens.org/datasets/movielens/latest/
+```{r}
 
 filmes = read.csv("dados/movies.csv",  encoding="UTF-8")
 ratings = read.csv("dados/ratings.csv",  encoding="UTF-8")
 
 ```
 
-1 - Escolha uma trilogia (ou uma n-logia com n > 3) e avalie para qual dos episódios da trilogia há melhor avaliação e para qual há mais variação nas notas atribuídas ao filme.
+--- 
+
+####1 - Escolha uma trilogia (ou uma n-logia com n > 3) e avalie para qual dos episódios da trilogia há melhor avaliação e para qual há mais variação nas notas atribuídas ao filme.
 
 Para a primeira parte, iremos escolher a trilogia Senhor dos Anéis.
 
@@ -38,8 +42,7 @@ head(filmes.senhor.dos.aneis)
 
 ```
 
-Na seleção da trilogia, descobrimos um filme inesperado "The Lord of the Rings (1978)", filme americano de 1978, criado e realizado por Ralph Bakshi. A longa metragem é uma adaptação da primeira parte da trilogia "O Senhor dos Anéis"(1954-1955) e foi feita por Peter S. Beagle e Chris Conkling. O filme contém animação e cenas live-action utilizando a técnica rotoscoped para dar-lhe uma aparência mais consistente e real a toda a acção do filme. 
-
+  Na seleção da trilogia, descobrimos um filme inesperado "The Lord of the Rings (1978)", filme americano de 1978, criado e realizado por Ralph Bakshi. A longa metragem é uma adaptação da primeira parte da trilogia "O Senhor dos Anéis"(1954-1955) e foi feita por Peter S. Beagle e Chris Conkling. O filme contém animação e cenas live-action utilizando a técnica rotoscoped para dar-lhe uma aparência mais consistente e real a toda a acção do filme. 
 
 Iremos verificar a quantidade de avaliações que cada filme teve 
 ```{r}
@@ -66,8 +69,8 @@ ggplot(senhor.dos.aneis.ratings, aes(rating)) +
 
 A distribuição das avaliações dos usuários é  parecida, concentrando em sua maior parte à direita. E para uma maior representação, decidimos utilizar o intervalo de confiança feito com a média dos valores.
 
-
 ```{r}
+
 #Lord of the Rings: The Fellowship of the Ring, The (2001)
 experimento1 = sample_n(filter(senhor.dos.aneis.ratings, movieId == 4993), 1000, replace = TRUE)
 
@@ -105,10 +108,10 @@ medias.senhor.dos.aneis %>%
     ggtitle("Intervalo de confiança da estimativa das médias das notas dos filmes de 'Senhor dos Anéis'")
 
 ```
+
 Como conclusão à pergunta inicial 'Qual dos episódios da trilogia há melhor avaliação':
   Não podemos inferir com certeza qual o melhor filme da trilogia, visto que o intervalo de confiança da média das avaliações das amostras se sobrepõe. 
-  
-  
+
 Para a segunda parte da pergunta (quanto a variação das notas), iremos determinar o intervalo de confiança para a variação nas notas atribuídas ao filme. 
   
   
@@ -118,18 +121,15 @@ Para a segunda parte da pergunta (quanto a variação das notas), iremos determi
 bootstrap.sd.senhor.dos.aneis1 = bootstrap(experimento1, sd(rating))
 sd.senhor.dos.aneis1 = CI.bca(bootstrap.sd.senhor.dos.aneis1, probs = c(.025, .975))
 
-
 # Lord of the Rings: The Two Towers, The (2002)
 
 bootstrap.sd.senhor.dos.aneis2 = bootstrap(experimento2, sd(rating))
 sd.senhor.dos.aneis2 = CI.bca(bootstrap.sd.senhor.dos.aneis2, probs = c(.025, .975))
 
-
 # Lord of the Rings: The Return of the King, The (2003)
 
 bootstrap.sd.senhor.dos.aneis3 = bootstrap(experimento3, sd(rating))
 sd.senhor.dos.aneis3 = CI.percentile(bootstrap.sd.senhor.dos.aneis3, probs = c(.025, .975))
-
 
 sd.senhor.dos.aneis <- data.frame(
   rbind(
@@ -146,26 +146,22 @@ sd.senhor.dos.aneis %>%
   geom_errorbar(width = .2) +
     ggtitle("Intervalo de confiança da estimativa do desvio padrão das notas dos filmes de 'Senhor dos Anéis'")
 
-
 ```
 
 Também não é possível inferir sobre qual filme possui maior variabilidade.
+
+---
   
-
-2- Normalmente os filmes têm vários gêneros. Existe uma relação entre em quantos gêneros os filmes se encaixam e a avaliação que os filmes recebem? Mais especificamente: se consideramos a os filmes com 1, 2, 3 ... gêneros, existe alguma quantidade de gêneros num mesmo filme que em geral recebe avaliações melhores? Caso exista, estime a diferença entre essa combinação e filmes com apenas um gênero. (Repare que você terá que escolher que medida você comparará: média, mediana, etc.)
-
+####2- Normalmente os filmes têm vários gêneros. Existe uma relação entre em quantos gêneros os filmes se encaixam e a avaliação que os filmes recebem? Mais especificamente: se consideramos a os filmes com 1, 2, 3 ... gêneros, existe alguma quantidade de gêneros num mesmo filme que em geral recebe avaliações melhores? Caso exista, estime a diferença entre essa combinação e filmes com apenas um gênero. (Repare que você terá que escolher que medida você comparará: média, mediana, etc.)
   
 ```{r}
 generos = read.csv("dados/movie-genre.csv",  encoding="UTF-8")
-
 ```
 
 Por ser uma quantidade maior de dados e a provável assimetria dos dados de avaliações, iremos utilizar a mediana como forma de comparação. 
 
 ```{r}
 mediana.generos = data.frame(movieId=numeric(0), n=numeric(0), mediana=numeric(0))
-
-#generos = spread(generos, key = genre, value = genre)
 
 quantidade.genero.filme = generos %>%
   group_by(title) %>%
@@ -177,12 +173,83 @@ quantidade.genero.filme = quantidade.genero.filme %>%
   select(movieId, title, quantidade.generos) %>%
   arrange(quantidade.generos)
 
-# FALTA:
-# AGRUPAR POR QUANTIDADE DE GENEROS
-# FAZER A DISTRIBUIÇÃO AMOSTRAL BASEADA NA MEDIANA (PROVAVEL ASSIMETRIA DAS AVALIAÇÕES)
-# VERIFICAR RESULTADO
-
-
 ```
 
 
+```{r}
+
+grupo.genero = function(quantidade.genero){
+  filmes.quantidade.genero = quantidade.genero.filme %>%
+    filter(quantidade.generos == quantidade.genero)
+
+  ratings.quantidade.genero = ratings %>%
+        filter(movieId %in% filmes.quantidade.genero$movieId)
+  
+  return(ratings.quantidade.genero)
+}
+
+boot = function(df= ratings){
+  experimento = sample_n(df, 1000, replace = TRUE)
+  bootstrap.mediana = bootstrap(experimento, median(rating))
+  mediana = CI.percentile(bootstrap.mediana, probs = c(.025, .975))
+  return(mediana)
+}
+
+#filmes com 1 genêro
+df.1.genero = grupo.genero(1)
+mediana.1.genero = boot(df.1.genero)
+
+#filmes com 2 genêros
+df.2.generos = grupo.genero(2)
+mediana.2.generos = boot(df.2.generos)
+
+#filmes com 3 genêros
+df.3.generos = grupo.genero(3)
+mediana.3.generos = boot(df.3.generos)
+
+#filmes com 4 genêros
+df.4.generos = grupo.genero(4)
+mediana.4.generos = boot(df.4.generos)
+
+#filmes com 5 genêros
+df.5.generos = grupo.genero(5)
+mediana.5.generos = boot(df.5.generos)
+
+#filmes com 6 genêros
+df.6.generos = grupo.genero(6)
+mediana.6.generos = boot(df.6.generos)
+
+#filmes com 7 genêros
+df.7.generos = grupo.genero(7)
+mediana.7.generos = boot(df.7.generos)
+
+#filmes com 8 genêros
+df.8.generos = grupo.genero(8)
+mediana.8.generos = boot(df.8.generos)
+
+#filmes com 10 genêros
+df.10.generos = grupo.genero(10)
+mediana.10.generos = boot(df.10.generos)
+
+medianas.filmes.por.genero = data.frame(
+  rbind(mediana.1.genero,
+        mediana.2.generos,
+        mediana.3.generos,
+        mediana.4.generos,
+        mediana.5.generos,
+        mediana.6.generos,
+        mediana.7.generos,
+        mediana.8.generos,
+        mediana.10.generos))
+
+medianas.filmes.por.genero = mutate(medianas.filmes.por.genero, quantidade.generos = c(1,2,3,4,5,6,7,8,10))
+
+names(medianas.filmes.por.genero) = c("limite.inferior", "limite.superior", "quantidade.generos")
+
+medianas.filmes.por.genero %>% 
+  ggplot(aes(x = quantidade.generos, ymin = limite.inferior, ymax = limite.superior)) + 
+  geom_errorbar(width = .2) +
+    ggtitle("Intervalo de confiança da estimativa das médias das notas dos categorizados por quantidade de genêro")
+
+```
+Os filmes com 10 tipos de genêros, tem uma pontuação em geral mais baixa que os outros fimes com menos quantidade de genêro. Os filmes com quantidade de genêro entre 1 e 6 possuem o mesmo intervalo.
