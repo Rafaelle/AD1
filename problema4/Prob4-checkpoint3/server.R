@@ -9,12 +9,14 @@
 
 library(shiny)
 library(dplyr, warn.conflicts = F)
-install.packages("readr")
+#install.packages("readr")
 library(readr)
 library(ggplot2)
 #install.packages("plotly")
 library(plotly)
 library(stringr)
+library(resample)
+
 theme_set(theme_bw())
 
 source("import-data.R")
@@ -25,17 +27,6 @@ import_data()
 # Como se comportam as avaliações por gênero de filmes? Quais possuem maior variabilidade?
 # Como é a distribuição das avaliações e popularidade ao longo dos anos(de produção dos filmes)?
 
-filmes.ano = filmes %>%
-  rowwise() %>%
-  mutate(ano = str_sub(title, start= -5, end = -2)) %>%
-  filter(movieId != 108548) %>%
-  filter( movieId != 108583) %>%
-  filter(movieId != 40697)
-
-grupo.ano = function(ano){
-  #mytable <- function(x, ...) x %>% group_by_(...) %>% summarise(n = n())
-}
-
 boot = function(df= filmes.ano){
   experimento = sample_n(df, 1000, replace = TRUE)
   bootstrap.mediana = bootstrap(experimento, median(rating))
@@ -43,14 +34,52 @@ boot = function(df= filmes.ano){
   return(mediana)
 }
 
-#filmes com 1 genêro
-df.1.genero = grupo.genero(1)
-mediana.1.genero = boot(df.1.genero)
-
 #séries movieId = 108548, 108583, 40697
+
+filmes.ano = filmes %>%
+   rowwise() %>%
+   mutate(ano = str_sub(title, start= -5, end = -2)) %>%
+   filter(movieId != 108548) %>%
+   filter( movieId != 108583) %>%
+   filter(movieId != 40697) %>%
+   ungroup()
+ 
+medianas.filmes.por.ano = data.frame()
+
+medianas.filmes.por.ano = filmes.ano %>%
+  group_by(ano) %>%
+  summarise("2.5%" = boot()[1], "97.5%" = boot()[2])
+ 
+con<-file('medianas_filmes',encoding="UTF-8")
+
+#write_csv(medianas.filmes.por.ano, "medianas_filme.csv")
+
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
+  
+   
+  # output$plotlyEstado <- renderPlotly({
+  #   
+  #   deputados.filtrados = bilhete.aereo.por.deputado %>% 
+  #     filter(sgUF %in% input$checkbox)
+  #   
+  #   plot_ly(deputados.filtrados, 
+  #           x = quantidade.bilhetes, 
+  #           y = gasto.medio.bilhete, 
+  #           mode = "markers", 
+  #           group = sgUF , 
+  #           marker=list( size=total.passageiros*4 , opacity=0.9),
+  #           text = paste("Parlamentar: ", txNomeParlamentar,
+  #                        "<br> Valor médio: R$", gasto.medio.bilhete, 
+  #                        "<br> Bilhetes:", quantidade.bilhetes,
+  #                        "<br> Total de passageiros:",total.passageiros )) %>%
+  #     layout(xaxis= list(title = "Quantidade total de bilhetes"),yaxis = list(title = "Gasto médio por bilhete (R$)"), 
+  #            title="Quantidade de total de passageiros x Gasto médio por bilhete" )
+     
+     
+  
+  
    
   output$distPlot <- renderPlot({
     
