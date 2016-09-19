@@ -34,24 +34,24 @@ boot = function(df= filmes.ano){
   return(mediana)
 }
 
+medianas.ano = read.csv("medianas_filme.csv")
+
 #séries movieId = 108548, 108583, 40697
-
-filmes.ano = filmes %>%
-   rowwise() %>%
-   mutate(ano = str_sub(title, start= -5, end = -2)) %>%
-   filter(movieId != 108548) %>%
-   filter( movieId != 108583) %>%
-   filter(movieId != 40697) %>%
-   ungroup()
- 
-medianas.filmes.por.ano = data.frame()
-
-medianas.filmes.por.ano = filmes.ano %>%
-  group_by(ano) %>%
-  summarise("2.5%" = boot()[1], "97.5%" = boot()[2])
- 
-con<-file('medianas_filmes',encoding="UTF-8")
-
+# ESCREVI EM ARQUIVO, RODAR SÓ SE NECESSÁRIO
+# filmes.ano = filmes %>%
+#    rowwise() %>%
+#    mutate(ano = str_sub(title, start= -5, end = -2)) %>%
+#    filter(movieId != 108548) %>%
+#    filter( movieId != 108583) %>%
+#    filter(movieId != 40697) %>%
+#    ungroup()
+#  
+# medianas.filmes.por.ano = data.frame()
+# 
+# medianas.filmes.por.ano = filmes.ano %>%
+#   group_by(ano) %>%
+#   summarise("2.5%" = boot()[1], "97.5%" = boot()[2])
+#  
 #write_csv(medianas.filmes.por.ano, "medianas_filme.csv")
 
 
@@ -79,16 +79,35 @@ shinyServer(function(input, output) {
      
      
   
-  
-   
-  output$distPlot <- renderPlot({
-    
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2] 
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
-    
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
+  # medias.senhor.dos.aneis %>% 
+  #   ggplot(aes(x = titulo, ymin = limite.inferior, ymax = limite.superior)) + 
+  #   geom_errorbar(width = .2) +
+  #   ggtitle("Intervalo de confiança da estimativa das médias das notas dos filmes de 'Senhor dos Anéis'")
+  # 
+  # 
+  #  
+  output$medianaAnoPlot <- renderPlot({
+       ano.filtrados = medianas.ano %>% 
+         filter(ano %in% input$anos_input)
+       
+       ggplot(data = df,aes(x = x,y = y)) + 
+         geom_point() + 
+         geom_errorbar(aes(ymin = ymin,ymax = ymax)) + 
+         geom_errorbarh(aes(xmin = xmin,xmax = xmax))
+       
+       plot_ly(ano.filtrados, 
+               x = ano, 
+               ymin = 
+               y = gasto.medio.bilhete, 
+               mode = "markers", 
+               group = sgUF , 
+               marker=list( size=total.passageiros*4 , opacity=0.9),
+               text = paste("Parlamentar: ", txNomeParlamentar,
+                            "<br> Valor médio: R$", gasto.medio.bilhete, 
+                            "<br> Bilhetes:", quantidade.bilhetes,
+                            "<br> Total de passageiros:",total.passageiros )) %>%
+         layout(xaxis= list(title = "Quantidade total de bilhetes"),yaxis = list(title = "Gasto médio por bilhete (R$)"), 
+                title="Quantidade de total de passageiros x Gasto médio por bilhete" )
     
   })
   
