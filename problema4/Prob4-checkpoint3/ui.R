@@ -18,7 +18,7 @@ shinyUI(fluidPage(
   p("Os dados ultilizados possuem as avaliações de 250 mil usuários já consolidadas por filme (aqui considerando apenas filmes com mais de cem avaliações)."),
   a(href=" https://drive.google.com/open?id=0B2rlaHwjOlZAdnF1TGpDZ1RPYWM (Links para um site externo)", "Dados"),
   hr(),
-  p(" Primeiramente iremos analizar ano a ano as avaliações dos filmes, utilizaremos a mediana como forma de comparação."),
+  p("Iremos analisar a distribuição das avaliações e popularidade ao longo dos anos(de laçamento), e para isso utilizaremos a mediana como forma de comparação."),
   hr(),
   sidebarLayout(
     sidebarPanel(
@@ -34,7 +34,7 @@ shinyUI(fluidPage(
   ),
   
   hr(),
-  p(" Agora iremos analisar os genêros"),
+  p(" Agora iremos analisar os genêros, como se comportam as avaliações por gênero de filmes?, Para isso utilizaremos a mediana como forma de comparação."),
   hr(),
   
    sidebarLayout(

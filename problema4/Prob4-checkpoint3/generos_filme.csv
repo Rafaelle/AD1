@@ -1407,8 +1407,8 @@ movieId,title,genres,rating,popularity,genre
 753,"Month by the Lake, A (1995)",Comedy|Drama|Romance,3.29847908745247,526,Romance
 754,Gold Diggers: The Secret of Bear Mountain (1995),Adventure|Children,2.93044619422572,381,Adventure
 754,Gold Diggers: The Secret of Bear Mountain (1995),Adventure|Children,2.93044619422572,381,Children
-755,Kim (1950),Children|Drama,3375,156,Children
-755,Kim (1950),Children|Drama,3375,156,Drama
+755,Kim (1950),Children|Drama,3.375,156,Children
+755,Kim (1950),Children|Drama,3.375,156,Drama
 756,Carmen Miranda: Bananas Is My Business (1994),Documentary,3.16666666666667,123,Documentary
 757,Ashes of Time (Dung che sai duk) (1994),Drama,3.63865546218487,238,Drama
 759,Maya Lin: A Strong Clear Vision (1994),Documentary,3.85958005249344,381,Documentary
@@ -1746,8 +1746,8 @@ movieId,title,genres,rating,popularity,genre
 954,Mr. Smith Goes to Washington (1939),Drama,3.99238065619655,6431,Drama
 955,Bringing Up Baby (1938),Comedy|Romance,4.04206705103566,4683,Comedy
 955,Bringing Up Baby (1938),Comedy|Romance,4.04206705103566,4683,Romance
-956,Penny Serenade (1941),Drama|Romance,3484,375,Drama
-956,Penny Serenade (1941),Drama|Romance,3484,375,Romance
+956,Penny Serenade (1941),Drama|Romance,3.484,375,Drama
+956,Penny Serenade (1941),Drama|Romance,3.484,375,Romance
 957,"Scarlet Letter, The (1926)",Drama,3.23228346456693,254,Drama
 958,Lady of Burlesque (1943),Comedy|Mystery,3.14851485148515,101,Comedy
 958,Lady of Burlesque (1943),Comedy|Mystery,3.14851485148515,101,Mystery
@@ -1917,7 +1917,7 @@ movieId,title,genres,rating,popularity,genre
 1037,"Lawnmower Man, The (1992)",Action|Horror|Sci-Fi|Thriller,2.73331574782379,7582,Sci-Fi
 1037,"Lawnmower Man, The (1992)",Action|Horror|Sci-Fi|Thriller,2.73331574782379,7582,Thriller
 1038,Unhook the Stars (1996),Drama,3.21926229508197,244,Drama
-1040,"Secret Agent, The (1996)",Drama,3375,160,Drama
+1040,"Secret Agent, The (1996)",Drama,3.375,160,Drama
 1041,Secrets & Lies (1996),Drama,4.04769930894994,5933,Drama
 1042,That Thing You Do! (1996),Comedy|Drama,3.43400127226463,9432,Comedy
 1042,That Thing You Do! (1996),Comedy|Drama,3.43400127226463,9432,Drama
@@ -2042,7 +2042,7 @@ movieId,title,genres,rating,popularity,genre
 1119,Drunks (1995),Drama,3.15945945945946,185,Drama
 1120,"People vs. Larry Flynt, The (1996)",Comedy|Drama,3.55406479825084,10062,Comedy
 1120,"People vs. Larry Flynt, The (1996)",Comedy|Drama,3.55406479825084,10062,Drama
-1121,Glory Daze (1995),Drama,2875,124,Drama
+1121,Glory Daze (1995),Drama,2.875,124,Drama
 1123,"Perfect Candidate, A (1996)",Documentary,3.59579439252336,214,Documentary
 1124,On Golden Pond (1981),Drama,3.6907310177706,4952,Drama
 1125,"Return of the Pink Panther, The (1975)",Comedy|Crime,3.61151495126384,6053,Comedy
@@ -3282,8 +3282,8 @@ movieId,title,genres,rating,popularity,genre
 1867,Tarzan and the Lost City (1998),Action|Adventure,2.12456747404844,289,Adventure
 1869,Black Dog (1998),Action|Thriller,2.33575883575884,481,Action
 1869,Black Dog (1998),Action|Thriller,2.33575883575884,481,Thriller
-1870,"Dancer, Texas Pop. 81 (1998)",Comedy|Drama,3325,400,Comedy
-1870,"Dancer, Texas Pop. 81 (1998)",Comedy|Drama,3325,400,Drama
+1870,"Dancer, Texas Pop. 81 (1998)",Comedy|Drama,3.325,400,Comedy
+1870,"Dancer, Texas Pop. 81 (1998)",Comedy|Drama,3.325,400,Drama
 1873,"Misérables, Les (1998)",Crime|Drama|Romance|War,3.72777954762663,3139,Crime
 1873,"Misérables, Les (1998)",Crime|Drama|Romance|War,3.72777954762663,3139,Drama
 1873,"Misérables, Les (1998)",Crime|Drama|Romance|War,3.72777954762663,3139,Romance
@@ -3338,8 +3338,8 @@ movieId,title,genres,rating,popularity,genre
 1896,Cousin Bette (1998),Comedy,3.10862068965517,290,Comedy
 1897,High Art (1998),Drama|Romance,3.5529197080292,1096,Drama
 1897,High Art (1998),Drama|Romance,3.5529197080292,1096,Romance
-1898,"Land Girls, The (1998)",Drama|War,3228,125,Drama
-1898,"Land Girls, The (1998)",Drama|War,3228,125,War
+1898,"Land Girls, The (1998)",Drama|War,3.228,125,Drama
+1898,"Land Girls, The (1998)",Drama|War,3.228,125,War
 1900,"Children of Heaven, The (Bacheha-Ye Aseman) (1997)",Comedy|Drama,4.017578125,768,Comedy
 1900,"Children of Heaven, The (Bacheha-Ye Aseman) (1997)",Comedy|Drama,4.017578125,768,Drama
 1902,Dream for an Insomniac (1996),Drama|Romance,3.27777777777778,297,Drama
@@ -3971,8 +3971,8 @@ movieId,title,genres,rating,popularity,genre
 2173,"Navigator: A Mediaeval Odyssey, The (1988)",Adventure|Fantasy|Sci-Fi,3.53304239401496,802,Sci-Fi
 2174,Beetlejuice (1988),Comedy|Fantasy,3.46068245832756,21657,Comedy
 2174,Beetlejuice (1988),Comedy|Fantasy,3.46068245832756,21657,Fantasy
-2175,Déjà Vu (1997),Drama|Romance,3424,125,Drama
-2175,Déjà Vu (1997),Drama|Romance,3424,125,Romance
+2175,Déjà Vu (1997),Drama|Romance,3.424,125,Drama
+2175,Déjà Vu (1997),Drama|Romance,3.424,125,Romance
 2176,Rope (1948),Crime|Drama|Thriller,3.91671894604768,3188,Crime
 2176,Rope (1948),Crime|Drama|Thriller,3.91671894604768,3188,Drama
 2176,Rope (1948),Crime|Drama|Thriller,3.91671894604768,3188,Thriller
@@ -4879,8 +4879,8 @@ movieId,title,genres,rating,popularity,genre
 2701,Wild Wild West (1999),Action|Comedy|Sci-Fi|Western,2.31167925147735,12184,Sci-Fi
 2701,Wild Wild West (1999),Action|Comedy|Sci-Fi|Western,2.31167925147735,12184,Western
 2702,Summer of Sam (1999),Drama,3.08216731169991,3359,Drama
-2704,"Lovers on the Bridge, The (Amants du Pont-Neuf, Les) (1991)",Drama|Romance,3491,500,Drama
-2704,"Lovers on the Bridge, The (Amants du Pont-Neuf, Les) (1991)",Drama|Romance,3491,500,Romance
+2704,"Lovers on the Bridge, The (Amants du Pont-Neuf, Les) (1991)",Drama|Romance,3.491,500,Drama
+2704,"Lovers on the Bridge, The (Amants du Pont-Neuf, Les) (1991)",Drama|Romance,3.491,500,Romance
 2705,"Late August, Early September (Fin août, début septembre) (1998)",Drama,3.35384615384615,130,Drama
 2706,American Pie (1999),Comedy|Romance,3.32545174172631,25291,Comedy
 2706,American Pie (1999),Comedy|Romance,3.32545174172631,25291,Romance
@@ -5390,7 +5390,7 @@ movieId,title,genres,rating,popularity,genre
 2977,Crazy in Alabama (1999),Comedy|Drama,2.71379310344828,435,Drama
 2978,Three to Tango (1999),Comedy|Romance,2.91714015151515,1056,Comedy
 2978,Three to Tango (1999),Comedy|Romance,2.91714015151515,1056,Romance
-2979,Body Shots (1999),Drama,2325,340,Drama
+2979,Body Shots (1999),Drama,2.325,340,Drama
 2982,"Guardian, The (1990)",Horror|Thriller,2.28316326530612,196,Horror
 2982,"Guardian, The (1990)",Horror|Thriller,2.28316326530612,196,Thriller
 2983,"Ipcress File, The (1965)",Thriller,3.83065595716198,747,Thriller
@@ -6061,8 +6061,8 @@ movieId,title,genres,rating,popularity,genre
 3418,Thelma & Louise (1991),Adventure|Crime|Drama,3.58197821870804,13406,Adventure
 3418,Thelma & Louise (1991),Adventure|Crime|Drama,3.58197821870804,13406,Crime
 3418,Thelma & Louise (1991),Adventure|Crime|Drama,3.58197821870804,13406,Drama
-3420,...And Justice for All (1979),Drama|Thriller,3625,1228,Drama
-3420,...And Justice for All (1979),Drama|Thriller,3625,1228,Thriller
+3420,...And Justice for All (1979),Drama|Thriller,3.625,1228,Drama
+3420,...And Justice for All (1979),Drama|Thriller,3.625,1228,Thriller
 3421,Animal House (1978),Comedy,3.80421858457529,12279,Comedy
 3422,She's Gotta Have It (1986),Comedy|Romance,3.41829393627955,973,Comedy
 3422,She's Gotta Have It (1986),Comedy|Romance,3.41829393627955,973,Romance
@@ -6471,9 +6471,9 @@ movieId,title,genres,rating,popularity,genre
 3665,Curse of the Puppet Master (Puppet Master 6: The Curse) (1998),Horror|Sci-Fi|Thriller,1.88011695906433,171,Horror
 3665,Curse of the Puppet Master (Puppet Master 6: The Curse) (1998),Horror|Sci-Fi|Thriller,1.88011695906433,171,Sci-Fi
 3665,Curse of the Puppet Master (Puppet Master 6: The Curse) (1998),Horror|Sci-Fi|Thriller,1.88011695906433,171,Thriller
-3666,Retro Puppet Master (Puppet Master 7) (1999),Horror|Sci-Fi|Thriller,1855,100,Horror
-3666,Retro Puppet Master (Puppet Master 7) (1999),Horror|Sci-Fi|Thriller,1855,100,Sci-Fi
-3666,Retro Puppet Master (Puppet Master 7) (1999),Horror|Sci-Fi|Thriller,1855,100,Thriller
+3666,Retro Puppet Master (Puppet Master 7) (1999),Horror|Sci-Fi|Thriller,1.855,100,Horror
+3666,Retro Puppet Master (Puppet Master 7) (1999),Horror|Sci-Fi|Thriller,1.855,100,Sci-Fi
+3666,Retro Puppet Master (Puppet Master 7) (1999),Horror|Sci-Fi|Thriller,1.855,100,Thriller
 3667,Rent-A-Cop (1988),Action|Comedy|Crime,1.91197183098592,142,Action
 3667,Rent-A-Cop (1988),Action|Comedy|Crime,1.91197183098592,142,Comedy
 3667,Rent-A-Cop (1988),Action|Comedy|Crime,1.91197183098592,142,Crime
@@ -6803,7 +6803,7 @@ movieId,title,genres,rating,popularity,genre
 3837,Phantasm II (1988),Action|Fantasy|Horror|Sci-Fi|Thriller,2.74821002386635,419,Sci-Fi
 3837,Phantasm II (1988),Action|Fantasy|Horror|Sci-Fi|Thriller,2.74821002386635,419,Thriller
 3838,Phantasm III: Lord of the Dead (1994),Horror,2.46363636363636,220,Horror
-3839,Phantasm IV: Oblivion (1998),Horror,2495,200,Horror
+3839,Phantasm IV: Oblivion (1998),Horror,2.495,200,Horror
 3840,Pumpkinhead (1988),Horror,2.6,565,Horror
 3841,Air America (1990),Action|Comedy,2.77030162412993,1724,Action
 3841,Air America (1990),Action|Comedy,2.77030162412993,1724,Comedy
@@ -7244,8 +7244,8 @@ movieId,title,genres,rating,popularity,genre
 4128,"Lost Boys, The (1987)",Comedy|Horror|Thriller,3.56646199800863,6026,Thriller
 4129,Made in Heaven (1987),Fantasy|Romance,3.0028901734104,173,Fantasy
 4129,Made in Heaven (1987),Fantasy|Romance,3.0028901734104,173,Romance
-4130,Maid to Order (1987),Comedy|Fantasy,2375,460,Comedy
-4130,Maid to Order (1987),Comedy|Fantasy,2375,460,Fantasy
+4130,Maid to Order (1987),Comedy|Fantasy,2.375,460,Comedy
+4130,Maid to Order (1987),Comedy|Fantasy,2.375,460,Fantasy
 4131,Making Mr. Right (1987),Comedy|Romance|Sci-Fi,2.61897106109325,311,Comedy
 4131,Making Mr. Right (1987),Comedy|Romance|Sci-Fi,2.61897106109325,311,Romance
 4131,Making Mr. Right (1987),Comedy|Romance|Sci-Fi,2.61897106109325,311,Sci-Fi
@@ -7489,9 +7489,9 @@ movieId,title,genres,rating,popularity,genre
 4291,Nine to Five (a.k.a. 9 to 5) (1980),Comedy|Crime,3.28212422949265,2109,Crime
 4292,Norma Rae (1979),Drama,3.67384105960265,1208,Drama
 4293,Summer Rental (1985),Comedy,2.94926350245499,611,Comedy
-4294,"5,000 Fingers of Dr. T, The (1953)",Children|Fantasy|Musical,3525,360,Children
-4294,"5,000 Fingers of Dr. T, The (1953)",Children|Fantasy|Musical,3525,360,Fantasy
-4294,"5,000 Fingers of Dr. T, The (1953)",Children|Fantasy|Musical,3525,360,Musical
+4294,"5,000 Fingers of Dr. T, The (1953)",Children|Fantasy|Musical,3.525,360,Children
+4294,"5,000 Fingers of Dr. T, The (1953)",Children|Fantasy|Musical,3.525,360,Fantasy
+4294,"5,000 Fingers of Dr. T, The (1953)",Children|Fantasy|Musical,3.525,360,Musical
 4296,Love Story (1970),Drama|Romance,3.20569029850746,1072,Drama
 4296,Love Story (1970),Drama|Romance,3.20569029850746,1072,Romance
 4297,Pelle the Conqueror (Pelle erobreren) (1987),Drama,3.78370786516854,356,Drama
@@ -7625,7 +7625,7 @@ movieId,title,genres,rating,popularity,genre
 4383,"Crimson Rivers, The (Rivières pourpres, Les) (2000)",Crime|Drama|Mystery|Thriller,3.45738942826321,927,Drama
 4383,"Crimson Rivers, The (Rivières pourpres, Les) (2000)",Crime|Drama|Mystery|Thriller,3.45738942826321,927,Mystery
 4383,"Crimson Rivers, The (Rivières pourpres, Les) (2000)",Crime|Drama|Mystery|Thriller,3.45738942826321,927,Thriller
-4384,Lumumba (2000),Drama,3612,125,Drama
+4384,Lumumba (2000),Drama,3.612,125,Drama
 4386,Cats & Dogs (2001),Children|Comedy,2.65776293823038,2396,Children
 4386,Cats & Dogs (2001),Children|Comedy,2.65776293823038,2396,Comedy
 4387,Kiss of the Dragon (2001),Action,3.2710843373494,1826,Action
@@ -7753,7 +7753,7 @@ movieId,title,genres,rating,popularity,genre
 4464,"Accidental Tourist, The (1988)",Comedy|Drama|Romance,3.43078055964654,1358,Comedy
 4464,"Accidental Tourist, The (1988)",Comedy|Drama|Romance,3.43078055964654,1358,Drama
 4464,"Accidental Tourist, The (1988)",Comedy|Drama|Romance,3.43078055964654,1358,Romance
-4465,"Accused, The (1988)",Drama,3736,1750,Drama
+4465,"Accused, The (1988)",Drama,3.736,1750,Drama
 4466,Above the Law (1988),Action|Crime|Drama,2.80287009063444,662,Action
 4466,Above the Law (1988),Action|Crime|Drama,2.80287009063444,662,Crime
 4466,Above the Law (1988),Action|Crime|Drama,2.80287009063444,662,Drama
@@ -7959,7 +7959,7 @@ movieId,title,genres,rating,popularity,genre
 4597,Gleaming the Cube (1989),Action|Drama|Mystery,2.79192546583851,322,Action
 4597,Gleaming the Cube (1989),Action|Drama|Mystery,2.79192546583851,322,Drama
 4597,Gleaming the Cube (1989),Action|Drama|Mystery,2.79192546583851,322,Mystery
-4598,Going Overboard (1989),Comedy,2125,124,Comedy
+4598,Going Overboard (1989),Comedy,2.125,124,Comedy
 4599,Great Balls of Fire! (1989),Drama,3.01957585644372,613,Drama
 4600,Gross Anatomy (a.k.a. A Cut Above) (1989),Comedy|Drama,3.03179190751445,346,Comedy
 4600,Gross Anatomy (a.k.a. A Cut Above) (1989),Comedy|Drama,3.03179190751445,346,Drama
@@ -8148,7 +8148,7 @@ movieId,title,genres,rating,popularity,genre
 4713,Altered States (1980),Drama|Sci-Fi,3.47547169811321,1590,Drama
 4713,Altered States (1980),Drama|Sci-Fi,3.47547169811321,1590,Sci-Fi
 4714,Any Which Way You Can (1980),Comedy,2.82682512733447,589,Comedy
-4715,"Awakening, The (1980)",Horror,2875,124,Horror
+4715,"Awakening, The (1980)",Horror,2.875,124,Horror
 4717,"Battle Creek Brawl (Big Brawl, The) (1980)",Action|Comedy,3.09663865546218,119,Action
 4717,"Battle Creek Brawl (Big Brawl, The) (1980)",Action|Comedy,3.09663865546218,119,Comedy
 4718,American Pie 2 (2001),Comedy,2.95421534575308,9501,Comedy
@@ -8189,8 +8189,8 @@ movieId,title,genres,rating,popularity,genre
 4737,"American Rhapsody, An (2001)",Drama,3.54395604395604,182,Drama
 4738,Happy Accidents (2000),Romance|Sci-Fi,3.64386317907445,497,Romance
 4738,Happy Accidents (2000),Romance|Sci-Fi,3.64386317907445,497,Sci-Fi
-4740,Maybe Baby (2000),Comedy|Romance,2976,125,Comedy
-4740,Maybe Baby (2000),Comedy|Romance,2976,125,Romance
+4740,Maybe Baby (2000),Comedy|Romance,2.976,125,Comedy
+4740,Maybe Baby (2000),Comedy|Romance,2.976,125,Romance
 4741,Together (Tillsammans) (2000),Comedy|Drama|Romance,3.86776447105788,1002,Comedy
 4741,Together (Tillsammans) (2000),Comedy|Drama|Romance,3.86776447105788,1002,Drama
 4741,Together (Tillsammans) (2000),Comedy|Drama|Romance,3.86776447105788,1002,Romance
@@ -8277,8 +8277,8 @@ movieId,title,genres,rating,popularity,genre
 4795,Father Goose (1964),Adventure|Comedy|Romance|War,3.73926380368098,652,Comedy
 4795,Father Goose (1964),Adventure|Comedy|Romance|War,3.73926380368098,652,Romance
 4795,Father Goose (1964),Adventure|Comedy|Romance|War,3.73926380368098,652,War
-4796,"Grass Is Greener, The (1960)",Comedy|Romance,3465,100,Comedy
-4796,"Grass Is Greener, The (1960)",Comedy|Romance,3465,100,Romance
+4796,"Grass Is Greener, The (1960)",Comedy|Romance,3.465,100,Comedy
+4796,"Grass Is Greener, The (1960)",Comedy|Romance,3.465,100,Romance
 4798,Indiscreet (1958),Comedy|Romance,3.7966573816156,359,Comedy
 4798,Indiscreet (1958),Comedy|Romance,3.7966573816156,359,Romance
 4799,"It's a Mad, Mad, Mad, Mad World (1963)",Comedy,3.51632653061225,1715,Comedy
@@ -8422,10 +8422,10 @@ movieId,title,genres,rating,popularity,genre
 4890,Shallow Hal (2001),Comedy|Fantasy|Romance,2.85349907918969,5430,Romance
 4893,When a Stranger Calls (1979),Horror|Thriller,3.15848214285714,224,Horror
 4893,When a Stranger Calls (1979),Horror|Thriller,3.15848214285714,224,Thriller
-4894,Timerider: The Adventure of Lyle Swann (1982),Action|Adventure|Sci-Fi|Western,2672,125,Action
-4894,Timerider: The Adventure of Lyle Swann (1982),Action|Adventure|Sci-Fi|Western,2672,125,Adventure
-4894,Timerider: The Adventure of Lyle Swann (1982),Action|Adventure|Sci-Fi|Western,2672,125,Sci-Fi
-4894,Timerider: The Adventure of Lyle Swann (1982),Action|Adventure|Sci-Fi|Western,2672,125,Western
+4894,Timerider: The Adventure of Lyle Swann (1982),Action|Adventure|Sci-Fi|Western,2.672,125,Action
+4894,Timerider: The Adventure of Lyle Swann (1982),Action|Adventure|Sci-Fi|Western,2.672,125,Adventure
+4894,Timerider: The Adventure of Lyle Swann (1982),Action|Adventure|Sci-Fi|Western,2.672,125,Sci-Fi
+4894,Timerider: The Adventure of Lyle Swann (1982),Action|Adventure|Sci-Fi|Western,2.672,125,Western
 4895,"Wash, The (2001)",Comedy,2.52845528455285,123,Comedy
 4896,Harry Potter and the Sorcerer's Stone (a.k.a. Harry Potter and the Philosopher's Stone) (2001),Adventure|Children|Fantasy,3.628422686089,19977,Adventure
 4896,Harry Potter and the Sorcerer's Stone (a.k.a. Harry Potter and the Philosopher's Stone) (2001),Adventure|Children|Fantasy,3.628422686089,19977,Children
@@ -8736,8 +8736,8 @@ movieId,title,genres,rating,popularity,genre
 5080,Slackers (2002),Comedy,2.79094412331407,519,Comedy
 5081,Birthday Girl (2001),Drama|Romance,3.09604519774011,708,Drama
 5081,Birthday Girl (2001),Drama|Romance,3.09604519774011,708,Romance
-5085,Carmen Jones (1954),Drama|Musical,3432,125,Drama
-5085,Carmen Jones (1954),Drama|Musical,3432,125,Musical
+5085,Carmen Jones (1954),Drama|Musical,3.432,125,Drama
+5085,Carmen Jones (1954),Drama|Musical,3.432,125,Musical
 5090,"Hunchback of Notre Dame, The (Notre Dame de Paris) (1956)",Drama,3.32,175,Drama
 5092,Big Fat Liar (2002),Children|Comedy,2.7313003452244,869,Children
 5092,Big Fat Liar (2002),Children|Comedy,2.7313003452244,869,Comedy
@@ -8769,9 +8769,9 @@ movieId,title,genres,rating,popularity,genre
 5108,John Q (2002),Crime|Drama|Thriller,3.38085539714868,1964,Crime
 5108,John Q (2002),Crime|Drama|Thriller,3.38085539714868,1964,Drama
 5108,John Q (2002),Crime|Drama|Thriller,3.38085539714868,1964,Thriller
-5109,Return to Never Land (2002),Adventure|Animation|Children,2755,400,Adventure
-5109,Return to Never Land (2002),Adventure|Animation|Children,2755,400,Animation
-5109,Return to Never Land (2002),Adventure|Animation|Children,2755,400,Children
+5109,Return to Never Land (2002),Adventure|Animation|Children,2.755,400,Adventure
+5109,Return to Never Land (2002),Adventure|Animation|Children,2.755,400,Animation
+5109,Return to Never Land (2002),Adventure|Animation|Children,2.755,400,Children
 5110,Super Troopers (2001),Comedy|Crime|Mystery,3.55308602494404,3127,Comedy
 5110,Super Troopers (2001),Comedy|Crime|Mystery,3.55308602494404,3127,Crime
 5110,Super Troopers (2001),Comedy|Crime|Mystery,3.55308602494404,3127,Mystery
@@ -9938,8 +9938,8 @@ movieId,title,genres,rating,popularity,genre
 6040,Darkness Falls (2003),Horror|Thriller,2.40399385560676,651,Thriller
 6041,Amen. (2002),Drama,3.66981132075472,212,Drama
 6042,Blind Spot: Hitler's Secretary (Im toten Winkel - Hitlers Sekretärin) (2002),Documentary,3.47857142857143,140,Documentary
-6044,Blind Date (1984),Horror|Thriller,2375,116,Horror
-6044,Blind Date (1984),Horror|Thriller,2375,116,Thriller
+6044,Blind Date (1984),Horror|Thriller,2.375,116,Horror
+6044,Blind Date (1984),Horror|Thriller,2.375,116,Thriller
 6045,Bullet (1996),Action|Crime|Drama,3.22727272727273,121,Action
 6045,Bullet (1996),Action|Crime|Drama,3.22727272727273,121,Crime
 6045,Bullet (1996),Action|Crime|Drama,3.22727272727273,121,Drama
@@ -10124,8 +10124,8 @@ movieId,title,genres,rating,popularity,genre
 6228,"Talk of the Town, The (1942)",Comedy|Romance|Thriller,3.76801801801802,222,Thriller
 6229,Two-Lane Blacktop (1971),Drama,3.63461538461538,182,Drama
 6230,Bang the Drum Slowly (1973),Drama,3.68266253869969,323,Drama
-6231,"Benny Goodman Story, The (1955)",Drama|Musical,3384,125,Drama
-6231,"Benny Goodman Story, The (1955)",Drama|Musical,3384,125,Musical
+6231,"Benny Goodman Story, The (1955)",Drama|Musical,3.384,125,Drama
+6231,"Benny Goodman Story, The (1955)",Drama|Musical,3.384,125,Musical
 6232,Born Free (1966),Adventure|Children|Drama,3.41253644314869,343,Adventure
 6232,Born Free (1966),Adventure|Children|Drama,3.41253644314869,343,Children
 6232,Born Free (1966),Adventure|Children|Drama,3.41253644314869,343,Drama
@@ -10500,8 +10500,8 @@ movieId,title,genres,rating,popularity,genre
 6521,"Main Event, The (1979)",Comedy,2.5982905982906,117,Comedy
 6523,Mr. Baseball (1992),Comedy|Romance,2.81104651162791,344,Comedy
 6523,Mr. Baseball (1992),Comedy|Romance,2.81104651162791,344,Romance
-6524,Never on Sunday (Pote tin Kyriaki) (1960),Comedy|Drama,3625,140,Comedy
-6524,Never on Sunday (Pote tin Kyriaki) (1960),Comedy|Drama,3625,140,Drama
+6524,Never on Sunday (Pote tin Kyriaki) (1960),Comedy|Drama,3.625,140,Comedy
+6524,Never on Sunday (Pote tin Kyriaki) (1960),Comedy|Drama,3.625,140,Drama
 6525,Nuts (1987),Drama,3.01682692307692,208,Drama
 6526,Rhapsody in August (Hachi-gatsu no kyôshikyoku) (1991),Drama,3.6375,120,Drama
 6527,Scaramouche (1952),Adventure|Romance,3.55803571428571,112,Adventure
@@ -10541,8 +10541,8 @@ movieId,title,genres,rating,popularity,genre
 6542,"Cuckoo, The (Kukushka) (2002)",Comedy|Drama|War,3.86344537815126,476,War
 6545,I Capture the Castle (2003),Drama|Romance,3.56514657980456,307,Drama
 6545,I Capture the Castle (2003),Drama|Romance,3.56514657980456,307,Romance
-6547,Northfork (2003),Drama|Fantasy,3118,250,Drama
-6547,Northfork (2003),Drama|Fantasy,3118,250,Fantasy
+6547,Northfork (2003),Drama|Fantasy,3.118,250,Drama
+6547,Northfork (2003),Drama|Fantasy,3.118,250,Fantasy
 6548,Bad Boys II (2003),Action|Comedy|Crime|Thriller,3.10187903699354,3406,Action
 6548,Bad Boys II (2003),Action|Comedy|Crime|Thriller,3.10187903699354,3406,Comedy
 6548,Bad Boys II (2003),Action|Comedy|Crime|Thriller,3.10187903699354,3406,Crime
@@ -10579,9 +10579,9 @@ movieId,title,genres,rating,popularity,genre
 6567,Buffalo Soldiers (2001),Comedy|Crime|Drama|War,3.48994252873563,696,War
 6568,Camp (2003),Comedy|Musical,3.2491103202847,281,Comedy
 6568,Camp (2003),Comedy|Musical,3.2491103202847,281,Musical
-6571,"Mondays in the Sun (Lunes al sol, Los) (2002)",Drama,3745,200,Drama
-6573,Avanti! (1972),Comedy|Drama,3475,120,Comedy
-6573,Avanti! (1972),Comedy|Drama,3475,120,Drama
+6571,"Mondays in the Sun (Lunes al sol, Los) (2002)",Drama,3.745,200,Drama
+6573,Avanti! (1972),Comedy|Drama,3.475,120,Comedy
+6573,Avanti! (1972),Comedy|Drama,3.475,120,Drama
 6574,Eve of Destruction (1991),Action|Sci-Fi|Thriller,2.16949152542373,118,Action
 6574,Eve of Destruction (1991),Action|Sci-Fi|Thriller,2.16949152542373,118,Sci-Fi
 6574,Eve of Destruction (1991),Action|Sci-Fi|Thriller,2.16949152542373,118,Thriller
@@ -11224,8 +11224,8 @@ movieId,title,genres,rating,popularity,genre
 7025,"Midnight Clear, A (1992)",Drama|War,3.74407582938389,422,Drama
 7025,"Midnight Clear, A (1992)",Drama|War,3.74407582938389,422,War
 7026,Summer School (1987),Comedy,3.01927194860814,467,Comedy
-7027,Silverado (1985),Action|Western,3688,1375,Action
-7027,Silverado (1985),Action|Western,3688,1375,Western
+7027,Silverado (1985),Action|Western,3.688,1375,Action
+7027,Silverado (1985),Action|Western,3.688,1375,Western
 7028,Quick Change (1990),Comedy|Crime,3.58832116788321,685,Comedy
 7028,Quick Change (1990),Comedy|Crime,3.58832116788321,685,Crime
 7029,Rabid (1977),Horror|Thriller,3.23732718894009,217,Horror
@@ -11480,7 +11480,7 @@ movieId,title,genres,rating,popularity,genre
 7178,"Great Gatsby, The (1974)",Drama,3.20650406504065,615,Drama
 7179,Wuthering Heights (1992),Drama|Romance,3.24869109947644,191,Drama
 7179,Wuthering Heights (1992),Drama|Romance,3.24869109947644,191,Romance
-7190,Jane Eyre (1970),Drama,3552,125,Drama
+7190,Jane Eyre (1970),Drama,3.552,125,Drama
 7193,"Adventures of Ford Fairlane, The (1990)",Action|Comedy,2.67839607201309,611,Action
 7193,"Adventures of Ford Fairlane, The (1990)",Action|Comedy,2.67839607201309,611,Comedy
 7198,The Pick-up Artist (1987),Comedy|Crime|Drama|Romance,2.5,185,Comedy
@@ -11648,8 +11648,8 @@ movieId,title,genres,rating,popularity,genre
 7334,"Front, The (1976)",Comedy|Drama,3.6921568627451,255,Comedy
 7334,"Front, The (1976)",Comedy|Drama,3.6921568627451,255,Drama
 7335,Pickup on South Street (1953),Film-Noir,3.84875444839858,281,Film-Noir
-7338,Richard III (1955),Drama|War,3775,180,Drama
-7338,Richard III (1955),Drama|War,3775,180,War
+7338,Richard III (1955),Drama|War,3.775,180,Drama
+7338,Richard III (1955),Drama|War,3.775,180,War
 7340,Just One of the Guys (1985),Comedy,2.94859813084112,321,Comedy
 7345,Agent Cody Banks 2: Destination London (2004),Action|Adventure|Children|Comedy,2.1644908616188,383,Action
 7345,Agent Cody Banks 2: Destination London (2004),Action|Adventure|Children|Comedy,2.1644908616188,383,Adventure
@@ -11921,8 +11921,8 @@ movieId,title,genres,rating,popularity,genre
 7728,"Postman Always Rings Twice, The (1946)",Crime|Drama|Film-Noir|Thriller,3.72542901716069,641,Drama
 7728,"Postman Always Rings Twice, The (1946)",Crime|Drama|Film-Noir|Thriller,3.72542901716069,641,Film-Noir
 7728,"Postman Always Rings Twice, The (1946)",Crime|Drama|Film-Noir|Thriller,3.72542901716069,641,Thriller
-7730,Matinee (1993),Comedy|Drama,3292,125,Comedy
-7730,Matinee (1993),Comedy|Drama,3292,125,Drama
+7730,Matinee (1993),Comedy|Drama,3.292,125,Comedy
+7730,Matinee (1993),Comedy|Drama,3.292,125,Drama
 7742,Baxter (1989),Drama|Horror,3.21428571428571,105,Drama
 7742,Baxter (1989),Drama|Horror,3.21428571428571,105,Horror
 7743,Explorers (1985),Adventure|Children|Sci-Fi,3.45309168443497,469,Adventure
@@ -12077,9 +12077,9 @@ movieId,title,genres,rating,popularity,genre
 7926,High and Low (Tengoku to jigoku) (1963),Crime|Drama|Film-Noir|Thriller,4.09863429438543,659,Drama
 7926,High and Low (Tengoku to jigoku) (1963),Crime|Drama|Film-Noir|Thriller,4.09863429438543,659,Film-Noir
 7926,High and Low (Tengoku to jigoku) (1963),Crime|Drama|Film-Noir|Thriller,4.09863429438543,659,Thriller
-7930,"People Under the Stairs, The (1991)",Horror|Mystery|Thriller,2962,250,Horror
-7930,"People Under the Stairs, The (1991)",Horror|Mystery|Thriller,2962,250,Mystery
-7930,"People Under the Stairs, The (1991)",Horror|Mystery|Thriller,2962,250,Thriller
+7930,"People Under the Stairs, The (1991)",Horror|Mystery|Thriller,2.962,250,Horror
+7930,"People Under the Stairs, The (1991)",Horror|Mystery|Thriller,2.962,250,Mystery
+7930,"People Under the Stairs, The (1991)",Horror|Mystery|Thriller,2.962,250,Thriller
 7932,Dark Days (2000),Documentary,3.87238493723849,478,Documentary
 7933,"Night in Casablanca, A (1946)",Comedy,3.57432432432432,222,Comedy
 7934,Zelig (1983),Comedy,3.79651162790698,1290,Comedy
@@ -12185,8 +12185,8 @@ movieId,title,genres,rating,popularity,genre
 8131,Pursuit of Happiness (2001),Comedy|Romance,3.7293956043956,728,Romance
 8132,Gladiator (1992),Action|Drama,3.93408613445378,3808,Action
 8132,Gladiator (1992),Action|Drama,3.93408613445378,3808,Drama
-8134,Wonderful Days (a.k.a. Sky Blue) (2003),Animation|Sci-Fi,3385,200,Animation
-8134,Wonderful Days (a.k.a. Sky Blue) (2003),Animation|Sci-Fi,3385,200,Sci-Fi
+8134,Wonderful Days (a.k.a. Sky Blue) (2003),Animation|Sci-Fi,3.385,200,Animation
+8134,Wonderful Days (a.k.a. Sky Blue) (2003),Animation|Sci-Fi,3.385,200,Sci-Fi
 8142,Dead or Alive: Hanzaisha (1999),Action|Crime,3.32758620689655,145,Action
 8142,Dead or Alive: Hanzaisha (1999),Action|Crime,3.32758620689655,145,Crime
 8147,Charly (1968),Drama|Sci-Fi,3.65495495495496,555,Drama
@@ -12331,8 +12331,8 @@ movieId,title,genres,rating,popularity,genre
 8376,Napoleon Dynamite (2004),Comedy,3.3638746886879,7629,Comedy
 8378,"Doctor, The (1991)",Drama,3.3858024691358,162,Drama
 8379,"Dresser, The (1983)",Drama,3.72972972972973,259,Drama
-8383,Hope Springs (2003),Comedy|Romance,2775,120,Comedy
-8383,Hope Springs (2003),Comedy|Romance,2775,120,Romance
+8383,Hope Springs (2003),Comedy|Romance,2.775,120,Comedy
+8383,Hope Springs (2003),Comedy|Romance,2.775,120,Romance
 8385,Lover Come Back (1961),Comedy|Romance,3.62666666666667,150,Comedy
 8385,Lover Come Back (1961),Comedy|Romance,3.62666666666667,150,Romance
 8387,Police Academy: Mission to Moscow (1994),Comedy|Crime,1.79408817635271,998,Comedy
@@ -12453,8 +12453,8 @@ movieId,title,genres,rating,popularity,genre
 8574,"Claymation Christmas Celebration, A (1987)",Animation|Children|Comedy|Musical,3.5475,200,Musical
 8575,"Happenstance (Battement d'ailes du papillon, Le) (2001)",Comedy|Drama,3.54145077720207,193,Comedy
 8575,"Happenstance (Battement d'ailes du papillon, Le) (2001)",Comedy|Drama,3.54145077720207,193,Drama
-8576,Kopps (2003),Action|Comedy,3451,500,Action
-8576,Kopps (2003),Action|Comedy,3451,500,Comedy
+8576,Kopps (2003),Action|Comedy,3.451,500,Action
+8576,Kopps (2003),Action|Comedy,3.451,500,Comedy
 8578,Undead (2003),Action|Comedy|Horror|Sci-Fi,3.015625,224,Action
 8578,Undead (2003),Action|Comedy|Horror|Sci-Fi,3.015625,224,Comedy
 8578,Undead (2003),Action|Comedy|Horror|Sci-Fi,3.015625,224,Horror
@@ -12975,7 +12975,7 @@ movieId,title,genres,rating,popularity,genre
 25891,Heaven Can Wait (1943),Comedy|Fantasy|Romance,3.55581395348837,215,Comedy
 25891,Heaven Can Wait (1943),Comedy|Fantasy|Romance,3.55581395348837,215,Fantasy
 25891,Heaven Can Wait (1943),Comedy|Fantasy|Romance,3.55581395348837,215,Romance
-25898,Day of Wrath (Vredens dag) (1943),Drama,3875,168,Drama
+25898,Day of Wrath (Vredens dag) (1943),Drama,3.875,168,Drama
 25901,"Henry V (Chronicle History of King Henry the Fift with His Battell Fought at Agincourt in France, The) (1944)",Drama|War,3.60924369747899,119,Drama
 25901,"Henry V (Chronicle History of King Henry the Fift with His Battell Fought at Agincourt in France, The) (1944)",Drama|War,3.60924369747899,119,War
 25911,"Woman in the Window, The (1944)",Crime|Film-Noir|Thriller,3.70863309352518,139,Crime
@@ -13003,9 +13003,9 @@ movieId,title,genres,rating,popularity,genre
 25943,"Naked City, The (1948)",Crime|Drama|Film-Noir|Mystery,3.63333333333333,120,Drama
 25943,"Naked City, The (1948)",Crime|Drama|Film-Noir|Mystery,3.63333333333333,120,Film-Noir
 25943,"Naked City, The (1948)",Crime|Drama|Film-Noir|Mystery,3.63333333333333,120,Mystery
-25945,They Live by Night (1949),Crime|Film-Noir|Romance,3665,100,Crime
-25945,They Live by Night (1949),Crime|Film-Noir|Romance,3665,100,Film-Noir
-25945,They Live by Night (1949),Crime|Film-Noir|Romance,3665,100,Romance
+25945,They Live by Night (1949),Crime|Film-Noir|Romance,3.665,100,Crime
+25945,They Live by Night (1949),Crime|Film-Noir|Romance,3.665,100,Film-Noir
+25945,They Live by Night (1949),Crime|Film-Noir|Romance,3.665,100,Romance
 25947,Unfaithfully Yours (1948),Comedy,3.75187969924812,133,Comedy
 25952,"Letter to Three Wives, A (1949)",Comedy|Drama,3.72222222222222,162,Comedy
 25952,"Letter to Three Wives, A (1949)",Comedy|Drama,3.72222222222222,162,Drama
@@ -13215,9 +13215,9 @@ movieId,title,genres,rating,popularity,genre
 26492,Twilight Zone: The Movie (1983),Fantasy|Horror|Sci-Fi|Thriller,3.25917926565875,463,Horror
 26492,Twilight Zone: The Movie (1983),Fantasy|Horror|Sci-Fi|Thriller,3.25917926565875,463,Sci-Fi
 26492,Twilight Zone: The Movie (1983),Fantasy|Horror|Sci-Fi|Thriller,3.25917926565875,463,Thriller
-26495,Yellowbeard (1983),Action|Adventure|Comedy,3125,116,Action
-26495,Yellowbeard (1983),Action|Adventure|Comedy,3125,116,Adventure
-26495,Yellowbeard (1983),Action|Adventure|Comedy,3125,116,Comedy
+26495,Yellowbeard (1983),Action|Adventure|Comedy,3.125,116,Action
+26495,Yellowbeard (1983),Action|Adventure|Comedy,3.125,116,Adventure
+26495,Yellowbeard (1983),Action|Adventure|Comedy,3.125,116,Comedy
 26502,"Christmas Carol, A (1984)",Drama|Fantasy,3.59574468085106,188,Drama
 26502,"Christmas Carol, A (1984)",Drama|Fantasy,3.59574468085106,188,Fantasy
 26504,Cloak & Dagger (1984),Action|Adventure|Children|Crime|Mystery|Thriller,3.22641509433962,159,Action
@@ -13460,8 +13460,8 @@ movieId,title,genres,rating,popularity,genre
 27186,Kirikou and the Sorceress (Kirikou et la sorcière) (1998),Adventure|Animation|Children|Fantasy,3.59139784946237,186,Animation
 27186,Kirikou and the Sorceress (Kirikou et la sorcière) (1998),Adventure|Animation|Children|Fantasy,3.59139784946237,186,Children
 27186,Kirikou and the Sorceress (Kirikou et la sorcière) (1998),Adventure|Animation|Children|Fantasy,3.59139784946237,186,Fantasy
-27193,Taxi 2 (2000),Action|Comedy,3257,500,Action
-27193,Taxi 2 (2000),Action|Comedy,3257,500,Comedy
+27193,Taxi 2 (2000),Action|Comedy,3.257,500,Action
+27193,Taxi 2 (2000),Action|Comedy,3.257,500,Comedy
 27216,Katsastus (1988),Comedy|Drama,3.43689320388349,103,Comedy
 27216,Katsastus (1988),Comedy|Drama,3.43689320388349,103,Drama
 27251,"10th Kingdom, The (2000)",Adventure|Comedy|Fantasy,3.86014851485149,404,Adventure
@@ -14284,12 +14284,12 @@ movieId,title,genres,rating,popularity,genre
 34405,Serenity (2005),Action|Adventure|Sci-Fi,3.99285714285714,9450,Action
 34405,Serenity (2005),Action|Adventure|Sci-Fi,3.99285714285714,9450,Adventure
 34405,Serenity (2005),Action|Adventure|Sci-Fi,3.99285714285714,9450,Sci-Fi
-34435,Sholay (1975),Action|Adventure|Comedy|Musical|Romance|Thriller,3815,100,Action
-34435,Sholay (1975),Action|Adventure|Comedy|Musical|Romance|Thriller,3815,100,Adventure
-34435,Sholay (1975),Action|Adventure|Comedy|Musical|Romance|Thriller,3815,100,Comedy
-34435,Sholay (1975),Action|Adventure|Comedy|Musical|Romance|Thriller,3815,100,Musical
-34435,Sholay (1975),Action|Adventure|Comedy|Musical|Romance|Thriller,3815,100,Romance
-34435,Sholay (1975),Action|Adventure|Comedy|Musical|Romance|Thriller,3815,100,Thriller
+34435,Sholay (1975),Action|Adventure|Comedy|Musical|Romance|Thriller,3.815,100,Action
+34435,Sholay (1975),Action|Adventure|Comedy|Musical|Romance|Thriller,3.815,100,Adventure
+34435,Sholay (1975),Action|Adventure|Comedy|Musical|Romance|Thriller,3.815,100,Comedy
+34435,Sholay (1975),Action|Adventure|Comedy|Musical|Romance|Thriller,3.815,100,Musical
+34435,Sholay (1975),Action|Adventure|Comedy|Musical|Romance|Thriller,3.815,100,Romance
+34435,Sholay (1975),Action|Adventure|Comedy|Musical|Romance|Thriller,3.815,100,Thriller
 34437,Broken Flowers (2005),Comedy|Drama,3.6098450319052,3291,Comedy
 34437,Broken Flowers (2005),Comedy|Drama,3.6098450319052,3291,Drama
 34482,"Browning Version, The (1951)",Drama,3.78461538461538,130,Drama
@@ -14555,7 +14555,7 @@ movieId,title,genres,rating,popularity,genre
 40617,Creep (2004),Horror|Thriller,2.68951612903226,124,Thriller
 40629,Pride & Prejudice (2005),Drama|Romance,3.84855006796556,4414,Drama
 40629,Pride & Prejudice (2005),Drama|Romance,3.84855006796556,4414,Romance
-40697,Babylon 5,Sci-Fi,3895,100,Sci-Fi
+40697,Babylon 5,Sci-Fi,3.895,100,Sci-Fi
 40723,Wolf Creek (2005),Crime|Horror|Thriller,3.02904929577465,568,Crime
 40723,Wolf Creek (2005),Crime|Horror|Thriller,3.02904929577465,568,Horror
 40723,Wolf Creek (2005),Crime|Horror|Thriller,3.02904929577465,568,Thriller
@@ -14667,7 +14667,7 @@ movieId,title,genres,rating,popularity,genre
 42015,Casanova (2005),Action|Adventure|Comedy|Drama|Romance,3.27492447129909,662,Romance
 42018,Mrs. Henderson Presents (2005),Comedy|Drama,3.50316455696203,474,Comedy
 42018,Mrs. Henderson Presents (2005),Comedy|Drama,3.50316455696203,474,Drama
-42021,"White Countess, The (2005)",Drama,3125,100,Drama
+42021,"White Countess, The (2005)",Drama,3.125,100,Drama
 42094,"Spirit of the Beehive, The (Espíritu de la colmena, El) (1973)",Drama|Horror|Mystery,3.8452380952381,252,Drama
 42094,"Spirit of the Beehive, The (Espíritu de la colmena, El) (1973)",Drama|Horror|Mystery,3.8452380952381,252,Horror
 42094,"Spirit of the Beehive, The (Espíritu de la colmena, El) (1973)",Drama|Horror|Mystery,3.8452380952381,252,Mystery
@@ -14829,10 +14829,10 @@ movieId,title,genres,rating,popularity,genre
 44397,"Hills Have Eyes, The (2006)",Drama|Horror|Thriller,2.87442289935365,1083,Drama
 44397,"Hills Have Eyes, The (2006)",Drama|Horror|Thriller,2.87442289935365,1083,Horror
 44397,"Hills Have Eyes, The (2006)",Drama|Horror|Thriller,2.87442289935365,1083,Thriller
-44399,"Shaggy Dog, The (2006)",Adventure|Children|Comedy|Fantasy,2435,200,Adventure
-44399,"Shaggy Dog, The (2006)",Adventure|Children|Comedy|Fantasy,2435,200,Children
-44399,"Shaggy Dog, The (2006)",Adventure|Children|Comedy|Fantasy,2435,200,Comedy
-44399,"Shaggy Dog, The (2006)",Adventure|Children|Comedy|Fantasy,2435,200,Fantasy
+44399,"Shaggy Dog, The (2006)",Adventure|Children|Comedy|Fantasy,2.435,200,Adventure
+44399,"Shaggy Dog, The (2006)",Adventure|Children|Comedy|Fantasy,2.435,200,Children
+44399,"Shaggy Dog, The (2006)",Adventure|Children|Comedy|Fantasy,2.435,200,Comedy
+44399,"Shaggy Dog, The (2006)",Adventure|Children|Comedy|Fantasy,2.435,200,Fantasy
 44494,Son of the Pink Panther (1993),Comedy,2.12019230769231,104,Comedy
 44555,"Lives of Others, The (Das leben der Anderen) (2006)",Drama|Romance|Thriller,4.20168123739072,7435,Drama
 44555,"Lives of Others, The (Das leben der Anderen) (2006)",Drama|Romance|Thriller,4.20168123739072,7435,Romance
@@ -14986,8 +14986,8 @@ movieId,title,genres,rating,popularity,genre
 46062,High School Musical (2006),Children|Comedy|Drama|Musical|Romance,2.47667185069984,643,Drama
 46062,High School Musical (2006),Children|Comedy|Drama|Musical|Romance,2.47667185069984,643,Musical
 46062,High School Musical (2006),Children|Comedy|Drama|Musical|Romance,2.47667185069984,643,Romance
-46156,"Ax, The (couperet, Le) (2005)",Comedy|Crime,3804,125,Comedy
-46156,"Ax, The (couperet, Le) (2005)",Comedy|Crime,3804,125,Crime
+46156,"Ax, The (couperet, Le) (2005)",Comedy|Crime,3.804,125,Comedy
+46156,"Ax, The (couperet, Le) (2005)",Comedy|Crime,3.804,125,Crime
 46322,Jet Li's Fearless (Huo Yuan Jia) (2006),Action|Drama,3.79970436067997,1353,Action
 46322,Jet Li's Fearless (Huo Yuan Jia) (2006),Action|Drama,3.79970436067997,1353,Drama
 46335,"Fast and the Furious: Tokyo Drift, The (Fast and the Furious 3, The) (2006)",Action|Crime|Drama|Thriller,2.80790108564536,1658,Action
@@ -15893,7 +15893,7 @@ movieId,title,genres,rating,popularity,genre
 54910,Behind the Mask: The Rise of Leslie Vernon (2006),Comedy|Horror|Thriller,3.50292397660819,171,Comedy
 54910,Behind the Mask: The Rise of Leslie Vernon (2006),Comedy|Horror|Thriller,3.50292397660819,171,Horror
 54910,Behind the Mask: The Rise of Leslie Vernon (2006),Comedy|Horror|Thriller,3.50292397660819,171,Thriller
-54934,"Brothers Solomon, The (2007)",Comedy,2616,125,Comedy
+54934,"Brothers Solomon, The (2007)",Comedy,2.616,125,Comedy
 54962,"Nines, The (2007)",Drama|Mystery,3.33131067961165,412,Drama
 54962,"Nines, The (2007)",Drama|Mystery,3.33131067961165,412,Mystery
 54995,Planet Terror (2007),Action|Horror|Sci-Fi,3.58407230559345,2932,Action
@@ -16648,7 +16648,7 @@ movieId,title,genres,rating,popularity,genre
 61352,Traitor (2008),Crime|Drama|Thriller,3.52657004830918,621,Thriller
 61361,"Women, The (2008)",Comedy|Drama,2.84931506849315,146,Comedy
 61361,"Women, The (2008)",Comedy|Drama,2.84931506849315,146,Drama
-61394,"Onion Movie, The (2008)",Comedy,3218,250,Comedy
+61394,"Onion Movie, The (2008)",Comedy,3.218,250,Comedy
 61401,"Spirit, The (2008)",Action|Comedy|Fantasy|Thriller,2.41272727272727,550,Action
 61401,"Spirit, The (2008)",Action|Comedy|Fantasy|Thriller,2.41272727272727,550,Comedy
 61401,"Spirit, The (2008)",Action|Comedy|Fantasy|Thriller,2.41272727272727,550,Fantasy
@@ -16766,7 +16766,7 @@ movieId,title,genres,rating,popularity,genre
 63113,Quantum of Solace (2008),Action|Adventure|Thriller,3.37086092715232,4379,Adventure
 63113,Quantum of Solace (2008),Action|Adventure|Thriller,3.37086092715232,4379,Thriller
 63131,Role Models (2008),Comedy,3.60392561983471,2420,Comedy
-63179,Tokyo! (2008),Drama,3515,100,Drama
+63179,Tokyo! (2008),Drama,3.515,100,Drama
 63189,Sauna (2008),Horror|Mystery,3.27697841726619,139,Horror
 63189,Sauna (2008),Horror|Mystery,3.27697841726619,139,Mystery
 63222,JCVD (2008),Action|Drama|Thriller,3.42406876790831,349,Action
@@ -16953,7 +16953,7 @@ movieId,title,genres,rating,popularity,genre
 65982,Outlander (2008),Action|Adventure|Sci-Fi,3.3135775862069,464,Action
 65982,Outlander (2008),Action|Adventure|Sci-Fi,3.3135775862069,464,Adventure
 65982,Outlander (2008),Action|Adventure|Sci-Fi,3.3135775862069,464,Sci-Fi
-66066,"Grudge 3, The (2009)",Horror,2075,100,Horror
+66066,"Grudge 3, The (2009)",Horror,2.075,100,Horror
 66090,Eden Lake (2008),Horror|Thriller,3.47452229299363,314,Horror
 66090,Eden Lake (2008),Horror|Thriller,3.47452229299363,314,Thriller
 66097,Coraline (2009),Animation|Fantasy|Thriller,3.77083833773721,4163,Animation
@@ -17290,10 +17290,10 @@ movieId,title,genres,rating,popularity,genre
 70305,Race to Witch Mountain (2009),Adventure|Children|Fantasy|Sci-Fi|Thriller,2.82271468144044,361,Fantasy
 70305,Race to Witch Mountain (2009),Adventure|Children|Fantasy|Sci-Fi|Thriller,2.82271468144044,361,Sci-Fi
 70305,Race to Witch Mountain (2009),Adventure|Children|Fantasy|Sci-Fi|Thriller,2.82271468144044,361,Thriller
-70334,Hannah Montana: The Movie (2009),Comedy|Drama|Musical|Romance,2364,250,Comedy
-70334,Hannah Montana: The Movie (2009),Comedy|Drama|Musical|Romance,2364,250,Drama
-70334,Hannah Montana: The Movie (2009),Comedy|Drama|Musical|Romance,2364,250,Musical
-70334,Hannah Montana: The Movie (2009),Comedy|Drama|Musical|Romance,2364,250,Romance
+70334,Hannah Montana: The Movie (2009),Comedy|Drama|Musical|Romance,2.364,250,Comedy
+70334,Hannah Montana: The Movie (2009),Comedy|Drama|Musical|Romance,2.364,250,Drama
+70334,Hannah Montana: The Movie (2009),Comedy|Drama|Musical|Romance,2.364,250,Musical
+70334,Hannah Montana: The Movie (2009),Comedy|Drama|Musical|Romance,2.364,250,Romance
 70336,G.I. Joe: The Rise of Cobra (2009),Action|Adventure|Sci-Fi|Thriller,2.84238714613619,1307,Action
 70336,G.I. Joe: The Rise of Cobra (2009),Action|Adventure|Sci-Fi|Thriller,2.84238714613619,1307,Adventure
 70336,G.I. Joe: The Rise of Cobra (2009),Action|Adventure|Sci-Fi|Thriller,2.84238714613619,1307,Sci-Fi
@@ -17521,10 +17521,10 @@ movieId,title,genres,rating,popularity,genre
 72308,Battlestar Galactica: The Plan (2009),Action|Adventure|Drama|Sci-Fi,3.48611111111111,396,Adventure
 72308,Battlestar Galactica: The Plan (2009),Action|Adventure|Drama|Sci-Fi,3.48611111111111,396,Drama
 72308,Battlestar Galactica: The Plan (2009),Action|Adventure|Drama|Sci-Fi,3.48611111111111,396,Sci-Fi
-72356,Partly Cloudy (2009),Animation|Children|Comedy|Fantasy,3888,500,Animation
-72356,Partly Cloudy (2009),Animation|Children|Comedy|Fantasy,3888,500,Children
-72356,Partly Cloudy (2009),Animation|Children|Comedy|Fantasy,3888,500,Comedy
-72356,Partly Cloudy (2009),Animation|Children|Comedy|Fantasy,3888,500,Fantasy
+72356,Partly Cloudy (2009),Animation|Children|Comedy|Fantasy,3.888,500,Animation
+72356,Partly Cloudy (2009),Animation|Children|Comedy|Fantasy,3.888,500,Children
+72356,Partly Cloudy (2009),Animation|Children|Comedy|Fantasy,3.888,500,Comedy
+72356,Partly Cloudy (2009),Animation|Children|Comedy|Fantasy,3.888,500,Fantasy
 72378,2012 (2009),Action|Drama|Sci-Fi|Thriller,2.76871809415769,3526,Action
 72378,2012 (2009),Action|Drama|Sci-Fi|Thriller,2.76871809415769,3526,Drama
 72378,2012 (2009),Action|Drama|Sci-Fi|Thriller,2.76871809415769,3526,Sci-Fi
@@ -17959,7 +17959,7 @@ movieId,title,genres,rating,popularity,genre
 78499,Toy Story 3 (2010),Adventure|Animation|Children|Comedy|Fantasy|IMAX,3.95561091609104,8831,Comedy
 78499,Toy Story 3 (2010),Adventure|Animation|Children|Comedy|Fantasy|IMAX,3.95561091609104,8831,Fantasy
 78499,Toy Story 3 (2010),Adventure|Animation|Children|Comedy|Fantasy|IMAX,3.95561091609104,8831,IMAX
-78517,Joan Rivers: A Piece of Work (2010),Documentary,3292,125,Documentary
+78517,Joan Rivers: A Piece of Work (2010),Documentary,3.292,125,Documentary
 78544,Ricky Gervais Live 3: Fame (2007),Comedy,3.62251655629139,151,Comedy
 78574,Winter's Bone (2010),Drama|Thriller,3.72957839262187,1518,Drama
 78574,Winter's Bone (2010),Drama|Thriller,3.72957839262187,1518,Thriller
@@ -18099,11 +18099,11 @@ movieId,title,genres,rating,popularity,genre
 80241,Going the Distance (2010),Comedy|Romance,3.18996415770609,279,Comedy
 80241,Going the Distance (2010),Comedy|Romance,3.18996415770609,279,Romance
 80350,Vampires Suck (2010),Comedy,1.88271604938272,243,Comedy
-80363,Resident Evil: Afterlife (2010),Action|Horror|Sci-Fi|Thriller|IMAX,3125,908,Action
-80363,Resident Evil: Afterlife (2010),Action|Horror|Sci-Fi|Thriller|IMAX,3125,908,Horror
-80363,Resident Evil: Afterlife (2010),Action|Horror|Sci-Fi|Thriller|IMAX,3125,908,Sci-Fi
-80363,Resident Evil: Afterlife (2010),Action|Horror|Sci-Fi|Thriller|IMAX,3125,908,Thriller
-80363,Resident Evil: Afterlife (2010),Action|Horror|Sci-Fi|Thriller|IMAX,3125,908,IMAX
+80363,Resident Evil: Afterlife (2010),Action|Horror|Sci-Fi|Thriller|IMAX,3.125,908,Action
+80363,Resident Evil: Afterlife (2010),Action|Horror|Sci-Fi|Thriller|IMAX,3.125,908,Horror
+80363,Resident Evil: Afterlife (2010),Action|Horror|Sci-Fi|Thriller|IMAX,3.125,908,Sci-Fi
+80363,Resident Evil: Afterlife (2010),Action|Horror|Sci-Fi|Thriller|IMAX,3.125,908,Thriller
+80363,Resident Evil: Afterlife (2010),Action|Horror|Sci-Fi|Thriller|IMAX,3.125,908,IMAX
 80398,22 Bullets (L'immortel) (2010),Action|Crime|Thriller,3.33832335329341,167,Action
 80398,22 Bullets (L'immortel) (2010),Action|Crime|Thriller,3.33832335329341,167,Crime
 80398,22 Bullets (L'immortel) (2010),Action|Crime|Thriller,3.33832335329341,167,Thriller
@@ -18177,8 +18177,8 @@ movieId,title,genres,rating,popularity,genre
 81156,Jackass 3D (2010),Action|Comedy|Documentary,3.23995983935743,498,Documentary
 81158,Restrepo (2010),Documentary|War,3.69914040114613,349,Documentary
 81158,Restrepo (2010),Documentary|War,3.69914040114613,349,War
-81180,30 Days of Night: Dark Days (2010),Horror|Thriller,2568,125,Horror
-81180,30 Days of Night: Dark Days (2010),Horror|Thriller,2568,125,Thriller
+81180,30 Days of Night: Dark Days (2010),Horror|Thriller,2.568,125,Horror
+81180,30 Days of Night: Dark Days (2010),Horror|Thriller,2.568,125,Thriller
 81191,Waiting for 'Superman' (2010),Documentary,3.6660777385159,283,Documentary
 81229,Red (2010),Action|Comedy,3.61943793911007,2562,Action
 81229,Red (2010),Action|Comedy,3.61943793911007,2562,Comedy
@@ -18264,9 +18264,9 @@ movieId,title,genres,rating,popularity,genre
 82167,Love and Other Drugs (2010),Comedy|Drama|Romance,3.36374549819928,833,Comedy
 82167,Love and Other Drugs (2010),Comedy|Drama|Romance,3.36374549819928,833,Drama
 82167,Love and Other Drugs (2010),Comedy|Drama|Romance,3.36374549819928,833,Romance
-82169,"Chronicles of Narnia: The Voyage of the Dawn Treader, The (2010)",Adventure|Children|Fantasy,3324,875,Adventure
-82169,"Chronicles of Narnia: The Voyage of the Dawn Treader, The (2010)",Adventure|Children|Fantasy,3324,875,Children
-82169,"Chronicles of Narnia: The Voyage of the Dawn Treader, The (2010)",Adventure|Children|Fantasy,3324,875,Fantasy
+82169,"Chronicles of Narnia: The Voyage of the Dawn Treader, The (2010)",Adventure|Children|Fantasy,3.324,875,Adventure
+82169,"Chronicles of Narnia: The Voyage of the Dawn Treader, The (2010)",Adventure|Children|Fantasy,3.324,875,Children
+82169,"Chronicles of Narnia: The Voyage of the Dawn Treader, The (2010)",Adventure|Children|Fantasy,3.324,875,Fantasy
 82173,Tiny Furniture (2010),Comedy,3.32374100719424,139,Comedy
 82202,"Tourist, The (2010)",Drama|Thriller,3.05043646944714,1031,Drama
 82202,"Tourist, The (2010)",Drama|Thriller,3.05043646944714,1031,Thriller
@@ -18383,8 +18383,8 @@ movieId,title,genres,rating,popularity,genre
 84637,Gnomeo & Juliet (2011),Adventure|Animation|Children|Comedy|Fantasy|Romance,2.81986531986532,297,Comedy
 84637,Gnomeo & Juliet (2011),Adventure|Animation|Children|Comedy|Fantasy|Romance,2.81986531986532,297,Fantasy
 84637,Gnomeo & Juliet (2011),Adventure|Animation|Children|Comedy|Fantasy|Romance,2.81986531986532,297,Romance
-84696,Burke and Hare (2010),Comedy|Thriller,3164,125,Comedy
-84696,Burke and Hare (2010),Comedy|Thriller,3164,125,Thriller
+84696,Burke and Hare (2010),Comedy|Thriller,3.164,125,Comedy
+84696,Burke and Hare (2010),Comedy|Thriller,3.164,125,Thriller
 84716,Castaway on the Moon (Kimssi pyoryugi) (2009),Comedy|Drama|Romance,3.84848484848485,198,Comedy
 84716,Castaway on the Moon (Kimssi pyoryugi) (2009),Comedy|Drama|Romance,3.84848484848485,198,Drama
 84716,Castaway on the Moon (Kimssi pyoryugi) (2009),Comedy|Drama|Romance,3.84848484848485,198,Romance
@@ -18706,7 +18706,7 @@ movieId,title,genres,rating,popularity,genre
 89087,Colombiana (2011),Action|Adventure|Drama|Thriller,3.17594936708861,395,Drama
 89087,Colombiana (2011),Action|Adventure|Drama|Thriller,3.17594936708861,395,Thriller
 89090,Bill Cunningham New York (2011),Documentary,3.84959349593496,123,Documentary
-89102,Freakonomics (2010),Documentary,3335,100,Documentary
+89102,Freakonomics (2010),Documentary,3.335,100,Documentary
 89118,"Skin I Live In, The (La piel que habito) (2011)",Drama,3.75087719298246,855,Drama
 89190,Conan the Barbarian (2011),Action|Adventure|Fantasy,2.72257053291536,319,Action
 89190,Conan the Barbarian (2011),Action|Adventure|Fantasy,2.72257053291536,319,Adventure
@@ -18777,7 +18777,7 @@ movieId,title,genres,rating,popularity,genre
 90430,Carnage (2011),Comedy|Drama,3.63484848484848,660,Drama
 90439,Margin Call (2011),Drama|Thriller,3.69517795637199,871,Drama
 90439,Margin Call (2011),Drama|Thriller,3.69517795637199,871,Thriller
-90469,Paranormal Activity 3 (2011),Horror,2825,340,Horror
+90469,Paranormal Activity 3 (2011),Horror,2.825,340,Horror
 90522,Johnny English Reborn (2011),Adventure|Comedy|Thriller,3.07277628032345,371,Adventure
 90522,Johnny English Reborn (2011),Adventure|Comedy|Thriller,3.07277628032345,371,Comedy
 90522,Johnny English Reborn (2011),Adventure|Comedy|Thriller,3.07277628032345,371,Thriller
@@ -18954,9 +18954,9 @@ movieId,title,genres,rating,popularity,genre
 92420,Chronicle (2012),Action|Sci-Fi|Thriller,3.58451228592703,1343,Action
 92420,Chronicle (2012),Action|Sci-Fi|Thriller,3.58451228592703,1343,Sci-Fi
 92420,Chronicle (2012),Action|Sci-Fi|Thriller,3.58451228592703,1343,Thriller
-92422,"Woman in Black, The (2012)",Drama|Horror|Thriller,3131,500,Drama
-92422,"Woman in Black, The (2012)",Drama|Horror|Thriller,3131,500,Horror
-92422,"Woman in Black, The (2012)",Drama|Horror|Thriller,3131,500,Thriller
+92422,"Woman in Black, The (2012)",Drama|Horror|Thriller,3.131,500,Drama
+92422,"Woman in Black, The (2012)",Drama|Horror|Thriller,3.131,500,Horror
+92422,"Woman in Black, The (2012)",Drama|Horror|Thriller,3.131,500,Thriller
 92439,"Art of Getting By, The (2011)",Drama|Romance,3.42567567567568,148,Drama
 92439,"Art of Getting By, The (2011)",Drama|Romance,3.42567567567568,148,Romance
 92475,All Watched Over by Machines of Loving Grace (2011),Documentary,3.93055555555556,108,Documentary
@@ -19142,8 +19142,8 @@ movieId,title,genres,rating,popularity,genre
 95313,Jack-Jack Attack (2005),Adventure|Animation|Children|Comedy,3.84262948207171,251,Animation
 95313,Jack-Jack Attack (2005),Adventure|Animation|Children|Comedy,3.84262948207171,251,Children
 95313,Jack-Jack Attack (2005),Adventure|Animation|Children|Comedy,3.84262948207171,251,Comedy
-95375,Boundin' (2003),Animation|Children,3585,100,Animation
-95375,Boundin' (2003),Animation|Children,3585,100,Children
+95375,Boundin' (2003),Animation|Children,3.585,100,Animation
+95375,Boundin' (2003),Animation|Children,3.585,100,Children
 95377,One Man Band (2005),Animation|Comedy|Musical,3.91479820627803,223,Animation
 95377,One Man Band (2005),Animation|Comedy|Musical,3.91479820627803,223,Comedy
 95377,One Man Band (2005),Animation|Comedy|Musical,3.91479820627803,223,Musical
@@ -19208,8 +19208,8 @@ movieId,title,genres,rating,popularity,genre
 96430,"Odd Life of Timothy Green, The (2012)",Comedy|Drama|Fantasy,3.15833333333333,120,Comedy
 96430,"Odd Life of Timothy Green, The (2012)",Comedy|Drama|Fantasy,3.15833333333333,120,Drama
 96430,"Odd Life of Timothy Green, The (2012)",Comedy|Drama|Fantasy,3.15833333333333,120,Fantasy
-96432,Lawless (2012),Crime|Drama,3509,500,Crime
-96432,Lawless (2012),Crime|Drama,3509,500,Drama
+96432,Lawless (2012),Crime|Drama,3.509,500,Crime
+96432,Lawless (2012),Crime|Drama,3.509,500,Drama
 96467,Sleepwalk with Me (2012),Comedy|Drama,3.27573529411765,136,Comedy
 96467,Sleepwalk with Me (2012),Comedy|Drama,3.27573529411765,136,Drama
 96488,Searching for Sugar Man (2012),Documentary,3.94294117647059,850,Documentary
@@ -19507,9 +19507,9 @@ movieId,title,genres,rating,popularity,genre
 102033,Pain & Gain (2013),Action|Comedy|Crime,3.11945812807882,406,Action
 102033,Pain & Gain (2013),Action|Comedy|Crime,3.11945812807882,406,Comedy
 102033,Pain & Gain (2013),Action|Comedy|Crime,3.11945812807882,406,Crime
-102084,Justice League: Doom (2012),Action|Animation|Fantasy,3.56481481481481,108,Action
-102084,Justice League: Doom (2012),Action|Animation|Fantasy,3.56481481481481,108,Animation
-102084,Justice League: Doom (2012),Action|Animation|Fantasy,3.56481481481481,108,Fantasy
+102084,Justice League: Doom (2012) ,Action|Animation|Fantasy,3.56481481481481,108,Action
+102084,Justice League: Doom (2012) ,Action|Animation|Fantasy,3.56481481481481,108,Animation
+102084,Justice League: Doom (2012) ,Action|Animation|Fantasy,3.56481481481481,108,Fantasy
 102088,"Grandmaster, The (Yi dai zong shi) (2013)",Action|Drama|IMAX,3.17886178861789,123,Action
 102088,"Grandmaster, The (Yi dai zong shi) (2013)",Action|Drama|IMAX,3.17886178861789,123,Drama
 102088,"Grandmaster, The (Yi dai zong shi) (2013)",Action|Drama|IMAX,3.17886178861789,123,IMAX
@@ -20072,8 +20072,8 @@ movieId,title,genres,rating,popularity,genre
 112940,A Most Wanted Man (2014),Thriller,3.39538461538462,325,Thriller
 112946,Wish I Was Here (2014),Comedy|Drama,3.44545454545455,110,Comedy
 112946,Wish I Was Here (2014),Comedy|Drama,3.44545454545455,110,Drama
-113188,"Rover, The (2014)",Crime|Drama,3145,100,Crime
-113188,"Rover, The (2014)",Crime|Drama,3145,100,Drama
+113188,"Rover, The (2014)",Crime|Drama,3.145,100,Crime
+113188,"Rover, The (2014)",Crime|Drama,3.145,100,Drama
 113225,Magic in the Moonlight (2014),Comedy|Drama|Romance,3.40076335877863,262,Comedy
 113225,Magic in the Moonlight (2014),Comedy|Drama|Romance,3.40076335877863,262,Drama
 113225,Magic in the Moonlight (2014),Comedy|Drama|Romance,3.40076335877863,262,Romance
@@ -20222,8 +20222,8 @@ movieId,title,genres,rating,popularity,genre
 117529,Jurassic World (2015),Action|Adventure|Sci-Fi|Thriller,3.37654702970297,1616,Sci-Fi
 117529,Jurassic World (2015),Action|Adventure|Sci-Fi|Thriller,3.37654702970297,1616,Thriller
 117533,Citizenfour (2014),Documentary,3.9153488372093,1075,Documentary
-117590,Horrible Bosses 2 (2014),Comedy|Crime,3011,500,Comedy
-117590,Horrible Bosses 2 (2014),Comedy|Crime,3011,500,Crime
+117590,Horrible Bosses 2 (2014),Comedy|Crime,3.011,500,Comedy
+117590,Horrible Bosses 2 (2014),Comedy|Crime,3.011,500,Crime
 117851,Penguins of Madagascar (2014),Adventure|Animation|Children|Comedy,3.33552631578947,380,Adventure
 117851,Penguins of Madagascar (2014),Adventure|Animation|Children|Comedy,3.33552631578947,380,Animation
 117851,Penguins of Madagascar (2014),Adventure|Animation|Children|Comedy,3.33552631578947,380,Children
@@ -20348,7 +20348,7 @@ movieId,title,genres,rating,popularity,genre
 128512,Paper Towns (2015),Adventure|Mystery|Romance,3.32009345794393,214,Adventure
 128512,Paper Towns (2015),Adventure|Mystery|Romance,3.32009345794393,214,Mystery
 128512,Paper Towns (2015),Adventure|Mystery|Romance,3.32009345794393,214,Romance
-128520,The Wedding Ringer (2015),Comedy,3308,125,Comedy
+128520,The Wedding Ringer (2015),Comedy,3.308,125,Comedy
 128838,Crimson Peak (2015),Horror,3.35279187817259,197,Horror
 128975,Hot Tub Time Machine 2 (2015),Comedy|Sci-Fi,2.4375,176,Comedy
 128975,Hot Tub Time Machine 2 (2015),Comedy|Sci-Fi,2.4375,176,Sci-Fi
@@ -20447,9 +20447,9 @@ movieId,title,genres,rating,popularity,genre
 136020,Spectre (2015),Action|Adventure|Crime,3.34871099050204,737,Action
 136020,Spectre (2015),Action|Adventure|Crime,3.34871099050204,737,Adventure
 136020,Spectre (2015),Action|Adventure|Crime,3.34871099050204,737,Crime
-136449,Ghost in the Shell 2.0 (2008),Action|Animation|Sci-Fi,4052,125,Action
-136449,Ghost in the Shell 2.0 (2008),Action|Animation|Sci-Fi,4052,125,Animation
-136449,Ghost in the Shell 2.0 (2008),Action|Animation|Sci-Fi,4052,125,Sci-Fi
+136449,Ghost in the Shell 2.0 (2008),Action|Animation|Sci-Fi,4.052,125,Action
+136449,Ghost in the Shell 2.0 (2008),Action|Animation|Sci-Fi,4.052,125,Animation
+136449,Ghost in the Shell 2.0 (2008),Action|Animation|Sci-Fi,4.052,125,Sci-Fi
 136562,Steve Jobs (2015),Drama,3.36241610738255,149,Drama
 136598,Vacation (2015),Adventure|Comedy,3.25657894736842,152,Adventure
 136598,Vacation (2015),Adventure|Comedy,3.25657894736842,152,Comedy
@@ -20458,11 +20458,11 @@ movieId,title,genres,rating,popularity,genre
 138036,"Man from U.N.C.L.E., The (2015)",Action|Adventure|Comedy,3.70122887864823,651,Adventure
 138036,"Man from U.N.C.L.E., The (2015)",Action|Adventure|Comedy,3.70122887864823,651,Comedy
 138208,"Walk, The (2015)",Drama,3.71779141104294,163,Drama
-138702,Feast (2014),Animation|Children|Comedy|Drama|Romance,4015,200,Animation
-138702,Feast (2014),Animation|Children|Comedy|Drama|Romance,4015,200,Children
-138702,Feast (2014),Animation|Children|Comedy|Drama|Romance,4015,200,Comedy
-138702,Feast (2014),Animation|Children|Comedy|Drama|Romance,4015,200,Drama
-138702,Feast (2014),Animation|Children|Comedy|Drama|Romance,4015,200,Romance
+138702,Feast (2014),Animation|Children|Comedy|Drama|Romance,4.015,200,Animation
+138702,Feast (2014),Animation|Children|Comedy|Drama|Romance,4.015,200,Children
+138702,Feast (2014),Animation|Children|Comedy|Drama|Romance,4.015,200,Comedy
+138702,Feast (2014),Animation|Children|Comedy|Drama|Romance,4.015,200,Drama
+138702,Feast (2014),Animation|Children|Comedy|Drama|Romance,4.015,200,Romance
 139385,The Revenant (2015),Adventure|Drama,3.92937219730942,446,Adventure
 139385,The Revenant (2015),Adventure|Drama,3.92937219730942,446,Drama
 139642,Southpaw (2015),Action|Drama,3.44314381270903,299,Action
