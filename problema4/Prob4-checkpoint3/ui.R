@@ -13,10 +13,13 @@ anos = medianas.ano$ano
 range.ano = c(anos[1], anos[length(anos)])
 
 shinyUI(fluidPage(
-  
-  
   # Application title
-  titlePanel("FILMES"),
+  titlePanel("Dados de opiniões sobre filmes"),
+  p("Os dados ultilizados possuem as avaliações de 250 mil usuários já consolidadas por filme (aqui considerando apenas filmes com mais de cem avaliações)."),
+  a(href=" https://drive.google.com/open?id=0B2rlaHwjOlZAdnF1TGpDZ1RPYWM (Links para um site externo)", "Dados"),
+  hr(),
+  p(" Primeiramente iremos analizar ano a ano as avaliações dos filmes, utilizaremos a mediana como forma de comparação."),
+  hr(),
   sidebarLayout(
     sidebarPanel(
       sliderInput("anos_input", "Anos:", 
@@ -26,23 +29,27 @@ shinyUI(fluidPage(
                   step = 1)),
     
     mainPanel(
-      plotlyOutput("medianaAnoPlot")
+      plotOutput("medianaAnoPlot")
     )
-  ) 
+  ),
   
-  # sidebarLayout(
-  #   sidebarPanel(
-  #     checkboxGroupInput("checkbox",
-  #                        label = "Gêneros:",
-  #                        choices = levels(as.factor(genero.filme$genre)),
-  #                        inline = FALSE)),
-  #   
-  #   # Show a plot of the generated distribution
-  #   mainPanel(
-  #     plotlyOutput("generofilme")
-  #   )
-  # )
-  # 
+  hr(),
+  p(" Agora iremos analizar os genêros"),
+  hr(),
+  
+   sidebarLayout(
+     sidebarPanel(
+       checkboxGroupInput("generos_checkbox",
+                          label = "Gêneros:",
+                          choices = levels(as.factor(generos.filme$genre)),
+                          inline = FALSE)),
+     
+     # Show a plot of the generated distribution
+     mainPanel(
+       plotlyOutput("generofilme")
+     )
+   )
+   
   
   
 ))

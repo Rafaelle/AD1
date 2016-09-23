@@ -5,16 +5,24 @@ import_data <- function() {
 }
 
 
+# medianas.genero = generos.filme %>%
+#   group_by(genre) %>%
+#   summarise("limite.inferior" = bootGenero()[1], "limite.superior" = bootGenero()[2])
+#   
+# write_csv(medianas.genero, "medianas_genero.csv")
+
+
+
 #séries movieId = 108548, 108583, 40697
 # ESCREVI EM ARQUIVO, RODAR SÓ SE NECESSÁRIO
-# filmes.ano = filmes %>%
-#    rowwise() %>%
-#    mutate(ano = str_sub(title, start= -5, end = -2)) %>%
-#    filter(movieId != 108548) %>%
-#    filter( movieId != 108583) %>%
-#    filter(movieId != 40697) %>%
-#    ungroup()
-#  
+ # filmes.ano = filmes %>%
+ #    rowwise() %>%
+ #    mutate(ano = str_sub(title, start= -5, end = -2)) %>%
+ #    filter(movieId != 108548) %>%
+ #    filter( movieId != 108583) %>%
+ #    filter(movieId != 40697) 
+ # 
+ # write_csv(filmes.ano, "filmes.ano.csv")
 # medianas.filmes.por.ano = data.frame()
 # 
 # medianas.filmes.por.ano = filmes.ano %>%
