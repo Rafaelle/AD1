@@ -34,7 +34,7 @@ shinyUI(fluidPage(
   ),
   
   hr(),
-  p(" Agora iremos analizar os genêros"),
+  p(" Agora iremos analisar os genêros"),
   hr(),
   
    sidebarLayout(
@@ -46,7 +46,7 @@ shinyUI(fluidPage(
      
      # Show a plot of the generated distribution
      mainPanel(
-       plotlyOutput("generofilme")
+       plotOutput("generofilme")
      )
    )
    

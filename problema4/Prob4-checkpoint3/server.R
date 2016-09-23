@@ -78,12 +78,12 @@ shinyServer(function(input, output) {
   })
   
   
-   output$generofilme <- renderPlotly({
+   output$generofilme <- renderPlot({
    
      x <- input$generos_checkbox
      
      generos.filtrados = medianas.genero %>% 
-       filter(findInterval(genero, input$input$generos_checkbox)==1)
+       filter(findInterval(genre, input$input$generos_checkbox)==1)
      # 
      # 
      # # Can use character(0) to remove all choices
