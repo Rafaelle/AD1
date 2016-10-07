@@ -1,0 +1,39 @@
+---
+title: "Problema5"
+output: html_document
+---
+
+```{r global_options, include=TRUE}
+knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6)
+```
+
+
+```{r, echo=FALSE}
+
+library(readr)
+
+colunas = head(meetings,1)
+
+
+```
+
+``` {r}
+meetings = read.csv("~/ufcg/AD1/problema5/speed-dating.csv", header=FALSE)
+
+```
+
+```{r, echo=FALSE}
+
+```
+``` {r}
+
+
+
+library(purrr)
+boot <- bootstrap(mtcars, 100)
+
+models <- map(boot$strap, ~ lm(mpg ~ wt, data = .))
+tidied <- map_df(models, broom::tidy, .id = "id")
+
+hist(subset(tidied, term == "wt")$estimate)
+```
