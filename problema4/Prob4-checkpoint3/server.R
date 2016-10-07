@@ -24,12 +24,6 @@ import_data()
 # Como se comportam as avaliações por gênero de filmes? Quais possuem maior variabilidade?
 # Como é a distribuição das avaliações e popularidade ao longo dos anos(de produção dos filmes)? (ESSE)
 
-
-
-medianas.ano = read.csv("medianas_filme.csv")
-generos.filme = read.csv("generos_filme.csv")
-medianas.genero = read.csv("medianas_genero.csv")
-
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   
@@ -42,9 +36,15 @@ shinyServer(function(input, output) {
            ggplot(aes(x = ano, ymin = limite.inferior, ymax = limite.superior)) +
            geom_errorbar(width = 3) +
            scale_x_continuous(breaks = pretty(anos.filtrados$ano, n = 15)) +
-           labs(x="Ano do filme", y="Mediana")
+           labs(x="Ano do filme", y="Mediana") 
+         
        #selecionar qual quer ver é uma boa (ele se destaca da maioria)  
 
+  })
+  
+  output$plot_hover <- renderPrint({
+    cat("Hover (throttled):\n")
+    str(input$plot_hover)
   })
   
   

@@ -8,7 +8,8 @@
 #
 
 library(shiny)
-
+source("import-data.R")
+import_data()
 anos = medianas.ano$ano
 range.ano = c(anos[1], anos[length(anos)])
 
@@ -29,7 +30,8 @@ shinyUI(fluidPage(
                   step = 1)),
     
     mainPanel(
-      plotOutput("medianaAnoPlot")
+      plotOutput("medianaAnoPlot",
+                 hover = "plot_hover")
     )
   ),
   

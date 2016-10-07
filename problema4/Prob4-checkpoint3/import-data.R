@@ -1,6 +1,12 @@
 import_data <- function() {
-  if (!exists("filmes") || is.null(filmes)) {
-    filmes <<- read.csv("ratings-por-filme.csv")
+  if (!exists("medianas.ano") || is.null(medianas.ano)) {
+    medianas.ano <<- read.csv("medianas_filme.csv")
+  }
+  if (!exists("generos.filme") || is.null(generos.filme)) {
+    generos.filme <<- read.csv("generos_filme.csv")
+  }
+  if (!exists("medianas.genero") || is.null(medianas.genero)) {
+    medianas.genero <<- read.csv("medianas_genero.csv")
   }
 }
 
