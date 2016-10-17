@@ -12,20 +12,145 @@ knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=12, fig
 library(readr)
 require(GGally, quietly = TRUE)
 library(dplyr, warn.conflicts = FALSE)
+library(PerformanceAnalytics)
+library(tidyr)
+library(ggplot2)
+library(broom)
+library(modelr) 
+#devtools::install_github("hadley/modelr")
+theme_set(theme_bw())
 
 ```
 
+
 ```{r}
-meetings = read.csv("speed-dating2.csv", header=TRUE)
-meetings2 = select(meetings, gender, int_corr, samerace, age_o, age, field, race, from, attr, sinc, intel, fun, amb, shar,like, prob,dec)
+meetings = read.csv("speed-dating2.csv", header=TRUE) %>%
+na.omit(meetings)
 
-meetings2$gender <- as.factor(meetings2$gender)
-meetings2$samerace <- as.factor(meetings2$samerace)
+```
+Vamos avaliar primeiramente os valores:
+
+* `gender` : sexo do p1, 0 = mulher
+
+* `samerace` : p1 e p2 são da mesma raça?
+       
+* `order` : dos vários encontros realizados em uma noite, esse foi o n-ésimo, segundo essa variável
+pid : id do participante p2
+
+* `int_corr` : correlação entre os interesses de p1 e p2
+
+* `attr` : quão atraente p1 achou p2
+
+* `sinc` : quão sincero p1 achou p2
+ 
+* `intel` : quão inteligente p1 achou p2
+
+* `fun` : quão divertido p1 achou p2
+ 
+* `amb` : quão ambicioso p1 achou p2
+ 
+* `shar` : quanto p1 achou que compartilha interesses e hobbies com p2
+
+* `like` : no geral, quanto p1 gostou de p2?
+
+* `prob` : que probabiliade p1 acha que p2 tem de querer se encontrar novamente com p- (escala 1-10)
+
+* `dec`: houve match
+
+* difAge : diferença de idade utilizando o modúlo da diferença das variáveis: `age_o`(idade de p2) e `age`(idade de p1)
+
+De maneira geral temos:
+```{r}
+m = meetings %>%
+  select(gender,samerace,order,int_corr,attr, sinc, intel, fun, amb, shar,like, prob,dec, age_o, age) %>%
+  rowwise %>%
+  mutate(difAge = abs(age_o - age)) %>%
+  select(gender,samerace,order,int_corr,attr, sinc, intel, fun, amb, shar,like, prob,difAge, dec )
+
+m$dec <- as.factor(m$dec)
+m$gender <- as.factor(m$gender)
+m$samerace <- as.factor(m$samerace)
+
+ggpairs(m)
+
+```
+
+Como podemos observar, as variáveis `attr`, `like`, `gender` influênciam o match. `attr` e `like` influênciam positivamente, já `gender` tem distribuição distinta, existe mais match se o participante for homem e existe menos macth caso o participante seja mulher.
+
+Vamos tentar observar mais de perto as variáveis individualmente:
+
+Para uma melhor análise iremos utilizar apenas as variáveis em que o intervalo de confiança de match (sim ou não) não se sobrepõe.
+```{r, echo=FALSE}
+library(pscl)
+
+```
+
+Distribuição da variável `attr`
+```{r}
+
+ggplot(m, aes(x = dec, y = attr)) + 
+  geom_violin(fill = "lightblue") + 
+  geom_point(position = position_jitter(.2), alpha = .3)
+
+gendermodelAttr = glm(dec ~ attr, 
+                  data = m, 
+                  family = "binomial")
+
+gendermodelAttr
+
+glance(gendermodelAttr)
+
+pR2(gendermodelAttr)
+
+```
+
+Distribuição da variável `like`
+```{r}
+ggplot(m, aes(x = dec, y = like)) + 
+  geom_violin(fill = "lightblue") + 
+  geom_point(position = position_jitter(.2), alpha = .3)
+
+gendermodelLike = glm(dec ~ like, 
+                  data = m, 
+                  family = "binomial")
+
+gendermodelLike
+
+glance(gendermodelLike)
+
+pR2(gendermodelLike)
+
+```
+
+Distribuição da variável `gender`
+```{r}
+gendermodelGender= glm(dec ~ gender, 
+                  data = m, 
+                  family = "binomial")
+
+gendermodelGender
+
+glance(gendermodelGender)
+
+pR2(gendermodelGender)
+
+```
+
+------
+
+Agora iremos fazer uma analise multivariada:
 
 
+```{r}
+bm <- glm(dec ~ gender + like + attr + gender*like + gender*attr + attr*like, 
+          data = m, 
+          family = "binomial")
 
+bm
 
-ggpairs(meetings2)
+glance(bm)
+
+pR2(bm)
 
 
 ```
