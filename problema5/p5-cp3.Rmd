@@ -1,0 +1,31 @@
+---
+title: "Prob 5 - Checkpoint 3"
+output: html_document
+---
+```{r global_options, include=TRUE}
+knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6)
+```
+
+
+```{r, echo=FALSE}
+
+library(readr)
+require(GGally, quietly = TRUE)
+library(dplyr, warn.conflicts = FALSE)
+
+```
+
+```{r}
+meetings = read.csv("speed-dating2.csv", header=TRUE)
+meetings2 = select(meetings, gender, int_corr, samerace, age_o, age, field, race, from, attr, sinc, intel, fun, amb, shar,like, prob,dec)
+
+meetings2$gender <- as.factor(meetings2$gender)
+meetings2$samerace <- as.factor(meetings2$samerace)
+
+
+
+
+ggpairs(meetings2)
+
+
+```
